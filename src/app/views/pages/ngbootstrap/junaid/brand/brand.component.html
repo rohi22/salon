@@ -1,0 +1,22 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">ID.</th>
+			<th scope="col">BrandID</th>
+			<th scope="col">Brand Name</th>
+			<th scope="col">Description</th>
+			<th scope="col">Meta Description</th>
+			<th scope="col">Title</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let item of Brand">
+			<td>{{item._id}}</td>
+			<td>{{item.brand_id}}</td>
+			<td>{{item.brand_name}}</td>
+			<td>{{item.description}}</td>
+			<td>{{item.meta_description}}</td>
+			<td>{{item.meta_title}}</td>
+		</tr>
+	</tbody>
+</table>

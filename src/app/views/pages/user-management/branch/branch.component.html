@@ -1,0 +1,145 @@
+<kt-portlet>
+	<kt-portlet-header>
+		<ng-container ktPortletTools>
+			<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+				data-ktwizard-state="step-first">
+				<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+					<div class="kt-form__section kt-form__section--first">
+						<div class="row">
+							<h3 style="margin-left: -916px;">Branch</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+			data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+				<form [formGroup]="Branchform">
+					<div class="kt-form__section kt-form__section--first">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Branch Name</label>
+									<input type="text" class="form-control" autocomplete="off" formControlName="name"
+										placeholder="Enter Branch Name">
+									<mat-error *ngIf="isControlHasError('name','required')">
+										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+									</mat-error>
+									<!-- <span class="form-text text-muted">Please enter your branch name</span> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Country</label>
+									<select #country formControlName="countryId"
+										(change)="getStateByCountry(country.value)" autocomplete="off"
+										class="form-control">
+										<option *ngFor="let country of CountryList" [value]="country.id">
+											{{country.country}}</option>
+									</select>
+									<mat-error *ngIf="isControlHasError('countryId','required')">
+										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+									</mat-error>
+									<!-- <span class="form-text text-muted">Please select country</span> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>State</label>
+									<select formControlName="stateId" #state autocomplete="off"
+										(change)="getCityByState(state.value)" class="form-control">
+										<option *ngFor="let state of StateList" [value]="state.id">
+											{{state.stateName}}</option>
+									</select>
+									<mat-error *ngIf="isControlHasError('stateId','required')">
+										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+									</mat-error>
+									<!-- <span class="form-text text-muted">Please select state</span> -->
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>City</label>
+									<select #city formControlName="cityId" autocomplete="off" class="form-control"
+										(change)="getAreaByCity(city.value)">
+										<option *ngFor="let city of CityList" [value]="city.id">
+											{{city.name}}</option>
+									</select>
+									<mat-error *ngIf="isControlHasError('cityId','required')">
+										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+									</mat-error>
+									<!-- <span class="form-text text-muted">Please select city</span> -->
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Area</label>
+									<select formControlName="areaId" autocomplete="off" class="form-control">
+										<option *ngFor="let item of AreaList" [value]="item.id">
+											{{item.area}}</option>
+									</select>
+									<mat-error *ngIf="isControlHasError('areaId','required')">
+										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+									</mat-error>
+									<!-- <span class="form-text text-muted">Please select state</span> -->
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Address</label>
+									<input type="text" class="form-control" autocomplete="off" formControlName="address"
+										placeholder="Enter Address">
+									<mat-error *ngIf="isControlHasError('address','required')">
+										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+									</mat-error>
+									<!-- <span class="form-text text-muted">Please enter your branch name</span> -->
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Active</label>
+									<input type="checkbox" formControlName="isActive" autocomplete="off" style="margin-left: 10px;
+            margin-top: 4px;" />
+									<mat-error *ngIf="isControlHasError('isActive','required')">
+										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
+									</mat-error>
+									<!-- <span class="form-text text-muted">Please enter your branch name</span> -->
+								</div>
+							</div>
+						</div>
+						<div class="kt-form__actions">
+							<div [hidden]="hide" (click)="onSubmit()"
+								class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+								data-ktwizard-type="action-submit">
+								Save
+							</div>
+							<div [hidden]="hideupdate" (click)="UPdate()"
+								class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+								data-ktwizard-type="action-submit">
+								Update
+							</div>
+							<div (click)="close()" style="margin-left: 10px;"
+								class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+								data-ktwizard-type="action-prev">
+								Close
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

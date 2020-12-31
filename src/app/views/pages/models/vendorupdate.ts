@@ -1,0 +1,17 @@
+export interface VendorUpdate {
+	id: number,
+	vendorName: string,
+	address: string,
+	cnic: null,
+	contactNo: string,
+	email: string,
+	image: string,
+	countryId: number,
+	countryName: string,
+	stateId: number,
+	stateName: string,
+	cityId: number,
+	cityName: string,
+	areaId: number,
+	areaName: string,
+}

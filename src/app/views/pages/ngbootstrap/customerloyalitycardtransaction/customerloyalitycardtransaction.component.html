@@ -1,0 +1,81 @@
+<kt-portlet>
+	<kt-portlet-header>
+		<ng-container ktPortletTools>
+			<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+				data-ktwizard-state="step-first">
+				<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+					<div class="kt-form__section kt-form__section--first">
+						<div class="row">
+							<h3 style="margin-left: -916px;">Loyality Card Transaction</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ng-container>
+	</kt-portlet-header>
+	<kt-portlet-body>
+		<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+			data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+				<form [formGroup]="LoyalitycardTranstionform">
+					<div class="kt-form__section kt-form__section--first">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Card</label>
+									<select formControlName="batchId" autocomplete="off" class="form-control">
+										<option *ngFor="let item of CardList" [value]="item.id">
+											{{item.cardNo}}</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Card No.</label>
+									<input type="text" class="form-control" autocomplete="off" formControlName="cardNo"
+										placeholder="Enter Card No.">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<mat-form-field>
+										<label>Used Date</label>
+										<input matInput type="date" class="bg-none" formControlName="usedDate">
+									</mat-form-field>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<div class="form-group">
+										<label>Used By</label>
+										<input type="text" class="form-control" autocomplete="off" formControlName="usedBy"
+											placeholder="Enter Used By">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="kt-form__actions">
+							<div [hidden]="hide" (click)="onSubmit()"
+								class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+								data-ktwizard-type="action-submit">
+								Save
+							</div>
+							<div [hidden]="hideupdate" (click)="UPdate()"
+								class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+								data-ktwizard-type="action-submit">
+								Update
+							</div>
+							<div (click)="close()" style="margin-left: 10px;"
+								class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+								data-ktwizard-type="action-prev">
+								Close
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

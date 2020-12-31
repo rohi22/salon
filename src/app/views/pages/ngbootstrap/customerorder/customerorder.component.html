@@ -1,0 +1,343 @@
+<kt-portlet>
+	<kt-portlet-body>
+
+		<!--begin: Wizard -->
+		<div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2"
+			data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-wizard-v2__aside">
+				<!--begin: Form Wizard Nav -->
+				<div class="kt-wizard-v2__nav">
+					<div class="kt-wizard-v2__nav-items">
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step"
+							data-ktwizard-state="current">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fas fa-cart-plus"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Order Products
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fab fa-usps"></i>
+
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Order Services
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fas fa-money-bill-alt"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Customer Order
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<!--end: Form Wizard Nav -->
+
+			</div>
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+				<!--begin: Form Wizard Form-->
+				<form [formGroup]="Customerorderform" id="kt_form">
+					<!--begin: Form Wizard Step 1-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Add Order Products</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Product</label>
+											<select #productId autocomplete="off" class="form-control">
+												<option *ngFor="let item of ProductList" [value]="item.id">
+													{{item.productName}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Quantity</label>
+											<input #quantity type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Quantity">
+										</div>
+									</div>
+
+
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input #price type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Price">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div (click)="AddOrderArray()" style="margin-left: 636px;"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+										Add
+									</div>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Product</th>
+											<th scope="col">Quantity</th>
+											<th scope="col">Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of ProductArray">
+											<td>{{item.productName}}</td>
+											<td>{{item.quantity}}</td>
+											<td>{{item.price}}</td>
+											<button mat-icon-button color="primary" (click)="Edit(item)"
+												matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp;
+											<button mat-icon-button color="warn" (click)="SpliceProductArray(item)"
+												matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 1-->
+
+					<!--begin: Form Wizard Step 2-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Add Order Services</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Service</label>
+											<select #serviceId autocomplete="off" class="form-control">
+												<option *ngFor="let item of ServiceList" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Price</label>
+											<input #oprice type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Quantity">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Employee</label>
+											<select #employeeId autocomplete="off" class="form-control">
+												<option *ngFor="let item of EmployeeList" [value]="item.id">
+													{{item.userName}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div (click)="AddServiceArray()" style="margin-left: 636px;"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+										Add
+									</div>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Service</th>
+											<th scope="col">Price</th>
+											<th scope="col">Employee</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of ServiceArray">
+											<td>{{item.serviceName}}</td>
+											<td>{{item.price}}</td>
+											<td>{{item.employeeName}}</td>
+											<button mat-icon-button color="primary" (click)="Edit(item)"
+												matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp;
+											<button mat-icon-button color="warn" (click)="SpliceServiceArray(item)"
+												matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Add Customer Order</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Customer Type</label>
+											<select formControlName="customerType" autocomplete="off"
+												class="form-control">
+												<option [value]="0">Registered</option>
+												<option [value]="1">Walkin</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Branch</label>
+											<select formControlName="branchIdd" autocomplete="off" class="form-control">
+												<option *ngFor="let item of BranchList" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Customer</label>
+											<select formControlName="customerId" autocomplete="off"
+												class="form-control">
+												<option *ngFor="let item of CustomerLIst" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Coupon</label>
+											<input type="checkbox" (change)="ChangeCoupon()" formControlName="coupon"
+												autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+								</div>
+								<div [hidden]="hidecoupon" class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label> Coupon No</label>
+											<input formControlName="couponDiscount" type="text" class="form-control"
+												autocomplete="off" placeholder="Enter Coupon No">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Loyalty Card</label>
+											<input type="checkbox" (change)="ChangeLoyalty()"
+												formControlName="loyaltyCard" autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+								</div>
+								<div [hidden]="hideloyalty" class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label> Loyalty Card No</label>
+											<input formControlName="loyalityCardDiscount" type="text" class="form-control"
+												autocomplete="off" placeholder="Enter Loyalty Card No">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Membership Card</label>
+											<input type="checkbox" (change)="ChangeMembership()"
+												formControlName="membershipCard" autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+								</div>
+								<div [hidden]="hidemembership" class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label> Membership Card No</label>
+											<input formControlName="membershipCardDiscount" type="text" class="form-control"
+												autocomplete="off" placeholder="Enter Membership Card No">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Reward Transaction</label>
+											<input type="checkbox" formControlName="rewardTransaction"
+												autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label> Discount</label>
+											<input formControlName="discount" type="text" class="form-control"
+												autocomplete="off" placeholder="Enter Discount">
+										</div>
+									</div>
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Tax</label>
+											<input formControlName="tax" type="text" class="form-control"
+												autocomplete="off" placeholder="Enter Tax">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="kt-form__actions">
+						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							(click)="close()" data-ktwizard-type="action-submit">
+							Close
+						</div>
+						<div [hidden]="hide" (click)="onSubmit()" style="margin-left: 472px;"
+							class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-submit">
+							Save
+						</div>
+						<!-- <div [hidden]="hideupdate" (click)="UPdate()" style="margin-left: 472px;"
+							class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-submit">
+							Update
+						</div> -->
+						<!-- <div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
+							Next Step
+						</div> -->
+					</div>
+				</form>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

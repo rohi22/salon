@@ -1,0 +1,494 @@
+<kt-portlet>
+	<kt-portlet-body>
+
+		<div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2"
+			data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-wizard-v2__aside">
+				<div class="kt-wizard-v2__nav">
+					<div class="kt-wizard-v2__nav-items">
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step"
+							data-ktwizard-state="current">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fa fa-percent" aria-hidden="true"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Payments
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fa fa-id-card" aria-hidden="true"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Bank Transaction
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fa fa-id-card" aria-hidden="true"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Cash Transaction
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fa fa-id-card" aria-hidden="true"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Cheque Transaction
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+				<form [formGroup]="CompanyPaidform" id="kt_form">
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Add Payments</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Account Payabale</label>
+											<select formControlName="accountPayableGenericId" autocomplete="off"
+												class="form-control">
+												<option *ngFor="let item of AccountPayableList" [value]="item.id">
+													{{item.status}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Vendor</label>
+											<select formControlName="vendorId" autocomplete="off" class="form-control">
+												<option *ngFor="let item of VendorList" [value]="item.id">
+													{{item.vendorName}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Amount</label>
+											<input formControlName="amount" type="text" class="form-control"
+												autocomplete="off" placeholder="Enter Amount">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Bank Transaction</label>
+											<input type="checkbox" formControlName="bankTransaction" autocomplete="off"
+												style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Cash Transaction</label>
+											<input type="checkbox" formControlName="cashTransaction" autocomplete="off"
+												style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Cheque Transaction</label>
+											<input type="checkbox" formControlName="checqueTransaction"
+												autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Add Bank Transaction</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Transfer Type</label>
+											<select #transferType autocomplete="off" class="form-control">
+												<option [value]="Bank">Bank</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Type</label>
+											<select #type autocomplete="off" class="form-control">
+												<option [value]="Bill">Bill</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Company Bank</label>
+											<select #bankIdCompany autocomplete="off" class="form-control">
+												<option *ngFor="let item of BankList" [value]="item.id">
+													{{item.title}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Company Branch</label>
+											<select #branchIdCompany autocomplete="off" class="form-control">
+												<option *ngFor="let item of BranchList" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Company Account</label>
+											<select #accountIdCompany autocomplete="off" class="form-control">
+												<option *ngFor="let item of AccountList" [value]="item.id">
+													{{item.accountTitle}}</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Bank Transaction Type</label>
+											<select #bankTransactionType autocomplete="off" class="form-control">
+												<option [value]="Online_Transfer">Online_Transfer</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Vendor Bank</label>
+											<select #venBankId autocomplete="off" class="form-control">
+												<option *ngFor="let item of BankList" [value]="item.id">
+													{{item.title}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Vendor Branch</label>
+											<select #venBranchId autocomplete="off" class="form-control">
+												<option *ngFor="let item of BranchList" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Vendor Account</label>
+											<select #venAccountId autocomplete="off" class="form-control">
+												<option *ngFor="let item of AccountList" [value]="item.id">
+													{{item.accountTitle}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Transfer Amount</label>
+											<input #amountTransfer type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Transfer Amount">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div (click)="AddBankArray()" style="margin-left: 636px;"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+										Add
+									</div>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Transfer Type</th>
+											<th scope="col">Type</th>
+											<th scope="col">Company Bank</th>
+											<th scope="col">Company Branch</th>
+											<th scope="col">Company Account</th>
+											<th scope="col">Bank Transaction Type</th>
+											<th scope="col">Vendor Bank</th>
+											<th scope="col">Vendor Branch</th>
+											<th scope="col">Vendor Account</th>
+											<th scope="col">Transfer Amount</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of BankArray">
+											<td>{{item.transferType}}</td>
+											<td>{{item.type}}</td>
+											<td>{{item.bankIdCompany}}</td>
+											<td>{{item.branchIdCompany}}</td>
+											<td>{{item.accountIdCompany}}</td>
+											<td>{{item.venBankId}}</td>
+											<td>{{item.venBranchId}}</td>
+											<td>{{item.venAccountId}}</td>
+											<td>{{item.bankTransactionType}}</td>
+											<td>{{item.amountTransfer}}</td>
+											<button mat-icon-button color="primary" (click)="Edit(item)"
+												matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp;
+											<button mat-icon-button color="warn" (click)="SpliceBankArray(item)"
+												matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Add Cash Transaction</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>TransferAmount</label>
+											<input #transferAmount type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Transfer Amount">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div (click)="AddCashArray()" style="margin-left: 636px;"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+										Add
+									</div>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Transfer Type</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of CashArray">
+											<td>{{item.transferAmount}}</td>
+											<button mat-icon-button color="primary" (click)="Edit(item)"
+												matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp;
+											<button mat-icon-button color="warn" (click)="SpliceCashArray(item)"
+												matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Add Cheque Transaction</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Company Account </label>
+											<select #companyAccountId autocomplete="off" class="form-control">
+												<option *ngFor="let item of AccountList" [value]="item.id">
+													{{item.accountTitle}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Cheque</label>
+											<select #chequeId autocomplete="off" class="form-control">
+												<option *ngFor="let item of ChequeList" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Account</label>
+											<select #accountId autocomplete="off" class="form-control">
+												<option *ngFor="let item of AccountList" [value]="item.id">
+													{{item.accountTitle}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Received Cheque</label>
+											<input type="checkbox" #recieved_cheque autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>New Cheque</label>
+											<input type="checkbox" #new_cheque autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+									<div class="col-xl-3">
+										<div class="form-group">
+											<label>Both Cheque</label>
+											<input type="checkbox" #both_cheque autocomplete="off" style="margin-left: 10px;
+					margin-top: 4px;" />
+										</div>
+									</div>
+
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Transfer Amount</label>
+											<input #transferamount type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Transfer Amount">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Bank Account</label>
+											<select #bankAccountId autocomplete="off" class="form-control">
+												<option *ngFor="let item of AccountList" [value]="item.id">
+													{{item.accountTitle}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Cheque No</label>
+											<input #chequeNumber type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Transfer Amount">
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Cheuq Status</label>
+										<select #chequeStatus autocomplete="off" class="form-control">
+											<option [value]="Registered">Pending</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xl-4">
+										<div class="form-group">
+											<label>Type</label>
+											<select #Chtype autocomplete="off" class="form-control">
+												<option [value]="Registered">Open Check</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Amount</label>
+											<input #amount type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Amount">
+										</div>
+									</div>
+
+								</div>
+								<div class="row">
+									<div (click)="AddCheuqArray()" style="margin-left: 636px;"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+										Add
+									</div>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Company Account</th>
+											<th scope="col">Cheuqe</th>
+											<th scope="col">Account</th>
+											<th scope="col">Transfer Amount</th>
+											<th scope="col">Bank Account</th>
+											<th scope="col">Cheque No.</th>
+											<th scope="col">Cheque Status</th>
+											<th scope="col">Type</th>
+											<th scope="col">Amount</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of ChequeArray">
+											<td>{{item.companyAccountId}}</td>
+											<td>{{item.chequeId}}</td>
+											<td>{{item.accountId}}</td>
+											<td>{{item.transferamount}}</td>
+											<td>{{item.bankAccountId}}</td>
+											<td>{{item.chequeNumber}}</td>
+											<td>{{item.chequeStatus}}</td>
+											<td>{{item.type}}</td>
+											<td>{{item.amount}}</td>
+											<button mat-icon-button color="primary" (click)="Edit(item)"
+												matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp;
+											<button mat-icon-button color="warn" (click)="SpliceChequeArray(item)"
+												matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="kt-form__actions">
+						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							(click)="close()" data-ktwizard-type="action-submit">
+							Close
+						</div>
+						<div [hidden]="hide" (click)="onSubmit()" style="margin-left: 472px;"
+							class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-submit">
+							Save
+						</div>
+						<div [hidden]="hideupdate" (click)="UPdate()" style="margin-left: 472px;"
+							class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-submit">
+							Update
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

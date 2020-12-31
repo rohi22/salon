@@ -1,0 +1,264 @@
+<kt-portlet>
+	<kt-portlet-body>
+
+		<!--begin: Wizard -->
+		<div #wizard class="kt-grid kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2"
+			data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-wizard-v2__aside">
+				<!--begin: Form Wizard Nav -->
+				<div class="kt-wizard-v2__nav">
+					<div class="kt-wizard-v2__nav-items">
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step"
+							data-ktwizard-state="current">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fab fa-usps"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Employee Services
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fas fa-money-bill-alt"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Employee Allownces
+									</div>
+								</div>
+							</div>
+						</a>
+						<a class="kt-wizard-v2__nav-item" href="javascript:;" data-ktwizard-type="step">
+							<div class="kt-wizard-v2__nav-body">
+								<div class="kt-wizard-v2__nav-icon">
+									<i class="fas fa-users"></i>
+								</div>
+								<div class="kt-wizard-v2__nav-label">
+									<div class="kt-wizard-v2__nav-label-title">
+										Employee
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<!--end: Form Wizard Nav -->
+
+			</div>
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
+				<!--begin: Form Wizard Form-->
+				<form [formGroup]="Employeeform" id="kt_form">
+					<!--begin: Form Wizard Step 1-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+						<div class="kt-heading kt-heading--md">Add Services</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Services</label>
+											<select #service autocomplete="off" class="form-control">
+												<option *ngFor="let item of ServiceList" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Percenatage</label>
+											<input #percenatage type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Percentage">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div (click)="AddService()" style="margin-left: 636px;"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+										Add
+									</div>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Service</th>
+											<th scope="col">Percentage</th>
+											<th scope="col">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of ServiceArray">
+											<td>{{item.serviceName}}</td>
+											<td>{{item.percentage}}</td>
+											<button mat-icon-button color="primary" (click)="Edit(item)"
+												matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp;
+											<button mat-icon-button color="warn" (click)="SpliceServiceArray(item)"
+												matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 1-->
+
+					<!--begin: Form Wizard Step 2-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Add Allownces</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Allownces</label>
+											<select #allownces autocomplete="off" class="form-control">
+												<option *ngFor="let item of AllowncesList" [value]="item.id">
+													{{item.allowanceName}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Allowance Amount</label>
+											<input #allowncesamount type="text" class="form-control" autocomplete="off"
+												placeholder="Enter Allowance Amount">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div (click)="AddAllownces()" style="margin-left: 636px;"
+										class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+										Add
+									</div>
+								</div>
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Allownces</th>
+											<th scope="col">Allowance Amount</th>
+											<th scope="col">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let item of AllowncesArray">
+											<td>{{item.allowanceName}}</td>
+											<td>{{item.allowanceAmount}}</td>
+											<button mat-icon-button color="primary" (click)="Edit(item)"
+												matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp;
+											<button mat-icon-button color="warn" (click)="SpliceAllownceArray(item)"
+												matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!--end: Form Wizard Step 2-->
+
+					<!--begin: Form Wizard Step 3-->
+					<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+						<div class="kt-heading kt-heading--md">Add Employee Information</div>
+						<div class="kt-form__section kt-form__section--first">
+							<div class="kt-wizard-v2__form">
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Employee</label>
+											<select formControlName="id" autocomplete="off" class="form-control">
+												<option *ngFor="let item of EmployeeList" [value]="item.id">
+													{{item.userName}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>User</label>
+											<select formControlName="userId" autocomplete="off" class="form-control">
+												<option *ngFor="let item of UserList" [value]="item.id">
+													{{item.name}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Batch</label>
+											<select formControlName="batchId" autocomplete="off" class="form-control">
+												<option *ngFor="let item of BatchList" [value]="item.id">
+													{{item.description}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Salary</label>
+											<input type="text" class="form-control" autocomplete="off"
+												formControlName="salary" placeholder="Enter Salary">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Employee Allownce</label>
+											<input type="checkbox" formControlName="employeeAllownce" autocomplete="off"
+												style="margin-left: 10px;
+						margin-top: 4px;" />
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="form-group">
+											<label>Service Wise Commission</label>
+											<input type="checkbox" formControlName="serviceWiseCommission"
+												autocomplete="off" style="margin-left: 10px;
+						margin-top: 4px;" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="kt-form__actions">
+						<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							(click)="close()" data-ktwizard-type="action-submit">
+							Close
+						</div>
+						<div [hidden]="hide" (click)="onSubmit()" style="margin-left: 472px;"
+							class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-submit">
+							Save
+						</div>
+						<div [hidden]="hideupdate" (click)="UPdate()" style="margin-left: 472px;"
+							class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+							data-ktwizard-type="action-submit">
+							Update
+						</div>
+						<!-- <div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
+							Next Step
+						</div> -->
+					</div>
+					<!--end: Form Actions -->
+				</form>
+				<!--end: Form Wizard Form-->
+			</div>
+		</div>
+		<!--end: Wizard -->
+
+	</kt-portlet-body>
+</kt-portlet>

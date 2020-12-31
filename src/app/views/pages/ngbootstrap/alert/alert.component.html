@@ -1,0 +1,74 @@
+<kt-portlet>
+	<kt-portlet-body>
+		<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
+			data-ktwizard-state="step-first">
+			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+				<form class="kt-form" id="kt_form" [formGroup]="Branchform">
+					<div class="kt-form__section kt-form__section--first">
+						<div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>Branch Name</label>
+										<input type="text" class="form-control" formControlName="name"
+											placeholder="Enter Branch Name" required>
+										<span class="form-text text-muted">Please enter your branch name</span>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>Country</label>
+										<select formControlName="countryid" class="form-control" required>
+											<option value="0">-Select-</option>
+										</select>
+										<span class="form-text text-muted">Please select country</span>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>City</label>
+										<select formControlName="cityid" class="form-control" required>
+											<option value="0">-Select-</option>
+										</select>
+										<span class="form-text text-muted">Please select city</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>State</label>
+										<select formControlName="stateid" class="form-control" required>
+											<option value="0">-Select-</option>
+										</select>
+										<span class="form-text text-muted">Please select state</span>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label>Area</label>
+										<input type="text" class="form-control" formControlName="area"
+											placeholder="Enter Area" required>
+										<span class="form-text text-muted">Please enter your area</span>
+									</div>
+								</div>
+							</div>
+							<div style="margin-left: -29px;" class="kt-form__actions">
+								<div (click)="onSubmit()"
+									class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-submit">
+									Save
+								</div>
+								<div style="margin-left: 10px;"
+									class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+									data-ktwizard-type="action-prev">
+									Close
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

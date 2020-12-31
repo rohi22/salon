@@ -1,0 +1,124 @@
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Router } from '@angular/router';
+import { Product } from '../../models/product';
+import { BrandsService } from '../../Services/brands.service';
+import { CommonService } from '../../Services/common.service';
+import { ProductService } from '../../Services/product.service';
+import { UnitsService } from '../../Services/units.service';
+
+@Component({
+	selector: 'kt-product',
+	templateUrl: './product.component.html'
+})
+export class ProductComponent implements OnInit {
+	Productform: FormGroup;
+	hide: boolean;
+	hideupdate: boolean;
+	UnitList = [];
+	BrandLIst = [];
+
+	constructor(private fb: FormBuilder, private _common: CommonService, private _ProductService: ProductService,
+		public dialogref: MatDialogRef<ProductComponent>, private _UnitService: UnitsService, private _BrandService: BrandsService,
+		@Inject(MAT_DIALOG_DATA) public data: Product,private router : Router) { }
+
+	async ngOnInit() {
+		this.InitilizeForm();
+		this.EditMOdal();
+		await this.getUnit();
+		await this.getBrand();
+	}
+
+	InitilizeForm() {
+		this.Productform = this.fb.group({
+			'productName': ['', Validators.required],
+			'isSalable': ['', Validators.required],
+			'brandId': ['', Validators.required],
+			'unitId': ['', Validators.required],
+			'id': ['', Validators.required],
+			'files': ['', Validators.required],
+		});
+	}
+
+	EditMOdal() {
+		debugger
+		if (this.data && this.data.id && this.data !== undefined) {
+			this.hide = true
+			this.hideupdate = false;
+			this.Productform.controls['productName'].setValue(this.data.productName);
+			this.Productform.controls['isSalable'].setValue(this.data.salable);
+			this.Productform.controls['brandId'].setValue(this.data.brandId);
+			this.Productform.controls['unitId'].setValue(this.data.unitId);
+			this.Productform.controls['files'].setValue(this.data.image);
+		}
+		else {
+			this.hide = false;
+			this.hideupdate = true
+		}
+	}
+
+	async getUnit() {
+		this._UnitService.getAllUnits().subscribe(res => {
+			this.UnitList = res as [];
+		})
+	}
+
+	async getBrand() {
+		this._BrandService.getAllBrands().subscribe(res => {
+			this.BrandLIst = res as [];
+		})
+	}
+
+	isControlHasError(controlName: string, validationType: string): boolean {
+		const control = this.Productform.controls[controlName];
+		if (!control) {
+			return false;
+		}
+
+		const result = control.hasError(validationType) && (control.dirty || control.touched);
+		return result;
+	}
+
+	UPdate() {
+		this.Productform.controls['id'].setValue(this.data.id)
+		this._ProductService.EditProduct(this.Productform.value, this.getheader()).subscribe(res => {
+			console.log(res);
+			alert("Update")
+			this.close()
+		}, (error: HttpErrorResponse) => {
+			console.log(error);
+			alert(error)
+			this.close()
+		});
+	}
+
+	onSubmit() {
+		debugger
+		this._ProductService.SaveProduct(this.Productform.value, this.getheader()).subscribe(res => {
+			console.log(res);
+			this.close();
+			alert("Save")
+		}, (err: HttpErrorResponse) => {
+			alert(err.message)
+		});
+
+	}
+
+	getheader() {
+		let headers = localStorage.getItem("Authorization")
+		const httpOptions = {
+			headers: new HttpHeaders({
+				Authorization: localStorage.getItem("Authorization"),
+			}),
+		};
+		return httpOptions;
+	}
+
+	close() {
+		this.dialogref.close();
+	}
+}
+
+
