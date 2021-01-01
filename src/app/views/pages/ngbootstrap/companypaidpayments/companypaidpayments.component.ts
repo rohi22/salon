@@ -198,6 +198,7 @@ export class CompanypaidpaymentsComponent implements OnInit {
 			bankTransactionType: this.bankTransactionType.nativeElement.value,
 			amountTransfer: Number(this.amountTransfer.nativeElement.value),
 		});
+	
 	}
 
 	async SpliceBankArray(item) {

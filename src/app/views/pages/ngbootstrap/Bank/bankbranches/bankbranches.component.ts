@@ -112,6 +112,7 @@ export class BankbranchesComponent implements OnInit {
 	UPdate() {
 		debugger
 		this.BankBranchform.controls['id'].setValue(this.data.id)
+		this.BankBranchform.value;
 		this._BankbranchesService.EditBankBranch(this.BankBranchform.controls['id'].value, this.BankBranchform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			alert("Update")
@@ -124,6 +125,7 @@ export class BankbranchesComponent implements OnInit {
 	}
 	onSubmit() {
 		debugger
+		this.BankBranchform.value
 		this._BankbranchesService.SaveBankBranch(this.BankBranchform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			alert("Save")

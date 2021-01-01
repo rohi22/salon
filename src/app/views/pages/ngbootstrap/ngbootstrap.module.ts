@@ -326,6 +326,10 @@ const routes: Routes = [
 				component: WebsettinglistComponent
 			},
 			{
+				path: 'menus/websetting/websettings',
+				component: WebsettingComponent
+			},
+			{
 				path: 'sales/saleslist',
 				component: SaleslistComponent
 			},

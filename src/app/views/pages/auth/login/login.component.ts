@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../core/reducers';
 // Auth
-import { AuthNoticeService, AuthService, Login } from '../../../../core/auth';
+import { AuthNoticeService, AuthService, Login, Logout } from '../../../../core/auth';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 //import { LoginService } from 'src/app/Services/login.service';
@@ -82,12 +82,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 	 */
 	ngOnInit(): void {
 		this.initLoginForm();
+		this.logout();
 		debugger
 		this.route.queryParams.subscribe(params => {
 			this.returnUrl = params.returnUrl || '/';
 		});
 	}
-
+	logout() {
+		this.store.dispatch(new Logout());
+	}
 	/**
 	 * On destroy
 	 */

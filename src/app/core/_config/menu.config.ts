@@ -10,6 +10,13 @@ export class MenuConfig {
 					page: '/dashboard',
 					translate: 'MENU.DASHBOARD',
 				},
+				{
+					title: 'Logout',
+					root: true,
+					alignment: 'left',
+					page: '/auth/login',
+					// translate: 'MENU.DASHBOARD',
+				},
 				// {
 				// 	title: 'Components',
 				// 	root: true,
@@ -492,7 +499,7 @@ export class MenuConfig {
 					title: 'Web Setting',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
-					page: '/ngbootstrap/menus/websetting/websettinglist',
+					page: '/ngbootstrap/menus/websetting/websettings',
 					bullet: 'dot',
 				},
 				{
