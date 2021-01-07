@@ -6,8 +6,9 @@
                     <div class="kt-form__section kt-form__section--first">
                         <div class="row">
                             <div (click)="AddNew()" class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
-                                Add GRN
+                                Add Tax
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -28,37 +29,34 @@
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
                 <ng-container matColumnDef="id">
-                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
                     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="grnType">
-                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> GRN_Type </th>
-                    <td mat-cell *matCellDef="let element"> {{element.grnType}} </td>
+                <ng-container matColumnDef="title">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Tax Title </th>
+                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="vendorName">
-                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Vendor Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.vendorName}} </td>
+                <ng-container matColumnDef="percentage">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Tax Percentage </th>
+                    <td mat-cell *matCellDef="let element"> {{element.percentage}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="branchName">
-                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Branch Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
+                <ng-container matColumnDef="description">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
                 </ng-container>
-                <ng-container matColumnDef="countryName">
-                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Branch Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
-                </ng-container>
+
                 <ng-container matColumnDef="actions">
                     <mat-header-cell style="font-size: inherit;margin-top: 16px;margin-left: 18px;" *matHeaderCellDef>
                         Actions
                     </mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        <button mat-icon-button color="primary" (click)="Edit(element)" matTooltip="Edit Area">
+                        <button mat-icon-button color="primary" (click)="Edit(element)" matTooltip="Edit Product">
 							<mat-icon>create</mat-icon>
 						</button>&nbsp;
-                        <button mat-icon-button color="warn" (click)="Delete(element)" matTooltip="Delete Area" type="button">
+                        <button mat-icon-button color="warn" (click)="Delete(element)" matTooltip="Delete Product" type="button">
 							<mat-icon>delete</mat-icon>
 						</button>
                     </mat-cell>
@@ -67,9 +65,9 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-                <!-- <tr class="mat-row" *matNoDataRow>
+                <tr class="mat-row" *matNoDataRow>
                     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-                </tr> -->
+                </tr>
             </table>
             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
         </div>

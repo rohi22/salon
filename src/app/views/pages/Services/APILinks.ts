@@ -1,7 +1,7 @@
 
 export class ApiLinks {
 
-	readonly BaseUrl = "http://172.16.0.99:10000/api/";
+	readonly BaseUrl = "http://172.16.0.25:10000/api/";
 	/// Login ///
 	readonly LoginUrl = this.BaseUrl + "login";
 	readonly imageUploader = this.BaseUrl + "image";
@@ -37,7 +37,8 @@ export class ApiLinks {
 	readonly usersbyBranchId = this.BaseUrl + "user/branch/";
 	readonly usersbyName = this.BaseUrl + "user//user/";
 	readonly AddUser = this.BaseUrl + "user";
-	readonly PutUser = this.BaseUrl + "user";
+	readonly PutUser = this.BaseUrl + "user/update";
+	readonly imageView = this.BaseUrl + "product/downloadfile/";
 	readonly DeleteUser = this.BaseUrl + "user/";
 
 	/// Country ///
@@ -176,7 +177,7 @@ export class ApiLinks {
 	readonly ProductByID = this.BaseUrl + "product/";
 	readonly ProductBYImageFile = this.BaseUrl + "product/downloadfile/{fileName:.+}";
 	readonly PostProduct = this.BaseUrl + "product";
-	readonly PutProduct = this.BaseUrl + "product";
+	readonly PutProduct = this.BaseUrl + "product/update";
 	readonly DeleteProduct = this.BaseUrl + "product/";
 
 	/// Brand ///
@@ -340,5 +341,12 @@ export class ApiLinks {
 	readonly GetpaymentByID = this.BaseUrl + "payment/";
 	readonly GetAccountPayableGen = this.BaseUrl + "account-payable-gen";
 	readonly GetAccountPayableGenByID = this.BaseUrl + "account-payable-gen/";
+	// add-tax //
+	readonly PostTax = this.BaseUrl + "new/tax";
+	readonly PutTax = this.BaseUrl + "new/tax/update/";
+	readonly DeleteTax = this.BaseUrl + "new/tax/";
+	readonly GetAllTax = this.BaseUrl + "new/tax";
+
+
 }
 

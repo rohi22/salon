@@ -1,3 +1,4 @@
+import { TaxService } from './../../Services/tax.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,6 +22,7 @@ export class PurchaseorderComponent implements OnInit {
 	BrandList = [];
 	VendorList = [];
 	BranchList = [];
+	TaxList:any = [];
 	hide: boolean;
 	hideupdate: boolean;
 	POArray = [];
@@ -31,7 +33,7 @@ export class PurchaseorderComponent implements OnInit {
 	@ViewChild('productPrice', { static: true }) productPrice: ElementRef;
 	constructor(private fb: FormBuilder, private _common: CommonService,
 		public dialogref: MatDialogRef<PurchaseorderComponent>, private _BranchService: BranchService,
-		private _VendorService: VendorService, private _ProductService: ProductService, private _BrandsService: BrandsService,
+		private _VendorService: VendorService,private _TaxService : TaxService, private _ProductService: ProductService, private _BrandsService: BrandsService,
 		private _PurchaseorderService: PurchaseorderService,
 		@Inject(MAT_DIALOG_DATA) public data: PurchaseOrder) { }
 
@@ -42,6 +44,8 @@ export class PurchaseorderComponent implements OnInit {
 		await this.getAllBrand();
 		await this.getAllBranch();
 		await this.GetALLvendor();
+		await this.GetALLTax();
+
 	}
 
 	ngAfterViewInit(): void {
@@ -70,6 +74,7 @@ export class PurchaseorderComponent implements OnInit {
 			'branchName': ['', Validators.required],
 			'branchId': ['', Validators.required],
 			'poDetail': ['', Validators.required],
+			'taxId': ['', Validators.required],
 
 		});
 	}
@@ -100,7 +105,11 @@ export class PurchaseorderComponent implements OnInit {
 			this.VendorList = res as [];
 		})
 	}
-
+	async GetALLTax() {
+		this._TaxService.getAllTax().subscribe(res => {
+			this.TaxList = res as [];
+		})
+	}
 	async getAllBranch() {
 		this._BranchService.getAllBranch().subscribe(res => {
 			this.BranchList = res as [];
@@ -120,10 +129,10 @@ export class PurchaseorderComponent implements OnInit {
 	}
 
 	UPdate() {
-		// this.POform.controls['id'].setValue(this.data.id)
+		this.POform.controls['id'].setValue(this.data.id)
 		// this.POform.controls['poDetail'].setValue(this.AllowncesArray);
 		console.log(this.POform.value)
-		this._PurchaseorderService.EditPO(this.POform.value, this._common.getHeaerOptions()).subscribe(res => {
+		this._PurchaseorderService.EditPO(this.POform.value,this.data.polist,this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Update")
 			this.close()
@@ -147,7 +156,7 @@ export class PurchaseorderComponent implements OnInit {
 			this.close();
 			console.log(err);
 		});
-	
+
 	}
 
 	close() {
@@ -166,7 +175,9 @@ export class PurchaseorderComponent implements OnInit {
 			productPrice: this.productPrice.nativeElement.value
 		});
 	}
+	Edit(){
 
+	}
 	async SplicePOArray(item) {
 		this.POArray.splice(item, 1);
 	}

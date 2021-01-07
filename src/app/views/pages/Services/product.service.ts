@@ -27,12 +27,25 @@ export class ProductService {
 		return this._http.get(this._links.ProductBYImageFile + file, { headers: this._commonServices.getHeaders() });
 	}
 
-	SaveProduct(body, headers) {
-		return this._http.post(this._links.PostProduct, body, headers);
+	SaveProduct(files, body, headers) {
+		let form = new FormData
+		let file = files
+		delete body.files;
+		form.append("productString", JSON.stringify(body));
+		form.append("files", file);
+		return this._http.post(this._links.PostProduct, form, headers);
 	}
 
-	EditProduct(body, header) {
-		return this._http.put(this._links.PutProduct, body, header);
+	EditProduct(files, body, header) {
+		let form = new FormData
+		let file = null
+		if (files != null) {
+			file = files
+		}
+		delete body.files;
+		form.append("productString", JSON.stringify(body));
+		form.append("files", file);
+		return this._http.post(this._links.PutProduct,form, header);
 	}
 
 	DeleteProduct(id, headers) {

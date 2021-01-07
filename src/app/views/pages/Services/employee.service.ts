@@ -36,7 +36,7 @@ export class EmployeeService {
 	}
 
 	EditRecord(body, header) {
-		return this._http.put(this._links.PutEmployee, body, header);
+		return this._http.post(this._links.PutEmployee, body, header);
 	}
 
 	DeletRecord(id, headers) {

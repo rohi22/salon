@@ -24,7 +24,8 @@ export class GrnserviceService {
 	}
 
 	getGrnByPO(po) {
-		return this._http.get(this._links.GrnByPO + po, { headers: this._commonServices.getHeaders() });
+
+		return this._http.get(this._links.GrnByPO + po.purchaseOrderId, { headers: this._commonServices.getHeaders() });
 	}
 
 	SaveGrn(body, header) {

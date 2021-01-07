@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CommonService } from '../../Services/common.service';
 import { Department } from './department';
 import { DepartmentService } from './department.service';
 
@@ -17,7 +18,7 @@ export class DepartmentComponent implements OnInit {
 	departmentform: FormGroup;
 	hide: boolean;
 	hideupdate: boolean;
-	constructor(private fb: FormBuilder, private _departmentservice: DepartmentService,
+	constructor(private fb: FormBuilder, private _departmentservice: DepartmentService,private _commonservice : CommonService,
 		public dialogref: MatDialogRef<DepartmentComponent>, @Inject(MAT_DIALOG_DATA) public data: Department) { }
 
 	ngOnInit() {
@@ -50,7 +51,7 @@ export class DepartmentComponent implements OnInit {
 	UPdate() {
 		debugger
 		this.departmentform.controls['id'].setValue(this.data.id)
-		this._departmentservice.EditRecord(this.departmentform.value, this.getheader()).subscribe(res => {
+		this._departmentservice.EditRecord(this.departmentform.value, this._commonservice.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Update")
 			this.close()
@@ -63,7 +64,7 @@ export class DepartmentComponent implements OnInit {
 
 	onSubmit() {
 debugger
-		this._departmentservice.AddRecord(this.departmentform.value, this.getheader()).subscribe(res => {
+		this._departmentservice.AddRecord(this.departmentform.value,  this._commonservice.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Save")
 			this.close();
@@ -74,7 +75,7 @@ debugger
 	getheader() {
 		const httpOptions = {
 			headers: new HttpHeaders({
-				Authorization: JSON.parse(localStorage.getItem("token")),
+				Authorization: JSON.parse(localStorage.getItem("Authorization")),
 			}),
 		};
 

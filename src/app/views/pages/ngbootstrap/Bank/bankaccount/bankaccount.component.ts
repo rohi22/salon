@@ -89,19 +89,19 @@ export class BankaccountComponent implements OnInit {
 		return result;
 	}
 
-	// UPdate() {
-	// 	debugger
-	// 	this.BankAccountform.controls['id'].setValue(this.data.id)
-	// 	this._BankbranchesService.EditBankBranch(this.BankAccountform.controls['id'].value, this.BankBranchform.value, this.getheader()).subscribe(res => {
-	// 		console.log(res);
-	// 		alert("Update")
-	// 		this.close()
-	// 	}, (error: HttpErrorResponse) => {
-	// 		console.log(error);
-	// 		alert(error)
-	// 		this.close()
-	// 	});
-	// }
+	UPdate() {
+		debugger
+		this.BankAccountform.controls['id'].setValue(this.data.id)
+		this._BankbranchesService.EditBankBranch(this.BankAccountform.controls['id'].value, this.BankAccountform.value, this.getheader()).subscribe(res => {
+			console.log(res);
+			alert("Update")
+			this.close()
+		}, (error: HttpErrorResponse) => {
+			console.log(error);
+			alert(error)
+			this.close()
+		});
+	}
 	onSubmit() {
 		debugger
 		this._BankaccountService.SaveBankAccount(this.BankAccountform.value, this.getheader()).subscribe(res => {

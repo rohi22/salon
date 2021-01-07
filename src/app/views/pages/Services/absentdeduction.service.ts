@@ -20,7 +20,7 @@ export class AbsentdeductionService {
 
 	SaveRecord(body, header) {
 		debugger
-		return this._http.put(this._links.POstAbsent, body, header);
+		return this._http.post(this._links.POstAbsent, body, header);
 	}
 
 	EditRecord(body, header) {

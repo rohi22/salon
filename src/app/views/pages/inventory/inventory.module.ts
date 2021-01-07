@@ -18,6 +18,8 @@ import { ProductlistComponent } from './product/productlist/productlist.componen
 import { UnitComponent } from './unit/unit.component';
 import { UnitlistComponent } from './unit/unitlist/unitlist.component';
 import { CoreModule } from '../../../core/core.module';
+import { AddTaxComponent } from './add-tax/add-tax.component';
+import { TaxListComponent } from './add-tax/tax-list/tax-list.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -34,6 +36,10 @@ const routes: Routes = [
 			{
 				path: 'unit',
 				component: UnitlistComponent
+			},
+			{
+				path: 'tax',
+				component: TaxListComponent
 			},
 		]
 	}
@@ -91,6 +97,8 @@ const routes: Routes = [
         UnitlistComponent,
         ProductlistComponent,
         BrandlistComponent,
+        AddTaxComponent,
+        TaxListComponent,
     ],
     exports: [
         InventoryComponent,
@@ -98,7 +106,8 @@ const routes: Routes = [
 	entryComponents:[
 		BrandComponent,
 		UnitComponent,
-		ProductComponent
+		ProductComponent,
+		AddTaxComponent,
 	],
 	providers: [
 		MatIconRegistry,

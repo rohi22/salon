@@ -35,15 +35,15 @@ export class GrnComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		// if (this.data && this.data.id && this.data !== undefined) {
-		// 	this.hide = true
-		// 	this.hideupdate = false;
-		// 	//this.GRNform.controls['area'].setValue(this.data.area);
-		// }
-		// else {
-		// 	this.hide = false;
-		// 	this.hideupdate = true
-		// }
+		if (this.data && this.data.id && this.data !== undefined) {
+			this.hide = true
+			this.hideupdate = false;
+			//this.GRNform.controls['area'].setValue(this.data.area);
+		}
+		else {
+			this.hide = false;
+			this.hideupdate = true
+		}
 	}
 
 	isControlHasError(controlName: string, validationType: string): boolean {
@@ -74,13 +74,19 @@ export class GrnComponent implements OnInit {
 			this.close()
 		});
 	}
-
 	onSubmit() {
-		this._GrnserviceService.SaveGrn(this.GRNform.value, this._common.getHeaerOptions()).subscribe(res => {
+		this._GrnserviceService.getGrnByPO(this.GRNform.value).subscribe(res => {
 			console.log(res);
 		});
 		this.close();
 	}
+
+	// onSubmit() {
+	// 	this._GrnserviceService.SaveGrn(this.GRNform.value, this._common.getHeaerOptions()).subscribe(res => {
+	// 		console.log(res);
+	// 	});
+	// 	this.close();
+	// }
 
 	close() {
 		this.dialogref.close();

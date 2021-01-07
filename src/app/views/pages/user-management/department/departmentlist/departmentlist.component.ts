@@ -41,7 +41,10 @@ export class DepartmentlistComponent {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = {};
-		this.dialog.open(DepartmentComponent, dialogconfig);
+		let dialog = this.dialog.open(DepartmentComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			this.getAllDepartment();
+		  });
 	}
 
 	async Edit(edit) {
@@ -50,12 +53,17 @@ export class DepartmentlistComponent {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = edit;
-		this.dialog.open(DepartmentComponent, dialogconfig);
+		let dialog = this.dialog.open(DepartmentComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			this.getAllDepartment();
+		  });
 	}
 
 	async Delete(index) {
 		this._DepartmentService.DeletRecord(index.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete")
+			this.getAllDepartment();
+
 		}, (err: HttpErrorResponse) => {
 			alert(err.error);
 		})

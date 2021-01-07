@@ -1,3 +1,4 @@
+import { TaxListComponent } from './../inventory/add-tax/tax-list/tax-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -111,6 +112,7 @@ import { AttributeComponent } from './junaid/attribute/attribute.component';
 import { JbrandComponent } from './junaid/jbrand/jbrand.component';
 import { JcategoryComponent } from './junaid/jcategory/jcategory.component';
 import { JproductComponent } from './junaid/jproduct/jproduct.component';
+import { AddTaxComponent } from '../inventory/add-tax/add-tax.component';
 
 const routes: Routes = [
 	{
@@ -232,6 +234,10 @@ const routes: Routes = [
 			{
 				path: 'brand',
 				component: BrandlistComponent
+			},
+			{
+				path: 'tax',
+				component: TaxListComponent
 			},
 			{
 				path: 'unit',
@@ -452,6 +458,7 @@ const routes: Routes = [
 		AccounttypelistComponent,
 		BrandComponent,
 		UnitComponent,
+		TaxListComponent,
 		ProductComponent,
 		BrandlistComponent,
 		UnitlistComponent,
@@ -506,7 +513,8 @@ const routes: Routes = [
 		AttributeComponent,
 		JbrandComponent,
 		JcategoryComponent,
-		JproductComponent
+		JproductComponent,
+		AddTaxComponent
 		//BrancheslistComponent,
 	],
 	providers: [
@@ -514,6 +522,7 @@ const routes: Routes = [
 	entryComponents: [
 		NgbdModalContentComponent,
 		CountryComponent,
+		AddTaxComponent,
 		AreaComponent,
 		CityComponent,
 		StateComponent,

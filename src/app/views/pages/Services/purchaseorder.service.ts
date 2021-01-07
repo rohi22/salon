@@ -27,7 +27,7 @@ export class PurchaseorderService {
 		return this._http.post(this._links.PostPO, body, headers)
 	}
 
-	EditPO(body, headers) {
+	EditPO(body,detail, headers) {
 		return this._http.post(this._links.PuttPO, body, headers)
 	}
 }

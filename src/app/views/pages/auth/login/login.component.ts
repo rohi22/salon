@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.initLoginForm();
 		this.logout();
-		debugger
+		
 		this.route.queryParams.subscribe(params => {
 			this.returnUrl = params.returnUrl || '/';
 		});

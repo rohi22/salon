@@ -16,7 +16,7 @@ export class CustomerupdateComponent implements OnInit {
 	CustomerList = [];
 	hide: boolean;
 	hideupdate: boolean;
-	file: any;
+	file: any = null;
 
 	constructor(private fb: FormBuilder, private _common: CommonService, private _CustomerService: CustomerService,
 		public dialogref: MatDialogRef<CustomerupdateComponent>,
@@ -39,9 +39,10 @@ export class CustomerupdateComponent implements OnInit {
 
 		debugger
 		if (this.data && this.data.id && this.data !== undefined) {
-			this.hide = true
+			this.hide = false
 			this.hideupdate = false;
 			this.Customerform.controls['name'].setValue(this.data.name);
+			this.file = this.data.image
 		}
 		else {
 			this.hide = false;

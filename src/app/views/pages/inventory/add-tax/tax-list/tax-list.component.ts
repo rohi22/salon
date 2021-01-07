@@ -1,29 +1,34 @@
+import { AddTaxComponent } from './../add-tax.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatSnackBar, MatSort } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../../../models/product';
+import { ProductComponent } from '../../../ngbootstrap/product/product.component';
 import { CommonService } from '../../../Services/common.service';
 import { ProductService } from '../../../Services/product.service';
-import { ProductComponent } from '../product.component';
+import { Tax } from '../../../models/Tax';
+import { TaxService } from '../../../Services/tax.service';
 
 @Component({
-	selector: 'kt-produclist',
-	templateUrl: './produclist.component.html'
+  selector: 'kt-add-tax',
+  templateUrl: './tax-list.component.html',
+  styleUrls: ['./tax-list.component.scss']
 })
-export class ProduclistComponent implements OnInit {
-	public dataSource = new MatTableDataSource<Product>();
-	displayedColumns: string[] = ['id', 'productName', 'unitName', 'brandName', 'actions'];
+export class TaxListComponent implements OnInit {
+	public dataSource = new MatTableDataSource<Tax>();
+	displayedColumns: string[] = ['id', 'title', 'percentage','description' , 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
-	constructor(private _ProductService: ProductService, public dialog: MatDialog, public snackBar: MatSnackBar,private _commonservice: CommonService,) { }
+	constructor(private _TaxService: TaxService, public dialog: MatDialog, public snackBar: MatSnackBar,private _commonservice: CommonService,) { }
 	async ngOnInit() {
 		await this.getAllBrands();
 	}
 
 	async getAllBrands() {
-		this._ProductService.getAllProduct()
+		this._TaxService.getAllTax()
 			.subscribe(res => {
-				this.dataSource.data = res as Product[];
+				this.dataSource.data = res as Tax[];
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
 			});
@@ -39,7 +44,7 @@ export class ProduclistComponent implements OnInit {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = {};
-		let dialog = this.dialog.open(ProductComponent, dialogconfig);
+		let dialog = this.dialog.open(AddTaxComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllBrands();
 		  });
@@ -47,7 +52,7 @@ export class ProduclistComponent implements OnInit {
 
 	async Delete(id) {
 		let headers = localStorage.getItem("Authorization")
-		this._ProductService.DeleteProduct(id.id, this._commonservice.getHeaerOptions()).subscribe(res => {
+		this._TaxService.DeleteTax(id.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete");
 			this.getAllBrands();
 			console.log(res)
@@ -63,9 +68,10 @@ export class ProduclistComponent implements OnInit {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = edit;
-		let dialog = this.dialog.open(ProductComponent, dialogconfig);
+		let dialog = this.dialog.open(AddTaxComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllBrands();
 		  });
 	}
+
 }

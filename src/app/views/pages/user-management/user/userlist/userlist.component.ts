@@ -45,13 +45,17 @@ export class UserlistComponent {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = {};
-		this.dialog.open(UserComponent, dialogconfig);
+		let dialog = this.dialog.open(UserComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			this.getAll();
+		});
 	}
 
 	async Delete(id) {
 		let headers = localStorage.getItem("Authorization")
 		this._userservice.DeletUser(id.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete");
+			this.getAll();
 			console.log(res)
 		}, (error: HttpErrorResponse) => {
 			console.log(error);
@@ -65,7 +69,10 @@ export class UserlistComponent {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = edit;
-		this.dialog.open(UserComponent, dialogconfig);
+		let dialog = this.dialog.open(UserComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			this.getAll();
+		});
 	}
 
 }

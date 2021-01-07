@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
 // RxJS
 import { Observable } from 'rxjs';
+
 import { tap } from 'rxjs/operators';
 
 /**
@@ -41,10 +42,22 @@ export class InterceptService implements HttpInterceptor {
 					// console.error('status code:');
 					// tslint:disable-next-line:no-debugger
 					console.error(error.status);
+					console.error('interceptError',error);
 					console.error(error.message);
 					// console.log('--- end of response---');
 				}
 			)
 		);
 	}
+// 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+	
+// 		return next.handle(authReq).catch((error, caught) => {
+// 		  if(error.error.status === 403) {
+// 			  this.router.navigate(['/login']); 
+// 		  } else if(error.error.status === 400) { 
+// 			  console.log('Error status 400');
+// 		  }
+// 		  return Observable.throw(error);
+// 	  }) as any;
+// }
 }

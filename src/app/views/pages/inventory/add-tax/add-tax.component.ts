@@ -1,3 +1,4 @@
+import { Tax } from './../../models/Tax';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,12 +9,15 @@ import { BrandsService } from '../../Services/brands.service';
 import { CommonService } from '../../Services/common.service';
 import { ProductService } from '../../Services/product.service';
 import { UnitsService } from '../../Services/units.service';
+import { ProductComponent } from '../../ngbootstrap/product/product.component';
+import { TaxService } from '../../Services/tax.service';
 
 @Component({
 	selector: 'kt-product',
-	templateUrl: './product.component.html'
+	templateUrl: './add-tax.component.html',
+	styleUrls: ['./add-tax.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class AddTaxComponent implements OnInit {
 	Productform: FormGroup;
 	hide: boolean;
 	hideupdate: boolean;
@@ -22,9 +26,9 @@ export class ProductComponent implements OnInit {
 	files: any = null;
 	uploadfile: any;
 
-	constructor(private fb: FormBuilder, private _common: CommonService, private _ProductService: ProductService,
-		public dialogref: MatDialogRef<ProductComponent>, private _UnitService: UnitsService, private _BrandService: BrandsService,
-		@Inject(MAT_DIALOG_DATA) public data: Product,private router : Router) { }
+	constructor(private fb: FormBuilder, private _common: CommonService, private _TaxService: TaxService,
+		public dialogref: MatDialogRef<AddTaxComponent>, private _UnitService: UnitsService, private _BrandService: BrandsService,
+		@Inject(MAT_DIALOG_DATA) public data: Tax,private router : Router) { }
 
 	async ngOnInit() {
 		this.InitilizeForm();
@@ -35,12 +39,10 @@ export class ProductComponent implements OnInit {
 
 	InitilizeForm() {
 		this.Productform = this.fb.group({
-			'productName': ['', Validators.required],
-			'saleAble': ['', Validators.required],
-			'brandId': ['', Validators.required],
-			'unitId': ['', Validators.required],
+			'title': ['', Validators.required],
+			'description': ['', Validators.required],
+			'percentage': ['', Validators.required],
 			'id': ['', Validators.required],
-			'files': ['', Validators.required],
 		});
 	}
 
@@ -49,11 +51,9 @@ export class ProductComponent implements OnInit {
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
-			this.Productform.controls['productName'].setValue(this.data.productName);
-			this.Productform.controls['saleAble'].setValue(this.data.salable);
-			this.Productform.controls['brandId'].setValue(this.data.brandId);
-			this.Productform.controls['unitId'].setValue(this.data.unitId);
-			this.Productform.controls['files'].setValue(this.data.image);
+			this.Productform.controls['title'].setValue(this.data.title);
+			this.Productform.controls['percentage'].setValue(this.data.percentage);
+			this.Productform.controls['description'].setValue(this.data.description);
 		}
 		else {
 			this.hide = false;
@@ -95,7 +95,7 @@ export class ProductComponent implements OnInit {
 
 	UPdate() {
 		this.Productform.controls['id'].setValue(this.data.id)
-		this._ProductService.EditProduct(this.files,this.Productform.value, this.getheader()).subscribe(res => {
+		this._TaxService.EditTax(this.Productform.controls['id'].value,this.Productform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			alert("Update")
 			this.close()
@@ -108,7 +108,7 @@ export class ProductComponent implements OnInit {
 
 	onSubmit() {
 		debugger
-		this._ProductService.SaveProduct(this.files,this.Productform.value, this.getheader()).subscribe(res => {
+		this._TaxService.SaveTax(this.Productform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			this.close();
 			alert("Save")
