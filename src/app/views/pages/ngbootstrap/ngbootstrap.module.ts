@@ -1,6 +1,6 @@
 import { TaxListComponent } from './../inventory/add-tax/tax-list/tax-list.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbootstrapComponent } from './ngbootstrap.component';
 import { AlertComponent } from './alert/alert.component';
@@ -518,7 +518,7 @@ const routes: Routes = [
 		//BrancheslistComponent,
 	],
 	providers: [
-		NgbAlertConfig,],
+		NgbAlertConfig,DatePipe],
 	entryComponents: [
 		NgbdModalContentComponent,
 		CountryComponent,

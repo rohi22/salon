@@ -240,9 +240,11 @@ export class ApiLinks {
 	readonly AllGRN = this.BaseUrl + "grn";
 	readonly GrnByBranchID = this.BaseUrl + "grn/branch";
 	readonly GrnByID = this.BaseUrl + "grn/";
+	readonly GrnByID1 = this.BaseUrl + "grn";
 	readonly GrnByPO = this.BaseUrl + "grn/po/";
 	readonly PostGrn = this.BaseUrl + "grn/nonpo/";
-	readonly PutGrn = this.BaseUrl + "grn/po/";
+	readonly PutGrn = this.BaseUrl + "grn/po/update/";
+	readonly editGrn = this.BaseUrl + "grn/po/update/";
 
 	/// Purchase Order ///
 	readonly AllPO = this.BaseUrl + "po";
@@ -250,6 +252,8 @@ export class ApiLinks {
 	readonly PObyBranchId = this.BaseUrl + "po/branch/";
 	readonly PostPO = this.BaseUrl + "po";
 	readonly PuttPO = this.BaseUrl + "po";
+	// readonly gettPO = this.BaseUrl + "po";
+
 
 	/// Customer Update ///
 	readonly PostCustomerUpdate = this.BaseUrl + "customer/updatedcustomer";

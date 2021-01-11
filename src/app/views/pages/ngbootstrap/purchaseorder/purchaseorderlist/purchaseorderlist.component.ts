@@ -12,8 +12,7 @@ import { PurchaseorderComponent } from '../purchaseorder.component';
 })
 export class PurchaseorderlistComponent implements OnInit {
 	public dataSource = new MatTableDataSource<PurchaseOrder>();
-	displayedColumns: string[] = ['id', 'title', 'tax', 'grossAmount', 'netAmount',
-		'discount', 'poNumber', 'vendorName', 'branchName', 'date', 'actions'];
+	displayedColumns: string[] = ['S.no', 'title', 'poNumber', 'vendorName', 'branchName', 'subGrossAmount', 'subTaxAmount', 'subDiscount', 'subTotal', 'deliveryDate', 'createdBy', 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -47,7 +46,7 @@ export class PurchaseorderlistComponent implements OnInit {
 		let dialog = this.dialog.open(PurchaseorderComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllPO();
-		  });
+		});
 	}
 
 	async Edit(edit) {
@@ -60,7 +59,7 @@ export class PurchaseorderlistComponent implements OnInit {
 		let dialog = this.dialog.open(PurchaseorderComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllPO();
-		  });
+		});
 	}
 	// async Delete(index) {
 	// 	this._EmployeeService.DeletRecord(index.id, this._commonservice.getHeaerOptions()).subscribe(res => {

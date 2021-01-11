@@ -12,7 +12,7 @@ import { ProductComponent } from '../product.component';
 })
 export class ProduclistComponent implements OnInit {
 	public dataSource = new MatTableDataSource<Product>();
-	displayedColumns: string[] = ['id', 'productName', 'unitName', 'brandName', 'actions'];
+	displayedColumns: string[] = ['id', 'productName', 'unitName', 'brandName','status', 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 	constructor(private _ProductService: ProductService, public dialog: MatDialog, public snackBar: MatSnackBar,private _commonservice: CommonService,) { }

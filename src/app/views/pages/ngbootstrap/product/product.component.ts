@@ -42,6 +42,7 @@ export class ProductComponent implements OnInit {
 			'id': ['', Validators.required],
 			'files': ['', Validators.required],
 		});
+		this.Productform.controls['saleAble'].setValue(false);
 	}
 
 	EditMOdal() {
