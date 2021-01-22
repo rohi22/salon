@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'kt-ngbootstrap',
@@ -6,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NgbootstrapComponent implements OnInit {
 
-	constructor() {
-	}
+	constructor(){}
 
 	ngOnInit() {
 	}

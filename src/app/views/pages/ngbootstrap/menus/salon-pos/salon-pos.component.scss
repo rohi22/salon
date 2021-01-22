@@ -125,8 +125,23 @@
 	color: rgb(73,144, 226);
 	cursor: pointer;
 }
+.max-height-first{
+	max-height: 633px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.max-height-first::-webkit-scrollbar {
+    margin-top: 20px;
+    height: 5px;
+    width: 3px;
+}
+.max-height-first::-webkit-scrollbar-thumb {
+    background:rgb(255,255, 255);
+    border-radius: 10px;
+    transition: 0.5s;
+}
 .max-height{
-	max-height: 650px;
+	max-height: 633px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -155,28 +170,58 @@
     border-radius: 10px;
     transition: 0.5s;
 }
+.max-height-third{
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.max-height-third::-webkit-scrollbar-thumb {
+    background:rgb(73,144, 226);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+.max-height-third::-webkit-scrollbar {
+    margin-top: 20px;
+    height: 5px;
+    width: 3px;
+}
+.max-height-third::-webkit-scrollbar {
+    margin-top: 20px;
+    height: 5px;
+    width: 3px;
+}
+
 .have-pos-fixed{
 	position: fixed;
-	top: 24%;
+	top: 7%;
 	right: 0;
 	height: 100vh;
-	width: 31%;
+	width: 30.6%;
+}
+.max-width-90{
+	max-width: 90% !important;
 }
 
 .square-btn{
 	border: 1px solid rgb(204,215,221);
 	background-color: rgb(204,215,221);
 	color: rgb(73,144, 226);
-	padding: 5px;
+	// padding-top: 1px;
+	// padding-bottom: 2px;
+	padding-right: 5px;
+	padding-left: 5px;
 	margin-right: 10px;
 }
 .square-text{
 	border: 1px solid rgb(73,144,226);
 	background-color: rgb(255,255,255);
 	color: rgb(73,144, 226);
-	padding-top: 5px;
-	padding-bottom: 5px;
+	// padding-top: 2px;
+	// padding-bottom: 2px;
 	padding-right: 10px;
 	padding-left: 10px;
 	margin-right: 10x;
+}
+.color-white{
+	color: white;
 }
