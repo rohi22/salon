@@ -1,7 +1,7 @@
 
 export class ApiLinks {
 
-	readonly BaseUrl = "http://172.16.0.99:10000/api/";
+	readonly BaseUrl = "http://172.16.0.25:10000/api/";
 	/// Login ///
 	readonly LoginUrl = this.BaseUrl + "login";
 	readonly imageUploader = this.BaseUrl + "image";

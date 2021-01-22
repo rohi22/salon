@@ -111,6 +111,7 @@ import { AttributeComponent } from './junaid/attribute/attribute.component';
 import { JbrandComponent } from './junaid/jbrand/jbrand.component';
 import { JcategoryComponent } from './junaid/jcategory/jcategory.component';
 import { JproductComponent } from './junaid/jproduct/jproduct.component';
+import { SalonPosComponent } from './menus/salon-pos/salon-pos.component';
 
 const routes: Routes = [
 	{
@@ -361,6 +362,10 @@ const routes: Routes = [
 				path: 'junaid/product',
 				component: JproductComponent
 			},
+			{
+				path: 'menus/salonPos',
+				component: SalonPosComponent
+			}
 		]
 	}
 ];
@@ -502,7 +507,8 @@ const routes: Routes = [
 		AttributeComponent,
 		JbrandComponent,
 		JcategoryComponent,
-		JproductComponent
+		JproductComponent,
+		SalonPosComponent
 		//BrancheslistComponent,
 	],
 	providers: [

@@ -15,6 +15,7 @@ import { NgxPermissionsService } from 'ngx-permissions';
 import { currentUserPermissions, Permission } from '../../../core/auth';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../../../core/reducers';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
 	selector: 'kt-base',
@@ -29,6 +30,7 @@ export class BaseComponent implements OnInit, OnDestroy {
 	asideSecondary: boolean;
 	subheaderDisplay: boolean;
 	fluid: boolean;
+	header = true;
 
 	// Private properties
 	private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
@@ -46,6 +48,7 @@ export class BaseComponent implements OnInit, OnDestroy {
 	 * @param permissionsService
 	 */
 	constructor(
+		private router: Router,
 		private layoutConfigService: LayoutConfigService,
 		private menuConfigService: MenuConfigService,
 		private pageConfigService: PageConfigService,
@@ -68,6 +71,8 @@ export class BaseComponent implements OnInit, OnDestroy {
 			this.htmlClassService.setConfig(layoutConfig);
 		});
 		this.unsubscribe.push(subscr);
+
+		this.onChangeRoute();
 	}
 
 	/**
@@ -100,7 +105,23 @@ export class BaseComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.unsubscribe.forEach(sb => sb.unsubscribe());
 	}
+	onChangeRoute() {
+		this.router.events.subscribe(event => {
+			if (event instanceof NavigationEnd) {
 
+				const url = event.urlAfterRedirects;
+				let abs = url.split('/');
+				console.log("splitedURL", abs);
+				if (abs[3] == "salonPos") {
+					this.header = false;
+				} else {
+					this.header = true;
+				}
+				console.log(url)
+
+			}
+		})
+	}
 	/**
 	 * NGX Permissions, init roles
 	 */
