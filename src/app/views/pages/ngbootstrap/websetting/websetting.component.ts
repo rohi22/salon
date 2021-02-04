@@ -21,19 +21,19 @@ export class WebsettingComponent implements OnInit {
 
 	ngOnInit() {
 		this.InitilizeForm();
-	
+
 	}
 
 	InitilizeForm() {
 		this.Websettingform = this.fb.group({
-			'id': [[''], Validators.required],
-			'companyName': [[''], Validators.required],
-			'companyDescription': [[''], Validators.required],
-			'address': [[''], Validators.required],
-			'companyEmail': [[''], Validators.required],
-			'companyContact': [[''], Validators.required],
-			'faxNumber': [[''], Validators.required],
-			'web': [[''], Validators.required],
+			'id': ['', Validators.required],
+			'companyName': ['', Validators.required],
+			'companyDescription': ['', Validators.required],
+			'address': ['', Validators.required],
+			'companyEmail': ['', Validators.required],
+			'companyContact': ['', Validators.required],
+			'faxNumber': ['', Validators.required],
+			'web': ['', Validators.required],
 		})
 		this.EditMOdal();
 	}
