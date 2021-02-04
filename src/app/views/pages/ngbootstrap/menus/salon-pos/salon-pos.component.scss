@@ -121,6 +121,11 @@
 	background-color: rgb(236,243, 253);
 	cursor: pointer;
 }
+.clicked-btn{
+	background-color: rgb(236,243, 253);
+	color: rgb(73,144, 226);
+	cursor: pointer;
+}
 .hover-blue:hover .hover-color{
 	color: rgb(73,144, 226);
 	cursor: pointer;
@@ -195,8 +200,9 @@
 	position: fixed;
 	top: 7%;
 	right: 0;
-	height: 100vh;
+	height: 92vh;
 	width: 30.6%;
+	display: none;
 }
 .max-width-90{
 	max-width: 90% !important;
@@ -224,4 +230,13 @@
 }
 .color-white{
 	color: white;
+}
+.border-black{
+	border: 1px solid gray;
+}
+.cursor{
+	cursor: pointer;
+}
+.hover-red:hover{
+	color: rgb(255, 0, 0);
 }
