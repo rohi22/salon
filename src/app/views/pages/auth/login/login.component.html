@@ -1,9 +1,11 @@
 <!--begin::Head-->
-<div class="kt-login__head">
+
+<!-- <div class="kt-login__head">
 	<span class="kt-login__signup-label">Don't have an account yet?</span>&nbsp;&nbsp;
 	<a href="javascript:;" routerLink="/auth/register"
 		class="kt-link kt-login__signup-link">{{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}</a>
-</div>
+</div> -->
+
 <!--end::Head-->
 
 <!--begin::Body-->
@@ -79,9 +81,9 @@
 				</mat-form-field> -->
 			<!--begin::Action-->
 			<div class="kt-login__actions">
-				<a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
+				<!-- <a href="javascript:;" routerLink="/auth/forgot-password" class="kt-link kt-login__link-forgot">
 					{{ 'AUTH.GENERAL.FORGOT_BUTTON' | translate }}
-				</a>
+				</a> -->
 				<button (click)="UserLogin()"
 					[ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}"
 					id="kt_login_signin_submit"
@@ -92,17 +94,17 @@
 		<!--end::Form-->
 
 		<!--begin::Divider-->
-		<div class="kt-login__divider">
+		<!-- <div class="kt-login__divider">
 			<div class="kt-divider">
 				<span></span>
 				<span>OR</span>
 				<span></span>
 			</div>
-		</div>
+		</div> -->
 		<!--end::Divider-->
 
 		<!--begin::Options-->
-		<div class="kt-login__options">
+		<!-- <div class="kt-login__options">
 			<a href="https://www.facebook.com/keenthemes/" target="_blank" class="btn btn-primary kt-btn">
 				<i class="fab fa-facebook-f"></i>
 				Facebook
@@ -117,7 +119,7 @@
 				<i class="fab fa-google"></i>
 				Google
 			</a>
-		</div>
+		</div> -->
 		<!--end::Options-->
 	</div>
 	<!--end::Signin-->

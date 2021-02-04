@@ -2,6 +2,7 @@
 export class ApiLinks {
 
 	readonly BaseUrl = "http://172.16.0.25:10000/api/";
+	readonly imagePath = "http://172.16.0.25:10000/api/product/downloadfile/";
 	/// Login ///
 	readonly LoginUrl = this.BaseUrl + "login";
 	readonly imageUploader = this.BaseUrl + "image";
@@ -105,7 +106,7 @@ export class ApiLinks {
 	readonly allHeader = this.BaseUrl + "web-setting";
 	readonly HeaderByID = this.BaseUrl + "web-setting";
 	readonly PostWebsetting = this.BaseUrl + "web-setting";
-	readonly PutWebsetting = this.BaseUrl + "web-setting";
+	readonly PutWebsetting = this.BaseUrl + "web-setting/update";
 	readonly WebsettingByID = this.BaseUrl + "web-setting/";
 
 	/// Employee ///
