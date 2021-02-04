@@ -7,10 +7,18 @@ export interface PurchaseOrder {
 	discount: number,
 	poNumber: string,
 	date: Date,
-	vendorID: number,
 	branchId: number,
 	vendorName: string,
 	branchName: string,
-	polist: []
-
+	poList: [],
+	createdBy: string,
+	createdById: number,
+	deliveryDate: any,
+	poDate: any,
+	subDiscount: any,
+	subGrossAmount: any,
+	subTaxAmount: any,
+	subTotal: any,
+	poStatus:any,
+	vendorId: any,
 }

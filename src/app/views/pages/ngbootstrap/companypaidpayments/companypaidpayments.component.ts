@@ -116,7 +116,9 @@ export class CompanypaidpaymentsComponent implements OnInit {
 
 		});
 	}
+	async Edit() {
 
+	}
 	async EditMOdal() {
 		debugger
 		if (this.data && this.data.id && this.data !== undefined) {
@@ -198,6 +200,7 @@ export class CompanypaidpaymentsComponent implements OnInit {
 			bankTransactionType: this.bankTransactionType.nativeElement.value,
 			amountTransfer: Number(this.amountTransfer.nativeElement.value),
 		});
+
 	}
 
 	async SpliceBankArray(item) {
@@ -219,7 +222,7 @@ export class CompanypaidpaymentsComponent implements OnInit {
 	async AddCheuqArray() {
 		this.ChequeArray.push({
 			transferamount: Number(this.transferAmount.nativeElement.value),
-			recieved_cheque:this.recieved_cheque.nativeElement.value,
+			recieved_cheque: this.recieved_cheque.nativeElement.value,
 			new_cheque: this.new_cheque.nativeElement.value,
 			both_cheque: this.both_cheque.nativeElement.value,
 			companyAccountId: Number(this.transferAmount.nativeElement.value),

@@ -24,10 +24,14 @@ export class PurchaseorderService {
 	}
 
 	SavePO(body, headers) {
+
+		body.userId = localStorage.getItem('userId');
 		return this._http.post(this._links.PostPO, body, headers)
 	}
 
-	EditPO(body, headers) {
+	EditPO(body,detail, headers) {
+		body.userId = localStorage.getItem('userId');
+
 		return this._http.post(this._links.PuttPO, body, headers)
 	}
 }

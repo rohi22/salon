@@ -1,5 +1,7 @@
+import { CategorylistComponent } from './category/categorylist/categorylist.component';
+import { TaxListComponent } from './../inventory/add-tax/tax-list/tax-list.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbootstrapComponent } from './ngbootstrap.component';
 import { AlertComponent } from './alert/alert.component';
@@ -111,7 +113,9 @@ import { AttributeComponent } from './junaid/attribute/attribute.component';
 import { JbrandComponent } from './junaid/jbrand/jbrand.component';
 import { JcategoryComponent } from './junaid/jcategory/jcategory.component';
 import { JproductComponent } from './junaid/jproduct/jproduct.component';
+import { AddTaxComponent } from '../inventory/add-tax/add-tax.component';
 import { SalonPosComponent } from './menus/salon-pos/salon-pos.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
 	{
@@ -235,6 +239,10 @@ const routes: Routes = [
 				component: BrandlistComponent
 			},
 			{
+				path: 'tax',
+				component: TaxListComponent
+			},
+			{
 				path: 'unit',
 				component: UnitlistComponent
 			},
@@ -327,6 +335,10 @@ const routes: Routes = [
 				component: WebsettinglistComponent
 			},
 			{
+				path: 'menus/websetting/websettings',
+				component: WebsettingComponent
+			},
+			{
 				path: 'sales/saleslist',
 				component: SaleslistComponent
 			},
@@ -365,7 +377,11 @@ const routes: Routes = [
 			{
 				path: 'menus/salonPos',
 				component: SalonPosComponent
-			}
+			},
+			{
+				path: 'categorylist',
+				component: CategorylistComponent
+			},
 		]
 	}
 ];
@@ -453,6 +469,7 @@ const routes: Routes = [
 		AccounttypelistComponent,
 		BrandComponent,
 		UnitComponent,
+		TaxListComponent,
 		ProductComponent,
 		BrandlistComponent,
 		UnitlistComponent,
@@ -508,14 +525,19 @@ const routes: Routes = [
 		JbrandComponent,
 		JcategoryComponent,
 		JproductComponent,
-		SalonPosComponent
+		AddTaxComponent,
+		SalonPosComponent,
+		CategorylistComponent,
+		CategoryComponent
+
 		//BrancheslistComponent,
 	],
 	providers: [
-		NgbAlertConfig,],
+		NgbAlertConfig, DatePipe],
 	entryComponents: [
 		NgbdModalContentComponent,
 		CountryComponent,
+		AddTaxComponent,
 		AreaComponent,
 		CityComponent,
 		StateComponent,
@@ -550,7 +572,9 @@ const routes: Routes = [
 		SalesreturnComponent,
 		CompanypaidpaymentsComponent,
 		VendorupdateComponent,
-		CustomerupdateComponent
+		CustomerupdateComponent,
+		CategorylistComponent,
+		CategoryComponent
 	]
 })
 export class NgbootstrapModule {

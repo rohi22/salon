@@ -32,7 +32,7 @@ export class UserService {
 	}
 
 	EditUser(body, header) {
-		return this._http.put(this._links.PutUser, body, header);
+		return this._http.post(this._links.PutUser, body, header);
 	}
 
 	DeletUser(id, headers) {

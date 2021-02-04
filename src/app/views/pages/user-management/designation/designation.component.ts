@@ -38,7 +38,7 @@ export class DesignationComponent implements OnInit {
 	InitilizeForm() {
 		this.Designationform = this.fb.group({
 			'name': ['', Validators.required],
-			'departmentid': ['', Validators.required],
+			'departmentId': ['', Validators.required],
 			'permissionId': ['', Validators.required],
 			'branchId': ['', Validators.required],
 			'active': ['', Validators.required],
@@ -51,10 +51,11 @@ export class DesignationComponent implements OnInit {
 			this.hide = true
 			this.hideupdate = false;
 			this.Designationform.controls['name'].setValue(this.data.designationName);
-			this.Designationform.controls['departmentid'].setValue(this.data.departmentId);
+			this.Designationform.controls['departmentId'].setValue(this.data.departmentId);
 			this.Designationform.controls['active'].setValue(this.data.active);
-			// this.Designationform.controls['branchId'].setValue(this.data.branchId);
-			// this.Designationform.controls['permissionId'].setValue(this.data.permissionId);
+
+			this.Designationform.controls['branchId'].setValue(this.data.branchId);
+			this.Designationform.controls['permissionId'].setValue(this.data.list[0].permissionId);
 		}
 		else {
 			this.hide = false;

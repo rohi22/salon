@@ -6,5 +6,6 @@ export interface Product {
 	unitName: string,
 	brandId: number,
 	brandName: string,
-	salable: boolean
+	salable: boolean,
+	categoryId: number,
 }

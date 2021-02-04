@@ -19,6 +19,7 @@ export class CommonService {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				Authorization: localStorage.getItem("Authorization"),
+
 			}),
 		};
 

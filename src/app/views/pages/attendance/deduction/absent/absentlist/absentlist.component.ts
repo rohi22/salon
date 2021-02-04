@@ -60,10 +60,12 @@ export class AbsentlistComponent implements OnInit {
 
 	async Delete(index) {
 		this._AbsentdeductionService.DeletRecord(index.id, this._commonservice.getHeaerOptions()).subscribe(res => {
-			alert("Delete")
+			alert("res")
 			this.getAllabsents();
 		}, (err: HttpErrorResponse) => {
 			alert(err.error);
+			this.getAllabsents();
+
 		})
 	}
 }

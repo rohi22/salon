@@ -16,12 +16,12 @@ export class WebsettingComponent implements OnInit {
 	hideupdate: boolean;
 	hide: boolean;
 	file: string;
-	constructor(private fb: FormBuilder, private _common: CommonService, public dialogref: MatDialogRef<WebsettingComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: WebSetting, private WebsettingService: WebsettingService) { }
+	constructor(private fb: FormBuilder,private _WebsettingService: WebsettingService, private _common: CommonService,
+		  ) { }
 
-	async ngOnInit() {
+	ngOnInit() {
 		this.InitilizeForm();
-		this.EditMOdal();
+
 	}
 
 	InitilizeForm() {
@@ -35,26 +35,30 @@ export class WebsettingComponent implements OnInit {
 			'faxNumber': ['', Validators.required],
 			'web': ['', Validators.required],
 		})
+		this.EditMOdal();
 	}
 
 	EditMOdal() {
-
-		debugger
-		if (this.data && this.data.id && this.data !== undefined) {
+			this._WebsettingService.getallWebsetting()
+				.subscribe((res:any) => {
+		if (res[0] && res[0].id && res[0] !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
-			this.Websettingform.controls['companyName'].setValue(this.data.companyName);
-			this.Websettingform.controls['companyDescription'].setValue(this.data.companyDescription);
-			this.Websettingform.controls['address'].setValue(this.data.address);
-			this.Websettingform.controls['companyEmail'].setValue(this.data.companyEmail);
-			this.Websettingform.controls['companyContact'].setValue(this.data.companyContact);
-			this.Websettingform.controls['faxNumber'].setValue(this.data.faxNumber);
-			this.Websettingform.controls['web'].setValue(this.data.web);
+			this.Websettingform.controls['companyName'].setValue(res[0].companyName);
+			this.Websettingform.controls['companyDescription'].setValue(res[0].companyDescription);
+			this.Websettingform.controls['address'].setValue(res[0].address);
+			this.Websettingform.controls['companyEmail'].setValue(res[0].companyEmail);
+			this.Websettingform.controls['companyContact'].setValue(res[0].companyContact);
+			this.Websettingform.controls['faxNumber'].setValue(res[0].faxNumber);
+			this.Websettingform.controls['web'].setValue(res[0].web);
+			this.Websettingform.controls['id'].setValue(res[0].id);
+
 		}
 		else {
 			this.hide = false;
 			this.hideupdate = true
 		}
+	});
 	}
 
 	onSubmit() {
@@ -63,7 +67,7 @@ export class WebsettingComponent implements OnInit {
 		formData.append("file", this.file);
 		console.log(formData)
 		debugger
-		this.WebsettingService.PostWebsetting(formData, this._common.getHeaerOptions()).subscribe(res => {
+		this._WebsettingService.PostWebsetting(formData, this._common.getHeaerOptions()).subscribe(res => {
 			console.log("RESPONSE :", res);
 			alert("Save");
 		}, (err: HttpErrorResponse) => {
@@ -72,10 +76,11 @@ export class WebsettingComponent implements OnInit {
 	}
 
 	UPdate() {
-		this.Websettingform.controls['id'].setValue(this.data.id)
-		this.WebsettingService.PutWebsetting(this.Websettingform.value, this._common.getHeaerOptions()).subscribe(res => {
+		// this.Websettingform.controls['id'].setValue(this.data.id)
+		this._WebsettingService.PutWebsetting(this.Websettingform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Update")
+			this.EditMOdal();
 			this.close()
 		}, (error: HttpErrorResponse) => {
 			console.log(error);
@@ -85,7 +90,7 @@ export class WebsettingComponent implements OnInit {
 	}
 
 	close() {
-		this.dialogref.close();
+		// this.dialogref.close();
 	}
 
 	onFileChanged(event) {

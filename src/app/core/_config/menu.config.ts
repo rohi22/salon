@@ -10,6 +10,13 @@ export class MenuConfig {
 					page: '/dashboard',
 					translate: 'MENU.DASHBOARD',
 				},
+				{
+					title: 'Logout',
+					root: true,
+					alignment: 'left',
+					page: '/auth/login',
+					// translate: 'MENU.DASHBOARD',
+				},
 				// {
 				// 	title: 'Components',
 				// 	root: true,
@@ -492,7 +499,7 @@ export class MenuConfig {
 					title: 'Web Setting',
 					root: true,
 					icon: 'flaticon2-architecture-and-city',
-					page: '/ngbootstrap/menus/websetting/websettinglist',
+					page: '/ngbootstrap/menus/websetting/websettings',
 					bullet: 'dot',
 				},
 				{
@@ -504,10 +511,25 @@ export class MenuConfig {
 					bullet: 'dot',
 				},
 				{
+					title: 'User Management',
+					root: true,
+					icon: 'flaticon2-user',
+					page: '/ngbootstrap/menus/usermenu',
+					bullet: 'dot',
+				},
+				{
 					title: 'Admin Setup',
 					root: true,
 					icon: 'flaticon2-avatar',
 					page: '/ngbootstrap/adminmenu',
+					bullet: 'dot',
+				},
+				
+				{
+					title: 'Customer',
+					root: true,
+					icon: 'flaticon-network',
+					page: '/ngbootstrap/menus/customermenu',
 					bullet: 'dot',
 				},
 				{
@@ -518,31 +540,10 @@ export class MenuConfig {
 					bullet: 'dot',
 				},
 				{
-					title: 'Inventory',
-					root: true,
-					icon: 'flaticon-map',
-					page: '/ngbootstrap/menus/inventorymenu',
-					bullet: 'dot',
-				},
-				{
 					title: 'Purchase Order',
 					root: true,
 					icon: 'flaticon-shopping-basket',
 					page: '/ngbootstrap/menus/purchaseordermenu',
-					bullet: 'dot',
-				},
-				{
-					title: 'User Management',
-					root: true,
-					icon: 'flaticon2-user',
-					page: '/ngbootstrap/menus/usermenu',
-					bullet: 'dot',
-				},
-				{
-					title: 'Customer',
-					root: true,
-					icon: 'flaticon-network',
-					page: '/ngbootstrap/menus/customermenu',
 					bullet: 'dot',
 				},
 				{
@@ -552,6 +553,14 @@ export class MenuConfig {
 					page: '/ngbootstrap/menus/salesmenu',
 					bullet: 'dot',
 				},
+				{
+					title: 'Inventory',
+					root: true,
+					icon: 'flaticon-map',
+					page: '/ngbootstrap/menus/inventorymenu',
+					bullet: 'dot',
+				},
+				
 
 				{section: 'Components'},
 				{

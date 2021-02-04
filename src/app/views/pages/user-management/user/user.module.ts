@@ -1,5 +1,5 @@
 // Angular Imports
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 // This Module's Components
 import { UserComponent } from './user.component';
@@ -13,7 +13,10 @@ import { UserComponent } from './user.component';
     ],
     exports: [
         UserComponent,
-    ]
+	],
+	schemas:[
+		CUSTOM_ELEMENTS_SCHEMA
+	]
 })
 export class UserModule {
 
