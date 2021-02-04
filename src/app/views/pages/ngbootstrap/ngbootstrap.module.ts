@@ -1,3 +1,4 @@
+import { CategorylistComponent } from './category/categorylist/categorylist.component';
 import { TaxListComponent } from './../inventory/add-tax/tax-list/tax-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -114,6 +115,7 @@ import { JcategoryComponent } from './junaid/jcategory/jcategory.component';
 import { JproductComponent } from './junaid/jproduct/jproduct.component';
 import { AddTaxComponent } from '../inventory/add-tax/add-tax.component';
 import { SalonPosComponent } from './menus/salon-pos/salon-pos.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
 	{
@@ -375,7 +377,11 @@ const routes: Routes = [
 			{
 				path: 'menus/salonPos',
 				component: SalonPosComponent
-			}
+			},
+			{
+				path: 'categorylist',
+				component: CategorylistComponent
+			},
 		]
 	}
 ];
@@ -520,11 +526,14 @@ const routes: Routes = [
 		JcategoryComponent,
 		JproductComponent,
 		AddTaxComponent,
-		SalonPosComponent
+		SalonPosComponent,
+		CategorylistComponent,
+		CategoryComponent
+
 		//BrancheslistComponent,
 	],
 	providers: [
-		NgbAlertConfig,DatePipe],
+		NgbAlertConfig, DatePipe],
 	entryComponents: [
 		NgbdModalContentComponent,
 		CountryComponent,
@@ -563,7 +572,9 @@ const routes: Routes = [
 		SalesreturnComponent,
 		CompanypaidpaymentsComponent,
 		VendorupdateComponent,
-		CustomerupdateComponent
+		CustomerupdateComponent,
+		CategorylistComponent,
+		CategoryComponent
 	]
 })
 export class NgbootstrapModule {

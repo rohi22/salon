@@ -5,7 +5,7 @@
                 <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
                     <div class="kt-form__section kt-form__section--first">
                         <div class="row">
-                            <h3 style="margin-left: -916px;">Service</h3>
+                            <h3 style="margin-left: -916px;">Category</h3>
                         </div>
                     </div>
                 </div>
@@ -15,44 +15,24 @@
     <kt-portlet-body>
         <div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3" data-ktwizard-state="step-first">
             <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
-                <form [formGroup]="Serviceform">
+                <form [formGroup]="Productform">
                     <div class="kt-form__section kt-form__section--first">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Category</label>
-                                    <select class="form-control" formControlName="categoryId">
-										<option [value]="item.id" *ngFor="let item of CategoryList">{{item.title}}</option>
-									</select>
+                                    <label>Category Name</label>
+                                    <input type="text" class="form-control" autocomplete="off" formControlName="title" placeholder="Enter Category Name">
+
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Service Name</label>
-                                    <input type="text" class="form-control" autocomplete="off" formControlName="name" placeholder="Enter Service Name">
-                                    <!-- <mat-error *ngIf="isControlHasError('name','required')">
-										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
-									</mat-error> -->
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Charges</label>
-                                    <input type="text" class="form-control" autocomplete="off" formControlName="charges" placeholder="Enter Charges">
-                                    <!-- <mat-error *ngIf="isControlHasError('charges','required')">
-										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
-									</mat-error> -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control" autocomplete="off" formControlName="description" placeholder="Enter Description">
-                                    <!-- <mat-error *ngIf="isControlHasError('description','required')">
-										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
-									</mat-error> -->
+                                    <label for="button-111">Category Type</label>
+                                    <div class="button r" style="top: 40px;position: absolute;left: 2%;" id="button-111">
+                                        <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="catType" class="checkbox">
+                                        <div class="knobs"></div>
+                                        <div class="layer"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

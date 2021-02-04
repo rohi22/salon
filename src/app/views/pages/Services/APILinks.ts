@@ -5,11 +5,19 @@ export class ApiLinks {
 	/// Login ///
 	readonly LoginUrl = this.BaseUrl + "login";
 	readonly imageUploader = this.BaseUrl + "image";
+	///Category////
+	readonly postCategory = this.BaseUrl + "category";
+	readonly putCategory = this.BaseUrl + "category/";
+	readonly deleteCategory = this.BaseUrl + "category/";
+	readonly getAllCategory = this.BaseUrl + "category";
+	readonly getByCategoryId = this.BaseUrl + "category/";
+	readonly getByCategoryType = this.BaseUrl + "category/num/";
 
+	///Category////
 	/// Department ///
 	readonly department = this.BaseUrl + "department";
 	readonly departmentbyId = this.BaseUrl + "desingation/";
-	readonly departmentbybranchId =  "desingation/branch/";
+	readonly departmentbybranchId = "desingation/branch/";
 	readonly PostDepartment = this.BaseUrl + "department";
 	readonly PutDepartment = this.BaseUrl + "department";
 	readonly DeleteDepartment = this.BaseUrl + "department/";

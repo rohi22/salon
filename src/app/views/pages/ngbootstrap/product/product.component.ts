@@ -3,10 +3,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
+import { Category } from '../../models/Category';
 import { Product } from '../../models/product';
 import { BrandsService } from '../../Services/brands.service';
 import { CommonService } from '../../Services/common.service';
-import { ProductService } from '../../Services/product.service';
+import { CategoryService, ProductService } from '../../Services/product.service';
 import { UnitsService } from '../../Services/units.service';
 
 @Component({
@@ -21,8 +22,9 @@ export class ProductComponent implements OnInit {
 	BrandLIst = [];
 	files: any = null;
 	uploadfile: any;
+	CategoryList:any [] = [];
 
-	constructor(private fb: FormBuilder, private _common: CommonService, private _ProductService: ProductService,
+	constructor(private fb: FormBuilder, private _common: CommonService, private _ProductService: ProductService,private _CategoryService: CategoryService,
 		public dialogref: MatDialogRef<ProductComponent>, private _UnitService: UnitsService, private _BrandService: BrandsService,
 		@Inject(MAT_DIALOG_DATA) public data: Product,private router : Router) { }
 
@@ -31,6 +33,7 @@ export class ProductComponent implements OnInit {
 		this.EditMOdal();
 		await this.getUnit();
 		await this.getBrand();
+		await this.getAllCategory();
 	}
 
 	InitilizeForm() {
@@ -38,13 +41,19 @@ export class ProductComponent implements OnInit {
 			'productName': ['', Validators.required],
 			'saleAble': ['', Validators.required],
 			'brandId': ['', Validators.required],
+			'categoryId': [''],
 			'unitId': ['', Validators.required],
 			'id': ['', Validators.required],
 			'files': ['', Validators.required],
 		});
 		this.Productform.controls['saleAble'].setValue(false);
 	}
-
+	async getAllCategory() {
+		this._CategoryService.getCategoryByType(1)
+			.subscribe(res => {
+				this.CategoryList = res as [];
+			});
+	}
 	EditMOdal() {
 		debugger
 		if (this.data && this.data.id && this.data !== undefined) {
@@ -53,6 +62,7 @@ export class ProductComponent implements OnInit {
 			this.Productform.controls['productName'].setValue(this.data.productName);
 			this.Productform.controls['saleAble'].setValue(this.data.salable);
 			this.Productform.controls['brandId'].setValue(this.data.brandId);
+			this.Productform.controls['categoryId'].setValue(this.data.categoryId);
 			this.Productform.controls['unitId'].setValue(this.data.unitId);
 			this.Productform.controls['files'].setValue(this.data.image);
 		}

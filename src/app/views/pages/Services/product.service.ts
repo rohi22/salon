@@ -52,3 +52,36 @@ export class ProductService {
 		return this._http.delete(this._links.DeleteProduct + id, headers);
 	}
 }
+
+@Injectable({
+	providedIn: 'root'
+})
+export class CategoryService {
+
+	constructor(private _http: HttpClient, private _links: ApiLinks, private _commonServices: CommonService) { }
+
+	getAllCategory() {
+		return this._http.get(this._links.getAllCategory, { headers: this._commonServices.getHeaders() });
+	}
+
+	getCategoryByID(id) {
+		return this._http.get(this._links.getByCategoryId + id, { headers: this._commonServices.getHeaders() });
+	}
+	getCategoryByType(type) {
+		return this._http.get(this._links.getByCategoryType + type, { headers: this._commonServices.getHeaders() });
+	}
+
+	addCategory(body) {
+
+		return this._http.post(this._links.postCategory, body, { headers: this._commonServices.getHeaders() });
+	}
+
+	updateCategory(id,body) {
+
+		return this._http.post(this._links.putCategory + id,body, { headers: this._commonServices.getHeaders() });
+	}
+
+	DeleteCategory(id) {
+		return this._http.delete(this._links.deleteCategory + id, { headers: this._commonServices.getHeaders() });
+	}
+}

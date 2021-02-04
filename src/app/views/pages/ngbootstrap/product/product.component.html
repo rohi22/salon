@@ -20,6 +20,15 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
+                                    <label>Product Category</label>
+                                    <select formControlName="categoryId" autocomplete="off" class="form-control">
+										<option *ngFor="let item of CategoryList" [value]="item.id">
+											{{item.title}}</option>
+									</select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
                                     <label>Product Name</label>
                                     <input type="text" class="form-control" autocomplete="off" formControlName="productName" placeholder="Enter Product Name">
                                     <!-- <mat-error *ngIf="isControlHasError('productName','required')">
@@ -67,8 +76,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Saleable</label>
-                                    <input type="checkbox" formControlName="saleAble" autocomplete="off" style="margin-left: 10px;
-            margin-top: 4px;" />
+                                    <input type="checkbox" formControlName="saleAble" autocomplete="off" style="margin-left: 10px;margin-top: 4px;" />
                                     <!-- <mat-error *ngIf="isControlHasError('saleAble','required')">
 										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
 									</mat-error> -->
