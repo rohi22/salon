@@ -3,3 +3,20 @@
 		height: 100%;
 	}
 }
+
+#kt_aside_menu_wrapper {
+	max-height: 90vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#kt_aside_menu_wrapper::-webkit-scrollbar {
+	margin-top: 20px;
+	height: 5px;
+	width: 3px;
+}
+#kt_aside_menu_wrapper::-webkit-scrollbar-thumb {
+	background: rgb(73, 144, 226);
+	border-radius: 10px;
+	transition: 0.5s;
+}
