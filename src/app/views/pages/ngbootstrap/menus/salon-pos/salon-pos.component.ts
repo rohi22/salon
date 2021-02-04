@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'kt-salon-pos',
-  templateUrl: './salon-pos.component.html',
-  styleUrls: ['./salon-pos.component.scss']
+	selector: 'kt-salon-pos',
+	templateUrl: './salon-pos.component.html',
+	styleUrls: ['./salon-pos.component.scss']
 })
 export class SalonPosComponent implements OnInit {
 
-  constructor() { }
+	constructor(private modalService: NgbModal) { }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
+	openModal(event) {
+		this.modalService.open(event, { ariaLabelledBy: 'modal-basic-title' })
+	}
 }
