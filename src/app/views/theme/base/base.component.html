@@ -14,15 +14,22 @@
 			</ng-container>
 			<!-- end:: Aside Left -->
 
-			<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+			<div  [ngClass]="!header? 'onHeaderHide kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper' : 'kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper'" id="kt_wrapper">
 				<!-- begin:: Header -->
-				<kt-header></kt-header>
+
+				<kt-header *ngIf="header"></kt-header>
+
 				<!-- end:: Header -->
 
 				<!-- begin:: Content -->
-				<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+				<div [ngClass]="!header? 'onHeaderHide kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor' : 'kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor'" id="kt_content">
 					<!-- begin:: Content Head -->
-					<kt-subheader *ngIf="subheaderDisplay"></kt-subheader>
+
+
+					<kt-subheader *ngIf="subheaderDisplay && header"></kt-subheader>
+
+
+
 					<!-- end:: Content Head -->
 
 					<!-- begin:: Content Body -->
