@@ -246,84 +246,82 @@
 </style>
 
 <kt-portlet>
-	<kt-portlet-header>
-		<ng-container ktPortletTools>
-			<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
-				data-ktwizard-state="step-first">
-				<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
-					<div class="kt-form__section kt-form__section--first">
-						<div class="row">
-							<div class="col-md-12">
-								<h3>Sales Reports</h3>
-							</div>
-							<!-- <div (click)="AddNew()" class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
+    <kt-portlet-header>
+        <ng-container ktPortletTools>
+            <div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3" data-ktwizard-state="step-first">
+                <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+                    <div class="kt-form__section kt-form__section--first">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Sales Reports</h3>
+                            </div>
+                            <!-- <div (click)="AddNew()" class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
                                 Add Purchase Order
                             </div> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</ng-container>
-	</kt-portlet-header>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </kt-portlet-header>
 
-	<kt-portlet-body>
-		<div class="mat-table__wrapper">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<!-- <label>Search</label> -->
-						<input type="text" class="form-control" (keyup)="doFilter($event.target.value)"
-							placeholder="Search">
-					</div>
-				</div>
-			</div>
-			<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-				<ng-container matColumnDef="S.no">
-					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> S.no </th>
-					<td mat-cell *matCellDef="let element;let i =  index"> {{i + 1}} </td>
-				</ng-container>
+    <kt-portlet-body>
+        <div class="mat-table__wrapper">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <!-- <label>Search</label> -->
+                        <input type="text" class="form-control" (keyup)="doFilter($event.target.value)" placeholder="Search">
+                    </div>
+                </div>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                <ng-container matColumnDef="S.no">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> S.no </th>
+                    <td mat-cell *matCellDef="let element;let i =  index"> {{i + 1}} </td>
+                </ng-container>
 
-				<ng-container matColumnDef="invoiceNumber">
-					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Invoice # </th>
-					<td mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </td>
-				</ng-container>
+                <ng-container matColumnDef="invoiceNumber">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Invoice # </th>
+                    <td mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </td>
+                </ng-container>
 
-				<ng-container matColumnDef="customerName">
-					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header>Customer </th>
-					<td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
-				</ng-container>
+                <ng-container matColumnDef="customerName">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header>Customer </th>
+                    <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+                </ng-container>
 
-				<ng-container matColumnDef="branchName">
+                <!-- <ng-container matColumnDef="branchName">
 					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header>Branch </th>
 					<td mat-cell *matCellDef="let element"> {{element.branchName}} </td>
-				</ng-container>
+				</ng-container> -->
 
-				<ng-container matColumnDef="createdBy">
-					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header>Created By </th>
-					<td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
-				</ng-container>
+                <ng-container matColumnDef="createdBy">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header>Created By </th>
+                    <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
+                </ng-container>
 
-				<ng-container matColumnDef="discountAmount">
+                <!-- <ng-container matColumnDef="discountAmount">
 					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Discount Amount
 					</th>
 					<td mat-cell *matCellDef="let element"> {{element.discountAmount}} </td>
-				</ng-container>
+				</ng-container> -->
 
-				<ng-container matColumnDef="receiveAmount">
-					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Received Amount
-					</th>
-					<td mat-cell *matCellDef="let element"> {{element.receiveAmount}} </td>
-				</ng-container>
+                <ng-container matColumnDef="receiveAmount">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Received Amount
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{element.receiveAmount}} </td>
+                </ng-container>
 
-				<ng-container matColumnDef="taxAmount">
+                <!-- <ng-container matColumnDef="taxAmount">
 					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Tax Amount </th>
 					<td mat-cell *matCellDef="let element"> {{element.taxAmount}} </td>
-				</ng-container>
+				</ng-container> -->
 
-				<ng-container matColumnDef="subTotal">
-					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Sub Total </th>
-					<td mat-cell *matCellDef="let element"> {{element.subTotal}} </td>
-				</ng-container>
+                <ng-container matColumnDef="subTotal">
+                    <th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header> Sub Total </th>
+                    <td mat-cell *matCellDef="let element"> {{element.subTotal}} </td>
+                </ng-container>
 
 				<ng-container matColumnDef="totalBill">
 					<th style="font-size: inherit;" mat-header-cell *matHeaderCellDef mat-sort-header>Total Bill </th>
@@ -345,16 +343,16 @@
 					</mat-cell>
 				</ng-container>
 
-				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-				<tr class="mat-row" *matNoDataRow>
-					<td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-				</tr>
-			</table>
-			<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
-		</div>
-	</kt-portlet-body>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+        </div>
+    </kt-portlet-body>
 </kt-portlet>
 
 <button [hidden]="true" type="button" #printBtn [elementToPrint]="printThis" ngPrint matTooltip="Print Slip">

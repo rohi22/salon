@@ -50,22 +50,27 @@
 									<!-- <mat-error *ngIf="isControlHasError('areaId','required')">
 										<strong>{{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}</strong>
 									</mat-error> -->
-									<!-- <span class="form-text text-muted">Please select state</span> -->
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>Image</label><br>
-									<input #file type="file" (change)="onSelect($event)" formControlName="files"
-										class="form-file-control">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>Unit</label>
-									<select formControlName="unitId" autocomplete="off" class="form-control">
+                                    <!-- <span class="form-text text-muted">Please select state</span> -->
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input #file type="file" (change)="onSelect($event)" formControlName="files" class="form-file-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control" autocomplete="off" formControlName="price" placeholder="Enter Product Name">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Unit</label>
+                                    <select formControlName="unitId" autocomplete="off" class="form-control">
 										<option *ngFor="let item of UnitList" [value]="item.id">
 											{{item.unitName}}</option>
 									</select>

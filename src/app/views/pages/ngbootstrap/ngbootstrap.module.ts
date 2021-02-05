@@ -118,6 +118,8 @@ import { SalonPosComponent } from './menus/salon-pos/salon-pos.component';
 import { CategoryComponent } from './category/category.component';
 import { SalereportComponent } from './salereport/salereport.component';
 import { NgPrintModule } from 'ng-print';
+import { resolve } from 'dns';
+import { SalonResolverService } from './menus/salon-pos/salon-resolver.service';
 
 const routes: Routes = [
 	{
@@ -378,7 +380,10 @@ const routes: Routes = [
 			},
 			{
 				path: 'menus/salonPos',
-				component: SalonPosComponent
+				component: SalonPosComponent,
+				resolve: {
+					supplier: SalonResolverService
+				}
 			},
 			{
 				path: 'categorylist',
