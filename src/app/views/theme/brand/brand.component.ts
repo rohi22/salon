@@ -1,8 +1,11 @@
+import { WebsettingService } from './../../pages/Services/websetting.service';
 // Angular
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 // Layout
 import { LayoutConfigService, ToggleOptions } from '../../../core/_base/layout';
 import { HtmlClassService } from '../html-class.service';
+import { ApiLinks } from '../../pages/Services/APILinks';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
 	selector: 'kt-brand',
@@ -25,7 +28,8 @@ export class BrandComponent implements OnInit, AfterViewInit {
 	 * @param layoutConfigService: LayoutConfigService
 	 * @param htmlClassService: HtmlClassService
 	 */
-	constructor(private layoutConfigService: LayoutConfigService, public htmlClassService: HtmlClassService) {
+	constructor(private layoutConfigService: LayoutConfigService, public htmlClassService: HtmlClassService, private webService: WebsettingService,
+		private apiLinks: ApiLinks) {
 	}
 
 	/**
@@ -36,8 +40,35 @@ export class BrandComponent implements OnInit, AfterViewInit {
 	 * On init
 	 */
 	ngOnInit(): void {
-		this.headerLogo = this.layoutConfigService.getLogo();
+
+		this.webService.getallWebsetting()
+			.subscribe((res: any) => {
+				debugger
+				if (res[0] && res[0].id && res[0] !== undefined) {
+					this.headerLogo = this.apiLinks.imagePath + res[0].logo
+				}
+				else {
+					this.headerLogo = this.apiLinks.imagePath + localStorage.getItem("Logo")
+				}
+			}, (err: HttpErrorResponse) => {
+				alert(err.error)
+			});
+		this.webService.websettingObject.subscribe((res: any) => {
+			if (res) {
+				this.headerLogo = this.apiLinks.imagePath + res.logo
+			}
+			else {
+				this.headerLogo = this.apiLinks.imagePath + localStorage.getItem("Logo")
+			}
+		})
+		// this.headerLogo = this.layoutConfigService.getLogo();
 		this.headerStickyLogo = this.layoutConfigService.getStickyLogo();
+		// this.webService.websettingObject.subscribe((res: any) => {
+		// 	debugger
+		// 	if (res) {
+		// 		this.headerLogo = this.apiLinks.imagePath + res.logo
+		// 	}
+		// })
 	}
 
 	/**

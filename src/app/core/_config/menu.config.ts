@@ -7,13 +7,47 @@ export class MenuConfig {
 					title: 'Dashboards',
 					root: true,
 					alignment: 'left',
+					icon: 'flaticon2-architecture-and-city',
 					page: '/dashboard',
 					translate: 'MENU.DASHBOARD',
+				},
+				{
+					title: 'Customer',
+					root: true,
+					alignment: 'left',
+					icon: 'flaticon-network',
+					page: '/ngbootstrap/menus/customermenu',
+					// translate: 'MENU.DASHBOARD',
+				},
+				{
+					title: 'Product',
+					root: true,
+					alignment: 'left',
+					icon: 'flaticon-interface-7',
+					page: '/ngbootstrap/product',
+					// translate: 'MENU.DASHBOARD',
+				},
+				{
+					title: 'Service',
+					root: true,
+					alignment: 'left',
+					icon: 'flaticon-shopping-basket',
+					page: '/ngbootstrap/role/service/servicelist',
+					// translate: 'MENU.DASHBOARD',
+				},
+				{
+					title: 'Sales POS',
+					root: true,
+					alignment: 'left',
+					icon: 'flaticon-notes',
+					page: '/ngbootstrap/menus/salonPos',
+					// translate: 'MENU.DASHBOARD',
 				},
 				{
 					title: 'Logout',
 					root: true,
 					alignment: 'left',
+					icon: 'flaticon2-reload',
 					page: '/auth/login',
 					// translate: 'MENU.DASHBOARD',
 				},
@@ -524,7 +558,7 @@ export class MenuConfig {
 					page: '/ngbootstrap/adminmenu',
 					bullet: 'dot',
 				},
-				
+
 				{
 					title: 'Customer',
 					root: true,
@@ -560,7 +594,7 @@ export class MenuConfig {
 					page: '/ngbootstrap/menus/inventorymenu',
 					bullet: 'dot',
 				},
-				
+
 
 				{section: 'Components'},
 				{

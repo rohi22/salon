@@ -4,7 +4,7 @@ import { ApiLinks } from './APILinks';
 import { CommonService } from './common.service';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class CustomerService {
 
@@ -17,6 +17,10 @@ export class CustomerService {
 
 	PostCustomerUpdate(body, headers) {
 		return this._http.post(this._links.PostCustomerUpdate, body, headers);
+	}
+
+	PostCustomer(body) {
+		return this._http.post(this._links.SaveCustomer, body, { headers: this._commonServices.getHeaders() });
 	}
 
 }
