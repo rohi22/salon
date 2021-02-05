@@ -145,6 +145,7 @@ export class SalonPosComponent implements OnInit, AfterViewInit {
 		this.getTotalAmount();
 	}
 	pushService(item) {
+		debugger
 		let filter = [];
 		if (this.sales.serviceDetailsList.length > 0) {
 			filter = this.sales.serviceDetailsList.filter(x => x.servicesId == item.id);

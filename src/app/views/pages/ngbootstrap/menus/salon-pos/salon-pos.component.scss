@@ -190,6 +190,24 @@
     overflow-x: hidden;
 }
 
+.max-height-product {
+    max-height: 170px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.max-height-product::-webkit-scrollbar {
+    margin-top: 20px;
+    height: 5px;
+    width: 3px;
+}
+
+.max-height-product::-webkit-scrollbar-thumb {
+    background: rgb(73, 144, 226);
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
 .max-height-second {
     max-height: 500px;
     overflow-y: scroll;
@@ -250,7 +268,7 @@
     top: 0;
     right: 0;
     height: 100vh;
-    width: 30.6%;
+    width: 33.6%;
     z-index: 999999;
 }
 
@@ -299,4 +317,11 @@
 .have-pos-fixed-total {
     position: fixed;
     bottom: 0;
+    width: 500px;
+}
+
+.bg-orange {
+    background-color: rgb(245, 114, 36) !important;
+    color: white !important;
+    font-weight: 600;
 }
