@@ -117,6 +117,7 @@ import { AddTaxComponent } from '../inventory/add-tax/add-tax.component';
 import { SalonPosComponent } from './menus/salon-pos/salon-pos.component';
 import { CategoryComponent } from './category/category.component';
 import { SalereportComponent } from './salereport/salereport.component';
+import { NgPrintModule } from 'ng-print';
 
 const routes: Routes = [
 	{
@@ -393,6 +394,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
+		NgPrintModule,
 		CommonModule,
 		PartialsModule,
 		NgbModule,

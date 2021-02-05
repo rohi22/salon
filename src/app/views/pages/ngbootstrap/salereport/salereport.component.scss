@@ -1,3 +1,123 @@
 .cursor {
 	cursor: pointer;
 }
+
+.color-blue{
+	color: rgb(73,144, 226);
+}
+.font-8{
+	font-size: 8px;
+}
+.font-9{
+	font-size: 9px;
+}
+.font-10{
+	font-size: 10px;
+}
+.font-11{
+	font-size: 11px;
+}
+.font-12{
+	font-size: 12px;
+}
+.font-13{
+	font-size: 13px;
+}
+.font-14{
+	font-size: 14px;
+}
+.font-15{
+	font-size: 15px;
+}
+.font-16{
+	font-size: 16px;
+}
+.font-17{
+	font-size: 17px;
+}
+.font-18{
+	font-size: 18px;
+}
+.font-19{
+	font-size: 19px;
+}
+.font-20{
+	font-size: 20px;
+}
+.font-21{
+	font-size: 21px;
+}
+.font-22{
+	font-size: 22px;
+}
+.font-25{
+	font-size: 25px;
+}
+.font-400{
+	font-weight: 400;
+}
+.font-500{
+	font-weight: 500;
+}
+.font-600{
+	font-weight: 600;
+}
+.font-700{
+	font-weight: 700;
+}
+.font-800{
+	font-weight: 800;
+}
+.font-900{
+	font-weight: 900;
+}
+.background-blue{
+	background-color: rgb(73,144, 226);
+}
+.background-white{
+	background-color: #fff;
+}
+.color-dark-gray{
+	color: rgb(146, 146, 146);
+}
+.background-gray{
+	background-color: rgb(241, 245, 246);
+}
+.invoice-title h2, .invoice-title h3 {
+    display: inline-block;
+}
+.table-custome tr th{
+	border: 1px solid black;
+}
+.table-custome tr td{
+	border: 1px solid black;
+}
+.table > tbody > tr > .no-line {
+    border-top: none;
+}
+
+.table > thead > tr > .no-line {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .thick-line {
+    border-top: 2px solid;
+}
+
+.border-2{
+	border: 2px solid black;
+}
+.border-black{
+	border: 1px solid black;
+}
+
+h6 span p{
+	color: black !important;
+}
+.color-black{
+	color: black !important;
+}
+.background-black{
+	background-color: black !important;
+}
+
