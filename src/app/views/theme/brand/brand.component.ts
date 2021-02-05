@@ -43,7 +43,6 @@ export class BrandComponent implements OnInit, AfterViewInit {
 
 		this.webService.getallWebsetting()
 			.subscribe((res: any) => {
-				debugger
 				if (res[0] && res[0].id && res[0] !== undefined) {
 					this.headerLogo = this.apiLinks.imagePath + res[0].logo
 				}
@@ -64,7 +63,6 @@ export class BrandComponent implements OnInit, AfterViewInit {
 		// this.headerLogo = this.layoutConfigService.getLogo();
 		this.headerStickyLogo = this.layoutConfigService.getStickyLogo();
 		// this.webService.websettingObject.subscribe((res: any) => {
-		// 	debugger
 		// 	if (res) {
 		// 		this.headerLogo = this.apiLinks.imagePath + res.logo
 		// 	}

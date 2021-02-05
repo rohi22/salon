@@ -47,7 +47,7 @@ export class BankaccountComponent implements OnInit {
 
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -90,7 +90,7 @@ export class BankaccountComponent implements OnInit {
 	}
 
 	UPdate() {
-		debugger
+
 		this.BankAccountform.controls['id'].setValue(this.data.id)
 		this._BankbranchesService.EditBankBranch(this.BankAccountform.controls['id'].value, this.BankAccountform.value, this.getheader()).subscribe(res => {
 			console.log(res);
@@ -103,7 +103,7 @@ export class BankaccountComponent implements OnInit {
 		});
 	}
 	onSubmit() {
-		debugger
+
 		this._BankaccountService.SaveBankAccount(this.BankAccountform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			alert("Save")

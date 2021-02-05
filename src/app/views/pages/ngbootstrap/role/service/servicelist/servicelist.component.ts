@@ -5,6 +5,7 @@ import { Services } from '../../../../models/services';
 import { ServiceComponent } from '../service.component';
 import { CommonService } from '../../../../Services/common.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ApiLinks } from '../../../../Services/APILinks';
 
 @Component({
 	selector: 'kt-servicelist',
@@ -12,11 +13,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ServicelistComponent implements OnInit {
 	public dataSource = new MatTableDataSource<Services>();
-	displayedColumns: string[] = ['id', 'name', 'charges', 'description', 'actions'];
+	displayedColumns: string[] = ['id', 'name', 'charges', 'description', 'image', 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
-
-	constructor(public dialog: MatDialog, private _ServiceService: ServiceService, private _commonservice: CommonService) { }
+	imagePath = this.apiLinks.imagePath
+	constructor(public dialog: MatDialog, private _ServiceService: ServiceService, private _commonservice: CommonService, private apiLinks: ApiLinks) { }
 
 	async ngOnInit() {
 		await this.getAllServices();

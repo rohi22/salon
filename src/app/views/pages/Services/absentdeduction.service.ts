@@ -19,7 +19,6 @@ export class AbsentdeductionService {
 	}
 
 	SaveRecord(body, header) {
-		debugger
 		return this._http.post(this._links.POstAbsent, body, header);
 	}
 

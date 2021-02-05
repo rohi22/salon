@@ -23,7 +23,7 @@ export class CountrylistComponent implements OnInit {
 	}
 
 	async getAllCountry() {
-		debugger
+
 		this._commonservice.getCountry()
 			.subscribe(res => {
 				this.dataSource.data = res as Country[];
@@ -44,7 +44,7 @@ export class CountrylistComponent implements OnInit {
 		dialogconfig.data = {};
 		let dialog =this.dialog.open(CountryComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
-			debugger;
+			 ;
 			this.getAllCountry();
 		  });
 	}

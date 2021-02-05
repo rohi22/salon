@@ -81,7 +81,7 @@ export class PurchasereturnComponent implements OnInit {
 
 	onSubmit() {
 		this.POReturnform.controls['poDetail'].setValue(this.ReturnArray);
-		debugger
+
 		console.log(this.POReturnform.value)
 		this.PurchasereturnService.POstPOReturn(this.POReturnform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);

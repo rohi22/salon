@@ -32,7 +32,6 @@ export class UnitComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		debugger
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -69,7 +68,6 @@ export class UnitComponent implements OnInit {
 		});
 	}
 	onSubmit() {
-		debugger
 		this._UnitsService.SaveUNit(this.Unitform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			this.close();

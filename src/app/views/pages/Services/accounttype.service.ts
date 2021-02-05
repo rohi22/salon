@@ -27,7 +27,6 @@ export class AccounttypeService {
 	}
 
 	DeleteAccounttype(id, headers) {
-		debugger
 		return this._http.delete(this._links.DeleteAccounttype + id, headers);
 	}
 }

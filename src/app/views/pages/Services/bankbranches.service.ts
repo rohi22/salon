@@ -24,12 +24,10 @@ export class BankbranchesService {
 	}
 
 	SaveBankBranch(body, headers) {
-		debugger;
 		return this._http.post(this._links.Postbankbranch, body, headers);
 	}
 
 	EditBankBranch(id, body, header) {
-		debugger
 		return this._http.put(this._links.Putbankbranch + id, body, header);
 	}
 

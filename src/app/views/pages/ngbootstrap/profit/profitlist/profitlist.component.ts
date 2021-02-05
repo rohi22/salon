@@ -23,7 +23,7 @@ export class ProfitlistComponent implements OnInit {
 	}
 
 	async GetSales(date) {
-		debugger
+
 		this._ProfitService.GetProfitBYDate(date)
 			.subscribe(res => {
 				this.dataSource.data = res as Profit[];

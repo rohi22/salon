@@ -32,7 +32,7 @@ export class BankComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -67,7 +67,7 @@ export class BankComponent implements OnInit {
 		});
 	}
 	onSubmit() {
-		debugger
+
 		this._BankService.SaveBank(this.Bankform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			alert("Save")

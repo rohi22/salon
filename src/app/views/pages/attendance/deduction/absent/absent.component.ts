@@ -33,7 +33,7 @@ export class AbsentComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -68,7 +68,7 @@ export class AbsentComponent implements OnInit {
 		});
 	}
 	onSubmit() {
-		debugger
+
 		this._AbsentdeductionService.SaveRecord(this.AbsentDeductionform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("save")

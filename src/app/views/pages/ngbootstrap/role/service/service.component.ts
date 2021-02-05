@@ -9,16 +9,18 @@ import { CategoryService } from '../../../Services/product.service';
 import { ServiceService } from '../../../Services/service.service';
 
 @Component({
-  selector: 'kt-service',
-  templateUrl: './service.component.html'
+	selector: 'kt-service',
+	templateUrl: './service.component.html'
 })
 export class ServiceComponent implements OnInit {
 	Serviceform: FormGroup;
 	hideupdate: boolean;
 	hide: boolean;
-	CategoryList: any[]=[];
+	CategoryList: any[] = [];
+	uploadfile = []
+	files: any;
 
-	constructor(private fb: FormBuilder, private _common: CommonService,private _CategoryService: CategoryService,
+	constructor(private fb: FormBuilder, private _common: CommonService, private _CategoryService: CategoryService,
 		public dialogref: MatDialogRef<ServiceComponent>, private _ServicesService: ServiceService,
 		@Inject(MAT_DIALOG_DATA) public data: Services) { }
 
@@ -51,6 +53,7 @@ export class ServiceComponent implements OnInit {
 			this.Serviceform.controls['charges'].setValue(this.data.charges);
 			this.Serviceform.controls['description'].setValue(this.data.description);
 			this.Serviceform.controls['categoryId'].setValue(this.data.categoryId);
+			this.getAllCategory()
 		}
 		else {
 			this.hide = false;
@@ -60,14 +63,16 @@ export class ServiceComponent implements OnInit {
 
 	UPdate() {
 		this.Serviceform.controls['id'].setValue(this.data.id)
-		this._ServicesService.EditRecord(this.Serviceform.value, this._common.getHeaerOptions()).subscribe(res => {
+		let formData = new FormData()
+		formData.append("serviceString", JSON.stringify(this.Serviceform.value))
+		formData.append("file", this.files)
+		this._ServicesService.EditRecord(formData, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
-			alert("Update")
+			alert("Updated Successfully...")
 			this.close()
 		}, (error: HttpErrorResponse) => {
 			console.log(error);
 			alert(error)
-			this.close()
 		});
 	}
 
@@ -82,13 +87,32 @@ export class ServiceComponent implements OnInit {
 	}
 
 	onSubmit() {
-	    this._ServicesService.SaveService(this.Serviceform.value, this._common.getHeaerOptions()).subscribe(res => {
-	        console.log(res);
-	    });
-	    this.close();
+		let formData = new FormData()
+		formData.append("serviceString", JSON.stringify(this.Serviceform.value))
+		formData.append("file", this.files)
+		this._ServicesService.SaveService(formData, this._common.getHeaerOptions()).subscribe(res => {
+			console.log(res);
+			alert("Saved Successfully...")
+			this.close();
+		}, (err: HttpErrorResponse) => {
+			alert(err.error)
+		});
+
 	}
 
 	close() {
 		this.dialogref.close();
+	}
+
+	onSelect($event) {
+		this.uploadfile = [];
+		this.uploadfile.push($event.target.files[0]);
+		if (this.uploadfile.length > 1) {
+			alert('Only Single Image Is Allowed..')
+			return;
+		}
+		else {
+			this.files = this.uploadfile[0];
+		}
 	}
 }

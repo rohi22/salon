@@ -57,7 +57,6 @@ export class SalesreturnComponent implements OnInit {
 
 	onSubmit() {
 		this.SalesReturnform.controls['list'].setValue(this.ReturnArray);
-		debugger
 		console.log(this.SalesReturnform.value)
 		this._SalesreturnService.postPostpurchasereturn(this.SalesReturnform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);

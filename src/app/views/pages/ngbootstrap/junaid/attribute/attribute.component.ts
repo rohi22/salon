@@ -29,9 +29,9 @@ export class AttributeComponent implements OnInit {
 	}
 
 	getAttribute() {
-		debugger
+
 		this.http.get(this.geturl).subscribe((res: any[]) => {
-			debugger
+
 			this.Attribute = res['data'];
 		}, (err: HttpErrorResponse) => {
 			alert(err.message);

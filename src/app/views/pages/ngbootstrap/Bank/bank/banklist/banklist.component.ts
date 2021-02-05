@@ -50,7 +50,7 @@ export class BanklistComponent implements OnInit {
 	}
 
 	async Delete(id) {
-		debugger
+
 		let headers = localStorage.getItem("Authorization")
 		this._BankService.DeleteBank(id.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete");
@@ -68,7 +68,7 @@ export class BanklistComponent implements OnInit {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = edit;
-	
+
 		let dialog = this.dialog.open(BankComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllBranch();

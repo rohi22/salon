@@ -123,7 +123,7 @@ export class ApiLinks {
 	readonly Allservices = this.BaseUrl + "service";
 	readonly ServicesBYId = this.BaseUrl + "service/";
 	readonly postServices = this.BaseUrl + "service";
-	readonly PutServices = this.BaseUrl + "service";
+	readonly PutServices = this.BaseUrl + "service/update";
 	readonly DeleteServices = this.BaseUrl + "service/";
 
 	/// Batch ///

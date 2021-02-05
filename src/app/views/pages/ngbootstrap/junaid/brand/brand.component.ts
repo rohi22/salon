@@ -17,9 +17,9 @@ export class BrandsComponent implements OnInit {
 	}
 
 	getAttribute() {
-		debugger
+
 		this.http.get(this.geturl).subscribe((res: any[]) => {
-			debugger
+
 			this.Brand = res['data'];
 		})
 	}

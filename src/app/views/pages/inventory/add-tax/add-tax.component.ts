@@ -47,7 +47,7 @@ export class AddTaxComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -107,7 +107,7 @@ export class AddTaxComponent implements OnInit {
 	}
 
 	onSubmit() {
-		debugger
+
 		this._TaxService.SaveTax(this.Productform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			this.close();

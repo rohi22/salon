@@ -17,6 +17,7 @@ export class SalereportComponent implements OnInit {
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 	@ViewChild("printBtn", { static: true }) print: ElementRef;
+	@ViewChild("printBtnthermal", { static: true }) printBtnthermal: ElementRef;
 	CurrentData = []
 	companyName: any;
 	companyDescription: any;
@@ -34,8 +35,6 @@ export class SalereportComponent implements OnInit {
 		await this.getAllSalesReport();
 		this.GetWebsetting()
 	}
-
-	Khaali(){}
 
 	GetWebsetting() {
 		this._WebsettingService.getallWebsetting()
@@ -58,7 +57,7 @@ export class SalereportComponent implements OnInit {
 		this.poService.getAllSalesReport()
 			.subscribe(res => {
 				this.dataSource.data = res as [];
-				debugger
+
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
 			}, (err: HttpErrorResponse) => {
@@ -75,7 +74,19 @@ export class SalereportComponent implements OnInit {
 		this.CurrentData = []
 		this.invoiceNumber = element.invoiceNumber
 		this.CurrentData.push(element);
-		debugger
-		// this.print.nativeElement.click()
+		setTimeout(() => {
+			this.print.nativeElement.click()
+		}, 3000);
+
+	}
+
+	PrintThermal(element) {
+		console.log(element)
+		this.CurrentData = []
+		this.invoiceNumber = element.invoiceNumber
+		this.CurrentData.push(element);
+		setTimeout(() => {
+			this.printBtnthermal.nativeElement.click()
+		}, 3000);
 	}
 }

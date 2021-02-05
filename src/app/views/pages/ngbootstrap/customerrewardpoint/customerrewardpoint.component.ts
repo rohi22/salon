@@ -34,7 +34,7 @@ export class CustomerrewardpointComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -73,7 +73,7 @@ export class CustomerrewardpointComponent implements OnInit {
 	}
 
 	onSubmit() {
-		debugger
+
 		this._CustomerrewardpointsService.SaveCustomerRewardPoint(this.CustomerRewardPOintform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			this.close();

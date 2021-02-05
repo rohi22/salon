@@ -31,7 +31,7 @@ export class AccounttypeComponent implements OnInit {
 
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -54,7 +54,7 @@ export class AccounttypeComponent implements OnInit {
 	}
 
 	UPdate() {
-		debugger
+
 		this.AccountTypeform.controls['id'].setValue(this.data.id)
 		this._AccounttypeService.EditAccounttype(this.AccountTypeform.value, this.getheader()).subscribe(res => {
 			console.log(res);
@@ -68,7 +68,7 @@ export class AccounttypeComponent implements OnInit {
 	}
 
 	onSubmit() {
-		debugger
+
 		this._AccounttypeService.SaveAccounttype(this.AccountTypeform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			alert("Save")

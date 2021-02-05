@@ -23,7 +23,7 @@ export class ServiceService {
 	}
 
 	EditRecord(body, header) {
-		return this._http.put(this._links.PutServices, body, header);
+		return this._http.post(this._links.PutServices, body, header);
 	}
 
 	DeletRecord(id, headers) {

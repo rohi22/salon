@@ -35,7 +35,7 @@ export class CustomercouponComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -69,7 +69,7 @@ export class CustomercouponComponent implements OnInit {
 	}
 
 	onSubmit() {
-		debugger
+
 		this._CustomerCoupon.SaveCustomerCoupon(this.CustomerCouponform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			this.close();

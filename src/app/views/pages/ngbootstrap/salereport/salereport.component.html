@@ -1,4 +1,249 @@
 <script src="https://unpkg.com/printd/printd.umd.min.js"></script>
+<style>
+	.color-blue {
+		color: rgb(73, 144, 226);
+	}
+
+	.font-8 {
+		font-size: 8px;
+	}
+
+	.font-9 {
+		font-size: 9px !important;
+	}
+
+	.font-10 {
+		font-size: 10px !important;
+	}
+
+	.font-11 {
+		font-size: 11px !important;
+	}
+
+	.font-12 {
+		font-size: 12px !important;
+	}
+
+	.font-13 {
+		font-size: 13px;
+	}
+
+	.font-14 {
+		font-size: 14px;
+	}
+
+	.font-15 {
+		font-size: 15px;
+	}
+
+	.font-16 {
+		font-size: 16px;
+	}
+
+	.font-17 {
+		font-size: 17px;
+	}
+
+	.font-18 {
+		font-size: 18px;
+	}
+
+	.font-19 {
+		font-size: 19px;
+	}
+
+	.font-20 {
+		font-size: 20px;
+	}
+
+	.font-21 {
+		font-size: 21px;
+	}
+
+	.font-22 {
+		font-size: 22px;
+	}
+
+	.font-25 {
+		font-size: 25px;
+	}
+
+	.font-400 {
+		font-weight: 400;
+	}
+
+	.font-500 {
+		font-weight: 500;
+	}
+
+	.font-600 {
+		font-weight: 600;
+	}
+
+	.font-700 {
+		font-weight: 700;
+	}
+
+	.font-800 {
+		font-weight: 800;
+	}
+
+	.font-900 {
+		font-weight: 900;
+	}
+
+	.background-blue {
+		background-color: rgb(73, 144, 226);
+	}
+
+	.background-white {
+		background-color: #fff;
+	}
+
+	.color-dark-gray {
+		color: rgb(146, 146, 146);
+	}
+
+	.background-gray {
+		background-color: rgb(241, 245, 246);
+	}
+
+
+	#invoice-POS {
+		box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+		padding: 2mm;
+		margin: 0 auto;
+		width: 80mm;
+		background: #FFF;
+	}
+
+	#invoice-POS ::selection {
+		background: #f31544;
+		color: #FFF;
+	}
+
+	#invoice-POS ::moz-selection {
+		background: #f31544;
+		color: #FFF;
+	}
+
+	#invoice-POS h1 {
+		font-size: 1.5em;
+		color: #222;
+	}
+
+	#invoice-POS h2 {
+		font-size: 0.9em;
+	}
+
+	#invoice-POS h3 {
+		font-size: 1.2em;
+		font-weight: 300;
+		line-height: 2em;
+	}
+
+	#invoice-POS p {
+		font-size: 0.7em;
+		color: #666;
+		line-height: 1.2em;
+	}
+
+	#invoice-POS #top,
+	#invoice-POS #mid,
+	#invoice-POS #bot {
+		/* Targets all id with 'col-' */
+		border-bottom: 1px solid #EEE;
+	}
+
+	#invoice-POS #top {
+		min-height: 80px;
+	}
+
+	#invoice-POS #mid {
+		min-height: 80px;
+	}
+
+	#invoice-POS #bot {
+		min-height: 50px;
+	}
+
+	#invoice-POS #top .logo {
+		height: 60px;
+		width: 60px;
+		/* background: url(http://michaeltruong.ca/images/logo1.png) no-repeat; */
+		background-size: 60px 60px;
+	}
+
+	#invoice-POS .clientlogo {
+		float: left;
+		height: 60px;
+		width: 60px;
+		/* background: url(http://michaeltruong.ca/images/client.jpg) no-repeat; */
+		background-size: 60px 60px;
+		border-radius: 50px;
+	}
+
+	#invoice-POS .info {
+		display: block;
+		margin-left: 0;
+	}
+
+	#invoice-POS .title {
+		float: right;
+	}
+
+	#invoice-POS .title p {
+		text-align: right;
+	}
+
+	#invoice-POS table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	#invoice-POS .tabletitle {
+		font-size: 0.5em;
+		border-top: 1px solid black;
+		border-bottom: 1px solid black;
+		background: #EEE;
+	}
+
+	#invoice-POS .service {
+		border-bottom: 1px solid #EEE;
+	}
+
+	#invoice-POS .item {
+		width: 24mm;
+	}
+
+	#invoice-POS .itemtext {
+		font-size: 0.5em;
+	}
+
+	#invoice-POS #legalcopy {
+		margin-top: 5mm;
+	}
+
+	hr {
+		background-color: black !important;
+	}
+
+	h2 {
+		color: black !important;
+	}
+
+	h6 {
+		color: black !important;
+	}
+
+	span {
+		color: black !important;
+	}
+
+	.color-black {
+		color: black !important;
+	}
+</style>
 
 <kt-portlet>
 	<kt-portlet-header>
@@ -89,14 +334,14 @@
 						Actions
 					</mat-header-cell>
 					<mat-cell *matCellDef="let element">
-						<button mat-icon-button color="warn" class="cursor" [elementToPrint]="printThis"
-							ngPrint(click)="Print(element)" matTooltip="Print Slip">
+						<button mat-icon-button color="warn" class="cursor" (click)="Print(element)"
+							matTooltip="Print Slip">
 							<mat-icon>print</mat-icon>
 						</button>&nbsp;
-						<!-- <button mat-icon-button color="warn" (click)="Delete(element)" matTooltip="Delete Employee"
-							type="button">
-							<mat-icon>delete</mat-icon>
-						</button> -->
+						<button mat-icon-button color="warn" class="cursor" (click)="PrintThermal(element)"
+							matTooltip="Print Slip">
+							<mat-icon>print</mat-icon>
+						</button>
 					</mat-cell>
 				</ng-container>
 
@@ -112,239 +357,246 @@
 	</kt-portlet-body>
 </kt-portlet>
 
-<button [hidden]="true" (click)="Khaali()" type="button" #printBtn [elementToPrint]="printThis" ngPrint mat-icon-button
-	color="warn" class="cursor">
+<button [hidden]="true" type="button" #printBtn [elementToPrint]="printThis" ngPrint matTooltip="Print Slip">
+	<mat-icon>print</mat-icon>
+</button>
 
-	<div [hidden]="true" class="container" #printThis id="printElement" style="max-width:950px;">
-		<div class="row">
-			<div class="col-12 col-sm-12 col-md-12">
-				<div class="row">
-					<table class="table table-responsive table-borderless">
-						<thead>
-							<tr>
-								<th>
-									<img src="{{logo}}" class="img-responsive" style="width: 100%;height: 100px;" />
-								</th>
-								<th>
-									<div class="row">
-										<div class="col-md-12 text-center">
-											<div class="row">
-												<div class="col-md-3"></div>
-												<div class="col-md-9">
-													<span class="font-18 font-500 color-black">{{invoiceNumber}}</span>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-12 text-center">
-											<span class="font-20 font-600 color-black">{{companyName}}</span>
-										</div>
-										<div class="col-md-12 text-center">
-											<span class="font-18 font-500 color-black">{{address}}</span>
-										</div>
-									</div>
-								</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
-				<hr class="background-black" />
-				<table class="table table-striped table-borderless">
+<button [hidden]="true" type="button" #printBtnthermal [elementToPrint]="printThisThermal" ngPrint
+	matTooltip="Print Slip">
+	<mat-icon>print</mat-icon>
+</button>
+
+<div [hidden]="true" class="container" #printThis id="printElement" style="max-width:950px;">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12">
+			<div class="row">
+				<table class="table table-responsive table-borderless">
 					<thead>
 						<tr>
-							<th class="p-0 text-center">
-								{{companyContact}} |
+							<th>
+								<img src="{{logo}}" class="img-responsive rounded-circle"
+									style="width: 100px;height: 100px;" />
 							</th>
-							<th class="p-0 text-center">
-								| {{companyEmail}}
-							</th>
-							<th class="p-0 text-center">
-								{{web}}
+							<th>
+								<div class="row">
+									<div class="col-md-12 text-center">
+										<div class="row">
+											<div class="col-md-3"></div>
+											<div class="col-md-9">
+												<span class="font-18 font-500 color-black">{{invoiceNumber}}</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 text-center">
+										<span class="font-20 font-600 color-black">{{companyName}}</span>
+									</div>
+									<div class="col-md-12 text-center">
+										<span class="font-18 font-500 color-black">{{address}}</span>
+									</div>
+								</div>
 							</th>
 						</tr>
 					</thead>
 				</table>
-				<hr class="background-black" />
 			</div>
+			<hr class="background-black" />
+			<table class="table table-striped table-borderless">
+				<thead>
+					<tr>
+						<th class="p-0 text-center">
+							{{companyContact}} |
+						</th>
+						<th class="p-0 text-center">
+							| {{companyEmail}}
+						</th>
+						<th class="p-0 text-center">
+							{{web}}
+						</th>
+					</tr>
+				</thead>
+			</table>
+			<hr class="background-black" />
 		</div>
-		<table class="table table-borderless" width="100%">
-			<thead>
-				<tr>
-					<th colspan="6">
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<h6 class="color-black">Billed To:</h6>
-								<h6 class="color-black">Sales Date:</h6>
-								<h6 class="color-black">No: 1234 Main</h6>
+	</div>
+	<table class="table table-borderless" width="100%">
+		<thead>
+			<tr>
+				<th colspan="6">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h6 class="color-black">Billed To:</h6>
+							<h6 class="color-black">Sales Date:</h6>
+							<h6 class="color-black">No: 1234 Main</h6>
+						</div>
+					</div>
+				</th>
+				<th colspan="6">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-10 text-center">
+									<span class="font-25 font-700 border-2 p-2 color-black">TAX INVOICE</span>
+									<!-- <p class="font-20 font-500 mt-2 ml-4 color-black">Orignal</p> -->
+								</div>
 							</div>
 						</div>
-					</th>
-					<th colspan="6">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-2"></div>
-									<div class="col-md-10 text-center">
-										<span class="font-25 font-700 border-2 p-2 color-black">TAX INVOICE</span>
-										<!-- <p class="font-20 font-500 mt-2 ml-4 color-black">Orignal</p> -->
+					</div>
+				</th>
+			</tr>
+		</thead>
+	</table>
+	<div *ngFor="let Data of CurrentData ; let i = index">
+		<table class="table table-borderless">
+			<thead>
+				<tr>
+					<th colspan="4">
+						<div class='row'>
+							<div class="col-md-4 m-3">
+								<div class="row border-black">
+									<div class="col-md-12">
+										<span class="color-black">Customer:</span>
+									</div>
+									<div class="col-md-12">
+										<p class="color-black">{{Data.customerName}}</p>
+										<p class="color-black">{{Data.customerAddress}}</p>
+									</div>
+									<div class="col-md-12">
+										<p class="color-black"><i class="fa fa-phone">{{Data.customerContact}}</i>
+										</p>
 									</div>
 								</div>
+							</div>
+						</div>
+
+					</th>
+					<th colspan="6">
+						<div class='row'>
+
+							<div class="col-md-8">
+
 							</div>
 						</div>
 					</th>
 				</tr>
 			</thead>
 		</table>
-		<div *ngFor="let Data of CurrentData ; let i = index">
-			<table class="table table-borderless">
-				<thead>
-					<tr>
-						<th colspan="4">
-							<div class='row'>
-								<div class="col-md-4 m-3">
-									<div class="row border-black">
-										<div class="col-md-12">
-											<span class="color-black">Customer:</span>
-										</div>
-										<div class="col-md-12">
-											<p class="color-black">{{Data.customerName}}</p>
-											<p class="color-black">{{Data.customerAddress}}</p>
-										</div>
-										<div class="col-md-12">
-											<p class="color-black"><i class="fa fa-phone">{{Data.customerContact}}</i>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
 
-						</th>
-						<th colspan="6">
-							<div class='row'>
-
-								<div class="col-md-8">
-
-								</div>
-							</div>
-						</th>
-					</tr>
-				</thead>
-			</table>
-
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<!-- <div class="panel-heading">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<!-- <div class="panel-heading">
 						<h3 class="panel-title"><strong>Order summary</strong></h3>
 					</div> -->
 
-						<div class="panel-body">
-							<div class="table-responsive">
-								<table class="table table-custome table-bordered mb-0">
-									<thead>
-										<tr>
-											<td><strong>#</strong></td>
-											<td><strong>Product</strong></td>
-											<td class="text-center"><strong>Quantity</strong></td>
-											<td class="text-center"><strong>Price</strong></td>
-											<td class="text-right"><strong>Discount Amount</strong></td>
-											<td class="text-right"><strong>Gross Amount</strong></td>
-											<td class="text-right"><strong>Total Price</strong></td>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- foreach ($order->lineItems as $line) or some such thing here -->
-										<tr *ngFor="let item of Data.productDetailsList; let index = index">
-											<td>{{index+1}}</td>
-											<td>{{item.productName}}</td>
-											<td class="text-center">{{item.quantity}}</td>
-											<td class="text-center">{{item.price}}</td>
-											<td class="text-center">{{item.discountAmount}}</td>
-											<td class="text-center">{{item.grossAmount}}</td>
-											<td class="text-right">{{item.totalPrice}}</td>
-										</tr>
-									</tbody>
-								</table>
-								<table class="table table-custome table-bordered">
-									<tbody>
-										<tr>
-											<td style="min-width:460px !important;">
-												<div class="row m-2">
-													<div class="col-md-12">
-														<div class="row border-black">
-															<div class="col-md-6 border-black">
-																<span class="color-black">P. Item: 0</span>
-															</div>
-															<div class="col-md-6 border-black">
-																<span class="color-black">P. Item: 0</span>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-custome table-bordered mb-0">
+								<thead>
+									<tr>
+										<td><strong>#</strong></td>
+										<td><strong>Product</strong></td>
+										<td class="text-center"><strong>Quantity</strong></td>
+										<td class="text-center"><strong>Price</strong></td>
+										<td class="text-right"><strong>Discount Amount</strong></td>
+										<td class="text-right"><strong>Gross Amount</strong></td>
+										<td class="text-right"><strong>Total Price</strong></td>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- foreach ($order->lineItems as $line) or some such thing here -->
+									<tr *ngFor="let item of Data.productDetailsList; let index = index">
+										<td>{{index+1}}</td>
+										<td>{{item.productName}}</td>
+										<td class="text-center">{{item.quantity}}</td>
+										<td class="text-center">{{item.price}}</td>
+										<td class="text-center">{{item.discountAmount}}</td>
+										<td class="text-center">{{item.grossAmount}}</td>
+										<td class="text-right">{{item.totalPrice}}</td>
+									</tr>
+								</tbody>
+							</table>
+							<table class="table table-custome table-bordered">
+								<tbody>
+									<tr>
+										<td style="min-width:460px !important;">
+											<div class="row m-2">
+												<div class="col-md-12">
+													<div class="row border-black">
+														<div class="col-md-6 border-black">
+															<span class="color-black">P. Item: 0</span>
+														</div>
+														<div class="col-md-6 border-black">
+															<span class="color-black">P. Item: 0</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="row">
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-4">
+															<span class="color-black">Discount Amount</span>
+														</div>
+														<div class="col-md-8 text-right">
+															<div class="row">
+																<div class="col-md-6">
+																	<span class="color-black">Rs.
+																		{{Data.discountAmount}}</span>
+																</div>
+																<div class="col-md-3"></div>
+
+																<!-- <div class="col-md-6 text-left">
+																	<span class="color-black">1,576.00</span>
+																</div> -->
 															</div>
 														</div>
 													</div>
 												</div>
-											</td>
-											<td>
-												<div class="row">
-													<div class="col-md-12">
-														<div class="row">
-															<div class="col-md-4">
-																<span class="color-black">Discount Amount</span>
-															</div>
-															<div class="col-md-8 text-right">
-																<div class="row">
-																	<div class="col-md-6">
-																		<span class="color-black">Rs.
-																			{{Data.discountAmount}}</span>
-																	</div>
-																	<div class="col-md-3"></div>
-
-																	<!-- <div class="col-md-6 text-left">
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-4">
+															<span class="color-black">Tax Amount</span>
+														</div>
+														<div class="col-md-8 text-right">
+															<div class="row">
+																<div class="col-md-3"></div>
+																<div class="col-md-6">
+																	<span class="color-black">Rs.
+																		{{Data.taxAmount}}</span>
+																</div>
+																<!-- <div class="col-md-6 text-left">
 																	<span class="color-black">1,576.00</span>
 																</div> -->
-																</div>
 															</div>
 														</div>
 													</div>
-													<div class="col-md-12">
-														<div class="row">
-															<div class="col-md-4">
-																<span class="color-black">Tax Amount</span>
-															</div>
-															<div class="col-md-8 text-right">
-																<div class="row">
-																	<div class="col-md-3"></div>
-																	<div class="col-md-6">
-																		<span class="color-black">Rs.
-																			{{Data.taxAmount}}</span>
-																	</div>
-																	<!-- <div class="col-md-6 text-left">
+												</div>
+												<div class='col-md-12'>
+													<hr class="background-black" />
+												</div>
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-4">
+															<span class="color-black">Sub Total</span>
+														</div>
+														<div class="col-md-8 text-right">
+															<div class="row">
+																<div class="col-md-3"></div>
+																<div class="col-md-6">
+																	<span class="color-black">Rs.
+																		{{Data.subTotal}}</span>
+																</div>
+																<!-- <div class="col-md-6 text-left">
 																	<span class="color-black">1,576.00</span>
 																</div> -->
-																</div>
 															</div>
 														</div>
 													</div>
-													<div class='col-md-12'>
-														<hr class="background-black" />
-													</div>
-													<div class="col-md-12">
-														<div class="row">
-															<div class="col-md-4">
-																<span class="color-black">Sub Total</span>
-															</div>
-															<div class="col-md-8 text-right">
-																<div class="row">
-																	<div class="col-md-3"></div>
-																	<div class="col-md-6">
-																		<span class="color-black">Rs.
-																			{{Data.subTotal}}</span>
-																	</div>
-																	<!-- <div class="col-md-6 text-left">
-																	<span class="color-black">1,576.00</span>
-																</div> -->
-																</div>
-															</div>
-														</div>
-													</div>
-													<!-- <div class="col-md-12">
+												</div>
+												<!-- <div class="col-md-12">
 													<div class="row">
 														<div class="col-md-4">
 															<span class="color-black">Round off</span>
@@ -359,46 +611,235 @@
 														</div>
 													</div>
 												</div> -->
-													<div class="col-md-12">
-														<div class="row">
-															<div class="col-md-4">
-																<span class="color-black">Total Amount</span>
-															</div>
-															<div class="col-md-8 text-right">
-																<div class="row">
-																	<div class="col-md-3"></div>
-																	<div class="col-md-6">
-																		<span class="color-black">Rs.
-																			{{Data.totalBill}}</span>
-																	</div>
-																	<!-- <div class="col-md-6 text-left">
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-4">
+															<span class="color-black">Total Amount</span>
+														</div>
+														<div class="col-md-8 text-right">
+															<div class="row">
+																<div class="col-md-3"></div>
+																<div class="col-md-6">
+																	<span class="color-black">Rs.
+																		{{Data.totalBill}}</span>
+																</div>
+																<!-- <div class="col-md-6 text-left">
 																	<span class="color-black">1,576.00</span>
 																</div> -->
-																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class='row'>
+							<div class="col-md-1"></div>
+							<div class="col-md-11">
+								<span class="color-black">Amount In Words: <i>One Thousand Two Hundred And Twenty
+										One</i></span>
 							</div>
-							<div class='row'>
-								<div class="col-md-1"></div>
-								<div class="col-md-11">
-									<span class="color-black">Amount In Words: <i>One Thousand Two Hundred And Twenty
-											One</i></span>
-								</div>
-								<div class="col-md-1"></div>
-								<div class="col-md-11">
-									<span class="color-black">Thanks for your visit.</span>
-								</div>
+							<div class="col-md-1"></div>
+							<div class="col-md-11">
+								<span class="color-black">Thanks for your visit.</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
+
+</div>
+
+
+<div [hidden]="true"  #printThisThermal id="invoice-POS">
+
+	<div id="top">
+		<div class="logo">
+			<img src="{{logo}}" class="img-responsive rounded-circle" style="    width: 59px;
+			height: 50px;" />
+		</div>
+		<div class="info">
+			<h2 class="mt-2">{{address}}</h2>
+		</div>
+		<!--End Info-->
+	</div>
+	<!--End InvoiceTop-->
+	<hr style="margin:0px;" />
+	<h2 class='font-11 mt-1 ml-3'>Phone : {{companyContact}}</h2>
+	<hr style="margin:0px;" />
+	<div class='row'>
+		<div class="col-md-12 text-center">
+			<h2 class="font-12 font-600 mt-1 mb-1">Tax Invoice</h2>
+			<!-- <h6 class='font-10 font-500'>Orignal</h6> -->
+		</div>
+		<div class="col-md-12 mt-2">
+			<h6 class="font-9">{{invoiceNumber}}</h6>
+			<h6 class="font-9">Sales Date.: 31-march-2021</h6>
+		</div>
+	</div>
+	<!--End Invoice Mid-->
+
+	<div *ngFor="let Data of CurrentData ; let i = index" id="bot">
+
+		<div id="table">
+			<table class="table table-borderless">
+				<tr class="tabletitle">
+					<td class="Rate">
+						<h2 class='font-10'>#</h2>
+					</td>
+					<td class="item">
+						<h2 class='font-10'>Product</h2>
+					</td>
+					<td class="Hours">
+						<h2 class='font-10'>Quantity</h2>
+					</td>
+					<td class="Rate">
+						<h2 class='font-10'>Price</h2>
+					</td>
+					<td class="Rate">
+						<h2 class='font-10'>Discount Amount</h2>
+					</td>
+					<td class="Rate">
+						<h2 class='font-10'>Total Price</h2>
+					</td>
+				</tr>
+
+				<tr *ngFor="let item of Data.productDetailsList; let index = index" class="service">
+					<td class="tableitem">
+						<p class="itemtext color-black">{{index+1}}</p>
+					</td>
+					<td class="tableitem">
+						<p class="itemtext color-black">{{item.productName}}</p>
+					</td>
+					<td class="tableitem">
+						<p class="itemtext color-black">{{item.quantity}}</p>
+					</td>
+					<td class="tableitem">
+						<p class="itemtext color-black">{{item.price}}</p>
+					</td>
+					<td class="tableitem">
+						<p class="itemtext color-black">{{item.discountAmount}}</p>
+					</td>
+					<td class="tableitem">
+						<p class="itemtext color-black">{{item.totalPrice}}</p>
+					</td>
+				</tr>
+			</table>
+			<div class='row'>
+				<div class="col-md-12">
+					<hr style="margin:0px;" />
+				</div>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6 mt-1">
+							<h6 class="font-9">Discount Amount</h6>
+						</div>
+						<div class="col-md-6 mt-1">
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-4 text-right">
+									<h2 class="font-9">Rs</h2>
+								</div>
+								<div class="col-md-6 text-left">
+									<h2 class="font-9">{{Data.discountAmount}}</h2>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h6 class="font-9">Tax Amount</h6>
+						</div>
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-4 text-right">
+									<h2 class="font-9">Rs</h2>
+								</div>
+								<div class="col-md-6 text-left">
+									<h2 class="font-9">{{Data.taxAmount}}</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<hr style="margin:0px;" />
+				</div>
+
+
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6 mt-1">
+							<h6 class="font-9">Sub Total</h6>
+						</div>
+						<div class="col-md-6 mt-1">
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-4 text-right">
+									<h2 class="font-9">Rs</h2>
+								</div>
+								<div class="col-md-6 text-left">
+									<h2 class="font-9">{{Data.subTotal}}</h2>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h6 class="font-9">Total Amount</h6>
+						</div>
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-4 text-right">
+									<h2 class="font-9">Rs</h2>
+								</div>
+								<div class="col-md-6 text-left">
+									<h2 class="font-9">{{Data.totalBill}}</h2>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col-md-6">
+							<h6 class="font-9">Payable Amount</h6>
+						</div>
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2"></div>
+								<div class="col-md-4 text-right">
+									<h2 class="font-9">Rs</h2>
+								</div>
+								<div class="col-md-6 text-left">
+									<h2 class="font-9">3,644.25</h2>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+				<div class="col-md-12">
+					<hr style="margin:0px;" />
+				</div>
+				<!-- <div class="col-md-12">
+					<h2 class='font-9 mt-1'>Amount in Words:-</h2>
+					<h2 class='font-9'><i>One Thousand Two Hundred And Twenty One</i></h2>
+				</div> -->
+				<div class="col-md-12">
+					<hr style="margin:0px;" />
+				</div>
+				<div class="col-md-12 mt-1 mb-1">
+					<span class='font-9 border-black p-2'>Items: 8</span>
+					<span class='font-9 border-black p-2'>T.Qty: 10</span>
+				</div>
+				<div class="col-md-12">
+					<hr style="margin:0px;" />
+				</div>
+				<div class="col-md-12 mt-2">
+					<h2 class='font-10 font-700'>Thank you for your visit!</h2>
+				</div>
+			</div>
+		</div>
+		<!--End Table-->
+	</div>
+	<!--End InvoiceBot-->
+</div>
