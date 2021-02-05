@@ -4,6 +4,8 @@ export interface Designation {
 	active: boolean,
 	createdAt: Date,
 	createdBy: number,
+	list:any,
+	branchId:number,
 	departmentId: number,
 	id: number,
 

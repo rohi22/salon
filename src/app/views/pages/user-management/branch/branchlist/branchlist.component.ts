@@ -46,13 +46,17 @@ export class BranchlistComponent implements OnInit {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = {};
-		this.dialog.open(BranchComponent, dialogconfig);
+		let dialog = this.dialog.open(BranchComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			this.getAllBranch();
+		  });
 	}
 
 	async Delete(id) {
 		let headers = localStorage.getItem("Authorization")
 		this._branchservice.DeletRecord(id.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete");
+			this.getAllBranch();
 			console.log(res)
 		}, (error: HttpErrorResponse) => {
 			alert(error.message)
@@ -66,7 +70,10 @@ export class BranchlistComponent implements OnInit {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = edit;
-		this.dialog.open(BranchComponent, dialogconfig);
+		let dialog = this.dialog.open(BranchComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			this.getAllBranch();
+		  });
 	}
 }
 

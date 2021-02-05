@@ -24,9 +24,9 @@ export class DesignationlistComponent {
 	}
 
 	async getAllDesignation() {
-		debugger
+
 		this._designationservice.getDesignation().subscribe(res => {
-			debugger
+
 			this.dataSource.data = res as Designation[];
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;
@@ -47,7 +47,11 @@ export class DesignationlistComponent {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = {};
-		this.dialog.open(DesignationComponent, dialogconfig);
+		let dialog = this.dialog.open(DesignationComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			alert("Save")
+			this.getAllDesignation();
+		  });
 	}
 
 	async Edit(edit) {
@@ -56,12 +60,17 @@ export class DesignationlistComponent {
 		dialogconfig.disableClose = true;
 		dialogconfig.width = "75%";
 		dialogconfig.data = edit;
-		this.dialog.open(DesignationComponent, dialogconfig);
+		let dialog = this.dialog.open(DesignationComponent, dialogconfig);
+		dialog.afterClosed().subscribe(result => {
+			this.getAllDesignation();
+		  });
 	}
 
 	async Delete(index) {
 		this._designationservice.DeletRecord(index.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete")
+			this.getAllDesignation();
+
 		}, (err: HttpErrorResponse) => {
 			alert(err.error);
 		})

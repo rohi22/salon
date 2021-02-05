@@ -27,10 +27,26 @@ export class DesignationService {
 	}
 
 	AddRecord(body, header) {
+		let assignPermissionList = []
+		assignPermissionList.push({permissionId: body.permissionId})
+		body.assignPermissionList = assignPermissionList;
+		body.designation = body.name
+		body.createdBy = localStorage.getItem('userId');
+		delete body.permissionId;
+		delete body.name;
 		return this._http.post(this._links.AddDesignation, body, header);
 	}
 
 	EditRecord(body, header) {
+		let assignPermissionList = []
+		assignPermissionList.push({permissionId: body.permissionId})
+		body.assignPermissionList = assignPermissionList;
+		body.designation = body.name
+		body.modifiedBy = localStorage.getItem('userId');
+		delete body.permissionId;
+		delete body.name;
+		let form = new FormData
+		// form.append("designation",JSON.stringify(body))
 		return this._http.put(this._links.PutDesignatoin, body, header);
 	}
 

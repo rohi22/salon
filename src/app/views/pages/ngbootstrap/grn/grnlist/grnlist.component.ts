@@ -13,7 +13,7 @@ import { GrnComponent } from '../grn.component';
 })
 export class GrnlistComponent implements OnInit {
 	public dataSource = new MatTableDataSource<GRN>();
-	displayedColumns: string[] = ['area', 'cityName', 'stateName', 'countryName', 'actions'];
+	displayedColumns: string[] = ['id', 'grnType', 'vendorName', 'branchName', 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 

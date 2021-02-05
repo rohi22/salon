@@ -11,8 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../core/reducers';
 // Auth
-import { AuthNoticeService, AuthService, Login } from '../../../../core/auth';
+import { AuthNoticeService, AuthService, Login, Logout } from '../../../../core/auth';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ApiLinks } from '../../Services/APILinks';
 
 //import { LoginService } from 'src/app/Services/login.service';
 
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	private unsubscribe: Subject<any>;
 
 	private returnUrl: any;
+	baseUrl: any;
 
 	// Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
@@ -67,10 +69,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 		private route: ActivatedRoute,
 		//private _loginService: LoginService,
 		private _http: HttpClient,
-		private injector: Injector
-	//	private _apilinks : ApiLinks
+		private injector: Injector,
+		// private apiLinks: api
+		private _apilinks : ApiLinks
 	) {
+		localStorage.clear();
 		this.unsubscribe = new Subject();
+		this.baseUrl =  _apilinks.BaseUrl;
+
 	}
 
 	/**
@@ -82,12 +88,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 	 */
 	ngOnInit(): void {
 		this.initLoginForm();
-		debugger
+		this.logout();
+
 		this.route.queryParams.subscribe(params => {
 			this.returnUrl = params.returnUrl || '/';
 		});
 	}
-
+	logout() {
+		this.store.dispatch(new Logout());
+	}
 	/**
 	 * On destroy
 	 */
@@ -132,7 +141,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	}
 
 	Login(email: string, password: string) {
-		return this._http.post<any>("http://172.16.0.25:10000/api/login", { email, password });
+		return this._http.post<any>(this.baseUrl + "login", { email, password });
 	}
 
 	UserLogin() {
@@ -152,6 +161,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 				this.authNoticeService.setNotice(this.translate.instant('User Login Successfully..'), 'success');
 				var token = user[2].data[0].Authorization;
 				localStorage.setItem('Authorization', token);
+				debugger
+				var user = user[2].data[1].user;
+				localStorage.setItem('user',JSON.stringify(user));
+				localStorage.setItem('userId', user.id);
 				debugger
 				console.log(this.returnUrl)
 				this.router.navigate(["/dashboard"]);

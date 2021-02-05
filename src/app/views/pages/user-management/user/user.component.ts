@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../models/user';
+import { ApiLinks } from '../../Services/APILinks';
 import { CommonService } from '../../Services/common.service';
 import { LoginService } from '../../Services/login.service';
 import { UsertypeService } from '../../Services/usertype.service';
@@ -30,15 +31,20 @@ export class UserComponent implements OnInit {
 	DesignationList = [];
 	hideupdate: boolean;
 	hide: boolean;
-	file: string;
+	file: any = null;
+	imageViewLink: any;
+	image: any = null;
 	constructor(private fb: FormBuilder, private _common: CommonService, private _branchService: BranchService,
 		public dialogref: MatDialogRef<UserComponent>, private _userType: UsertypeService,
 		private _depart: DepartmentService, private _designation: DesignationService, private _userservice: UserService,
-		@Inject(MAT_DIALOG_DATA) public data: User, private _login: LoginService) { }
+		@Inject(MAT_DIALOG_DATA) public data: User, private _login: LoginService,private apiLinks: ApiLinks) {
+			debugger;
+			this.imageViewLink = this.apiLinks.imageView;
+		 }
 
 	async ngOnInit() {
 		this.InitilizeForm();
-		this.EditMOdal();
+		await this.EditMOdal();
 		await this.getAllCountry();
 		await this.getUserType();
 		await this.getDepartment();
@@ -76,31 +82,41 @@ export class UserComponent implements OnInit {
 		})
 	}
 
-	EditMOdal() {
+	async EditMOdal() {
 
 		debugger
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
+			// this.Userform.controls['id'].setValue(this.data.id);
 			this.Userform.controls['email'].setValue(this.data.email);
-			// this.Userform.controls['password'].setValue(this.data.password);
+			this.Userform.controls['password'].setValue(this.data.password);
 			this.Userform.controls['name'].setValue(this.data.name);
 			this.Userform.controls['fullName'].setValue(this.data.fullName);
-			this.Userform.controls['branchId'].setValue(this.data.branchId);
-			// this.Userform.controls['address'].setValue(this.data.address);
-			// this.Userform.controls['contact'].setValue(this.data.contact);
-			// this.Userform.controls['cnic'].setValue(this.data.cnic);
-			// this.Userform.controls['altContact'].setValue(this.data.altContact);
-			// this.Userform.controls['description'].setValue(this.data.description);
-			// this.Userform.controls['altEmail'].setValue(this.data.altEmail);
+			this.Userform.controls['branchId'].setValue(this.data.branchId.toString());
+			this.Userform.controls['address'].setValue(this.data.address);
+			this.Userform.controls['contact'].setValue(this.data.contact);
+			this.Userform.controls['cnic'].setValue(this.data.cnic);
+			this.Userform.controls['altContact'].setValue(this.data.altContact);
+			this.Userform.controls['description'].setValue(this.data.aboutDesc);
+			this.Userform.controls['altEmail'].setValue(this.data.altEmail);
 			this.Userform.controls['departmentId'].setValue(this.data.departmentId);
 			this.Userform.controls['designationId'].setValue(this.data.designationId);
-			// this.Userform.controls['userTypeId'].setValue(this.data.userTypeId);
 			this.Userform.controls['countryId'].setValue(this.data.countryId);
-			// this.Userform.controls['isActive'].setValue(this.data.isActive);
+			this.Userform.controls['userTypeId'].setValue(this.data.userTypeId);
+			this.image = this.data.image;
+			// this.Userform.controls['isActive'].setValue(this.data.active);
 			this.Userform.controls['cityId'].setValue(this.data.cityId);
 			this.Userform.controls['areaId'].setValue(this.data.areaId);
 			this.Userform.controls['stateId'].setValue(this.data.stateId);
+			if (this.data.id) {
+			await	 this.getStateByCountry(this.Userform.controls['countryId'].value);
+			await	 this.getCityByState(this.Userform.controls['stateId'].value);
+			await	 this.getAreaByCity(this.Userform.controls['cityId'].value);
+			await	 this.getDeisgnation(this.Userform.controls['departmentId'].value);
+			await    this.getUserType();
+
+			}
 		}
 		else {
 			this.hide = false;
@@ -139,8 +155,10 @@ export class UserComponent implements OnInit {
 	}
 
 	async getDepartment() {
+		debugger
 		this._depart.getDepartment().subscribe(data => {
 			this.DepartmentList = data as [];
+
 		})
 	}
 
@@ -172,7 +190,12 @@ export class UserComponent implements OnInit {
 
 	UPdate() {
 		this.Userform.controls['id'].setValue(this.data.id)
-		this._userservice.EditUser(this.Userform.value, this._common.getHeaerOptions()).subscribe(res => {
+		const formData = new FormData();
+		let data1 = this.Userform.value
+		data1.userTypeId = this.Userform.controls['userTypeId'].value
+		formData.append("user", JSON.stringify(data1));
+		formData.append("file", this.file);
+		this._userservice.EditUser(formData, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Update")
 			this.close()

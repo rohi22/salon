@@ -1,3 +1,18 @@
 export interface GRN {
-
+	purchaseOrderId: any,
+	id: any,
+	branchId: any,
+	branchName: any,
+	createdBy: any,
+	createdById: any,
+	grnTitle: any,
+	grnType: any,
+	invoiceNumber: any,
+	list: any,
+	poDate: any,
+	poId: any,
+	poTitle: any,
+	receiveDate: any,
+	vendorId: any,
+	vendorName: any,
 }

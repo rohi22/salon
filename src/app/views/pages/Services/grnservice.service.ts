@@ -24,7 +24,13 @@ export class GrnserviceService {
 	}
 
 	getGrnByPO(po) {
-		return this._http.get(this._links.GrnByPO + po, { headers: this._commonServices.getHeaders() });
+
+		return this._http.get(this._links.GrnByPO + po.purchaseOrderId, { headers: this._commonServices.getHeaders() });
+	}
+
+	postGrnByPO(po) {
+		po.userId = localStorage.getItem('userId');
+		return this._http.post(this._links.GrnByID1,po, { headers: this._commonServices.getHeaders() });
 	}
 
 	SaveGrn(body, header) {
@@ -32,7 +38,9 @@ export class GrnserviceService {
 	}
 
 	EditGrn(body, header) {
-		return this._http.put(this._links.PutGrn, body, header);
+		body.userId = localStorage.getItem('userId');
+		debugger
+		return this._http.put(this._links.editGrn + body.id, body, header);
 	}
 
 }

@@ -5,11 +5,19 @@ export class ApiLinks {
 	/// Login ///
 	readonly LoginUrl = this.BaseUrl + "login";
 	readonly imageUploader = this.BaseUrl + "image";
+	///Category////
+	readonly postCategory = this.BaseUrl + "category";
+	readonly putCategory = this.BaseUrl + "category/";
+	readonly deleteCategory = this.BaseUrl + "category/";
+	readonly getAllCategory = this.BaseUrl + "category";
+	readonly getByCategoryId = this.BaseUrl + "category/";
+	readonly getByCategoryType = this.BaseUrl + "category/num/";
 
+	///Category////
 	/// Department ///
 	readonly department = this.BaseUrl + "department";
 	readonly departmentbyId = this.BaseUrl + "desingation/";
-	readonly departmentbybranchId =  "desingation/branch/";
+	readonly departmentbybranchId = "desingation/branch/";
 	readonly PostDepartment = this.BaseUrl + "department";
 	readonly PutDepartment = this.BaseUrl + "department";
 	readonly DeleteDepartment = this.BaseUrl + "department/";
@@ -37,7 +45,8 @@ export class ApiLinks {
 	readonly usersbyBranchId = this.BaseUrl + "user/branch/";
 	readonly usersbyName = this.BaseUrl + "user//user/";
 	readonly AddUser = this.BaseUrl + "user";
-	readonly PutUser = this.BaseUrl + "user";
+	readonly PutUser = this.BaseUrl + "user/update";
+	readonly imageView = this.BaseUrl + "product/downloadfile/";
 	readonly DeleteUser = this.BaseUrl + "user/";
 
 	/// Country ///
@@ -176,7 +185,7 @@ export class ApiLinks {
 	readonly ProductByID = this.BaseUrl + "product/";
 	readonly ProductBYImageFile = this.BaseUrl + "product/downloadfile/{fileName:.+}";
 	readonly PostProduct = this.BaseUrl + "product";
-	readonly PutProduct = this.BaseUrl + "product";
+	readonly PutProduct = this.BaseUrl + "product/update";
 	readonly DeleteProduct = this.BaseUrl + "product/";
 
 	/// Brand ///
@@ -239,9 +248,11 @@ export class ApiLinks {
 	readonly AllGRN = this.BaseUrl + "grn";
 	readonly GrnByBranchID = this.BaseUrl + "grn/branch";
 	readonly GrnByID = this.BaseUrl + "grn/";
+	readonly GrnByID1 = this.BaseUrl + "grn";
 	readonly GrnByPO = this.BaseUrl + "grn/po/";
 	readonly PostGrn = this.BaseUrl + "grn/nonpo/";
-	readonly PutGrn = this.BaseUrl + "grn/po/";
+	readonly PutGrn = this.BaseUrl + "grn/po/update/";
+	readonly editGrn = this.BaseUrl + "grn/po/update/";
 
 	/// Purchase Order ///
 	readonly AllPO = this.BaseUrl + "po";
@@ -249,6 +260,8 @@ export class ApiLinks {
 	readonly PObyBranchId = this.BaseUrl + "po/branch/";
 	readonly PostPO = this.BaseUrl + "po";
 	readonly PuttPO = this.BaseUrl + "po";
+	// readonly gettPO = this.BaseUrl + "po";
+
 
 	/// Customer Update ///
 	readonly PostCustomerUpdate = this.BaseUrl + "customer/updatedcustomer";
@@ -340,5 +353,12 @@ export class ApiLinks {
 	readonly GetpaymentByID = this.BaseUrl + "payment/";
 	readonly GetAccountPayableGen = this.BaseUrl + "account-payable-gen";
 	readonly GetAccountPayableGenByID = this.BaseUrl + "account-payable-gen/";
+	// add-tax //
+	readonly PostTax = this.BaseUrl + "new/tax";
+	readonly PutTax = this.BaseUrl + "new/tax/update/";
+	readonly DeleteTax = this.BaseUrl + "new/tax/";
+	readonly GetAllTax = this.BaseUrl + "new/tax";
+
+
 }
 

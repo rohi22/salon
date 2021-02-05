@@ -1,55 +1,292 @@
-<kt-portlet>
-	<kt-portlet-header>
-		<ng-container ktPortletTools>
-			<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
-				data-ktwizard-state="step-first">
-				<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
-					<div class="kt-form__section kt-form__section--first">
-						<div class="row">
-							<h3 style="margin-left: -916px;">GRN</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-		</ng-container>
-	</kt-portlet-header>
-	<kt-portlet-body>
-		<div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3"
-			data-ktwizard-state="step-first">
-			<div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
-				<form [formGroup]="Areaform">
-					<div class="kt-form__section kt-form__section--first">
-						<div class="row">
-							<div class="col-md-3">
-								<div class="form-group">
-									<label>Purchase Order</label>
-									<select #country formControlName="purchaseOrderId" autocomplete="off" class="form-control">
-										<option *ngFor="let item of POList" [value]="item.id">
-											{{item.name}}</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="kt-form__actions">
-							<div [hidden]="hide" (click)="onSubmit()"
-								class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
-								data-ktwizard-type="action-submit">
-								Save
-							</div>
-							<div [hidden]="hideupdate" (click)="UPdate()"
-								class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
-								data-ktwizard-type="action-submit">
-								Update
-							</div>
-							<div (click)="close()" style="margin-left: 10px;"
-								class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
-								data-ktwizard-type="action-prev">
-								Close
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</kt-portlet-body>
-</kt-portlet>
+<kt-material-preview [viewItem]="exampleBasicTabs">
+    <div class="kt-section">
+        <div class="kt-section__content">
+            <!-- <form [formGroup]="POform" id="kt_form"> -->
+
+            <mat-tab-group>
+                <mat-tab label="Purchase Order GRN">
+                    <div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3" data-ktwizard-state="step-first">
+                        <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+                            <form [formGroup]="GRNform">
+                                <div class="kt-form__section kt-form__section--first">
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div>
+                                                <label>Title</label>
+                                                <input [ngModelOptions]="{standalone: true}" #title type="text" class="form-control" name="title" [(ngModel)]="PurchaseOrder.grnTitle" autocomplete="off" placeholder="Enter title">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div>
+                                                <label>Receive Date</label>
+                                                <input [ngModelOptions]="{standalone: true}" #receiveDate type="date" class="form-control" name="receiveDate" [(ngModel)]="PurchaseOrder.receiveDate" autocomplete="off" placeholder="Enter Receive Date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Purchase Order</label>
+                                                <select #purchaseOrderId formControlName="purchaseOrderId" name="purchaseOrderId" [(ngModel)]="PoId" (ngModelChange)="getPurchaseOrder()" autocomplete="off" class="form-control">
+													<option *ngFor="let item of POList" [value]="item.id">
+														{{item.poNumber}}</option>
+												</select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="poDetails">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">S.no</th>
+                                                    <th scope="col">Product</th>
+                                                    <th scope="col">Unit</th>
+                                                    <th scope="col">Quantity Required</th>
+                                                    <th scope="col">Quantity Received</th>
+                                                    <th scope="col">Balance</th>
+                                                    <th scope="col">Exceed </th>
+                                                    <th scope="col">Action</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of poDetails ;let i = index">
+                                                    <td>{{i+1}}</td>
+                                                    <td><select #prod name="prodId" (change)="onProdSelect(i,prod.value)" [value]='poDetails[i].productId'>
+														<option *ngFor="let item1 of products" [value]="item1.id">{{item1.productName}}</option>
+													</select></td>
+                                                    <td>{{item.productUnit}}</td>
+                                                    <td>{{item.qtyRequired}}</td>
+                                                    <td><input #receivedQuantity name="receivedQuantity{{i}}" [value]='poDetails[i].received' (change)="getBalance(i,receivedQuantity.value)" type="number" required placeholder=""></td>
+                                                    <td>{{item.difference}}</td>
+                                                    <td>{{item.exceed }}</td>
+                                                    <td>
+                                                        <!--  <button mat-icon-button color="primary" matTooltip="Edit Employee">
+												<mat-icon>create</mat-icon>
+											</button>&nbsp; -->
+                                                        <button mat-icon-button (click)="removeRow(i)" color="warn" matTooltip="Delete Employee" type="button">
+												<mat-icon>delete</mat-icon>
+											</button>
+                                                        <button *ngIf="i == poDetails.length - 1" (click)="addRow()" mat-icon-button color="secondary" matTooltip="Add Row" type="button">
+												<mat-icon>add_box</mat-icon>
+											</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="kt-form__actions">
+                                        <div [hidden]="hide" (click)="onSubmit(title.value,receiveDate.value)" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                                            Save
+                                        </div>
+                                        <div [hidden]="hideupdate" (click)="UPdate(title.value,receiveDate.value)" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                                            Update
+                                        </div>
+                                        <div (click)="close()" style="margin-left: 10px;" class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
+                                            Close
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- <div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+                            <div class="kt-form__section kt-form__section--first">
+                                <div class="kt-wizard-v2__form">
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Title</label>
+                                                <input formControlName="title" type="text" class="form-control" autocomplete="off" placeholder="Enter Title">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Vendor</label>
+
+                                                <select formControlName="vendorId" autocomplete="off" class="form-control">
+											<option [value]="null">Select Vendor</option>
+											<option *ngFor="let item of VendorList" [value]="item.id">
+												{{item.vendorName}}</option>
+										</select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Branch</label>
+
+                                                <select formControlName="branchId" autocomplete="off" class="form-control">
+											<option [value]="null">Select Branch</option>
+											<option *ngFor="let item of BranchList" [value]="item.id">
+												{{item.name}}</option>
+										</select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Delivery Date</label>
+                                                <input formControlName="deliveryDate" [min]="todayDate" type="date" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div style="float: right;" (click)="AddPOArray()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+                                                Add
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                </mat-tab>
+                <mat-tab label="Non-Purchase Order GRN">
+                    <!-- <div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+                            <div class="kt-form__section kt-form__section--first">
+                                <div class="kt-wizard-v2__form">
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Product</label>
+                                                <select #productId autocomplete="off" class="form-control">
+											<option *ngFor="let item of ProductList" [value]="item.id">
+												{{item.productName}}</option>
+										</select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Tax</label>
+                                                <select #taxId autocomplete="off" class="form-control">
+											<option *ngFor="let item of TaxList" [value]="item.id">
+												{{item.title}}</option>
+										</select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Discount</label>
+                                                <input #discount type="text" class="form-control" autocomplete="off" placeholder="Enter Discount">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Quantity</label>
+                                                <input #quantity type="text" class="form-control" autocomplete="off" placeholder="Enter Quantity">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-xl-6">
+                                            <div class="form-group">
+                                                <label>Price</label>
+                                                <input #productPrice type="text" class="form-control" autocomplete="off" placeholder="Enter Price">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div style="float: right;" (click)="AddPOArray()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">
+                                                Add
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">S.no</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Brand</th>
+                                                <th scope="col">Unit</th>
+                                                <th scope="col">Tax Type</th>
+                                                <th scope="col">Tax Amount</th>
+                                                <th scope="col">Quantity Required</th>
+                                                <th scope="col">Per Unit Cost</th>
+                                                <th scope="col">Gross Amount</th>
+                                                <th scope="col">Discount Percentage</th>
+                                                <th scope="col">Total Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of POArray;let i = index">
+                                                <td>{{i+1}}</td>
+                                                <td>{{item.productName}}</td>
+                                                <td>{{item.brandName}}</td>
+                                                <td>{{item.productUnit}}</td>
+                                                <td>{{item.taxName}}</td>
+                                                <td>{{item.taxAmount}}</td>
+                                                <td>{{item.qtyRequired}}</td>
+                                                <td>{{item.perUnitCost}}</td>
+                                                <td>{{item.grossAmount}}</td>
+                                                <td>{{item.discountPercent}}</td>
+                                                <td>{{item.totalAmount}}</td>
+                                                <button mat-icon-button color="primary" (click)="Edit(item)" matTooltip="Edit Employee">
+											<mat-icon>create</mat-icon>
+										</button>&nbsp;
+                                                <button mat-icon-button color="warn" (click)="SplicePOArray(item)" matTooltip="Delete Employee" type="button">
+											<mat-icon>delete</mat-icon>
+										</button>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kt-form__actions">
+                            <div class="row">
+                                <div class="col">
+
+                                    <div *ngIf="!hide" style="float: right;" (click)="onSubmit('sent')" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                                        Save
+                                    </div>
+                                    <div *ngIf="!hide" style="float: right;" (click)="onSubmit('Draft')" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                                        Draft
+                                    </div>
+                                    <div *ngIf="!hideupdate" style="float: right;" (click)="UPdate('sent')" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                                        Update
+                                    </div>
+                                    <div *ngIf="!hideupdate" style="float: right;" (click)="UPdate('Draft')" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                                        Draft
+                                    </div>
+                                    <div style="float: right;" class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" (click)="close()" data-ktwizard-type="action-submit">
+                                        Close
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div> -->
+
+                </mat-tab>
+            </mat-tab-group>
+            <!-- </form> -->
+        </div>
+    </div>
+</kt-material-preview>
+
+<!-- <kt-portlet>
+    <kt-portlet-header>
+        <ng-container ktPortletTools>
+            <div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3" data-ktwizard-state="step-first">
+                <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+                    <div class="kt-form__section kt-form__section--first">
+                        <div class="row">
+                            <h3 style="margin-left: -916px;">GRN</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </kt-portlet-header>
+    <kt-portlet-body>
+
+    </kt-portlet-body>
+</kt-portlet> -->
