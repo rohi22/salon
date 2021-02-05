@@ -17,8 +17,14 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Image</label>
+                        <label>Logo</label><br>
                         <input #file type="file" class="form-file-control" (change)="onFileChanged($event)">
+                    </div>
+				</div>
+				<div class="col-md-3">
+                    <div class="form-group">
+                        <label>Favicon</label><br>
+                        <input #favfile type="file" class="form-file-control" (change)="onFileChangedFav($event)">
                     </div>
                 </div>
             </div>
@@ -78,10 +84,10 @@
                             </div>
                         </div>
                         <div class="kt-form__actions">
-                            <div [hidden]="hide" (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                            <div *ngIf="hide" (click)="onSubmit()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
                                 Save
                             </div>
-                            <div [hidden]="hideupdate" (click)="UPdate()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
+                            <div *ngIf="hideupdate" (click)="UPdate()" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
                                 Update
                             </div>
                             <div (click)="close()" style="margin-left: 10px;" class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">

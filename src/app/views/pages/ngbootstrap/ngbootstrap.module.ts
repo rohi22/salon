@@ -116,6 +116,8 @@ import { JproductComponent } from './junaid/jproduct/jproduct.component';
 import { AddTaxComponent } from '../inventory/add-tax/add-tax.component';
 import { SalonPosComponent } from './menus/salon-pos/salon-pos.component';
 import { CategoryComponent } from './category/category.component';
+import { SalereportComponent } from './salereport/salereport.component';
+import { NgPrintModule } from 'ng-print';
 
 const routes: Routes = [
 	{
@@ -382,12 +384,17 @@ const routes: Routes = [
 				path: 'categorylist',
 				component: CategorylistComponent
 			},
+			{
+				path: 'salesreport',
+				component: SalereportComponent
+			},
 		]
 	}
 ];
 
 @NgModule({
 	imports: [
+		NgPrintModule,
 		CommonModule,
 		PartialsModule,
 		NgbModule,
@@ -528,7 +535,8 @@ const routes: Routes = [
 		AddTaxComponent,
 		SalonPosComponent,
 		CategorylistComponent,
-		CategoryComponent
+		CategoryComponent,
+		SalereportComponent
 
 		//BrancheslistComponent,
 	],

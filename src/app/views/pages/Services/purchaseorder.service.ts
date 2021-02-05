@@ -34,4 +34,8 @@ export class PurchaseorderService {
 
 		return this._http.post(this._links.PuttPO, body, headers)
 	}
+
+	getAllSalesReport() {
+		return this._http.get(this._links.SalesReport, { headers: this._commonServices.getHeaders() });
+	}
 }

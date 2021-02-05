@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Subject } from 'rxjs';
 import { WebSetting } from '../../models/websetting';
 import { CommonService } from '../../Services/common.service';
 import { WebsettingService } from '../../Services/websetting.service';
@@ -16,8 +17,10 @@ export class WebsettingComponent implements OnInit {
 	hideupdate: boolean;
 	hide: boolean;
 	file: string;
-	constructor(private fb: FormBuilder,private _WebsettingService: WebsettingService, private _common: CommonService,
-		  ) { }
+	public webSettingObject = new Subject<any>()
+	faviconfile: any;
+	constructor(private fb: FormBuilder, private _WebsettingService: WebsettingService, private _common: CommonService,
+	) { }
 
 	ngOnInit() {
 		this.InitilizeForm();
@@ -39,53 +42,67 @@ export class WebsettingComponent implements OnInit {
 	}
 
 	EditMOdal() {
-			this._WebsettingService.getallWebsetting()
-				.subscribe((res:any) => {
-		if (res[0] && res[0].id && res[0] !== undefined) {
-			this.hide = true
-			this.hideupdate = false;
-			this.Websettingform.controls['companyName'].setValue(res[0].companyName);
-			this.Websettingform.controls['companyDescription'].setValue(res[0].companyDescription);
-			this.Websettingform.controls['address'].setValue(res[0].address);
-			this.Websettingform.controls['companyEmail'].setValue(res[0].companyEmail);
-			this.Websettingform.controls['companyContact'].setValue(res[0].companyContact);
-			this.Websettingform.controls['faxNumber'].setValue(res[0].faxNumber);
-			this.Websettingform.controls['web'].setValue(res[0].web);
-			this.Websettingform.controls['id'].setValue(res[0].id);
+		this._WebsettingService.getallWebsetting()
+			.subscribe((res: any) => {
+				if (res[0] && res[0].id && res[0] !== undefined) {
+					this.hide = false
+					this.hideupdate = true;
+					this.Websettingform.controls['companyName'].setValue(res[0].companyName);
+					this.Websettingform.controls['companyDescription'].setValue(res[0].companyDescription);
+					this.Websettingform.controls['address'].setValue(res[0].address);
+					this.Websettingform.controls['companyEmail'].setValue(res[0].companyEmail);
+					this.Websettingform.controls['companyContact'].setValue(res[0].companyContact);
+					this.Websettingform.controls['faxNumber'].setValue(res[0].faxNumber);
+					this.Websettingform.controls['web'].setValue(res[0].web);
+					this.Websettingform.controls['id'].setValue(res[0].id);
 
-		}
-		else {
-			this.hide = false;
-			this.hideupdate = true
-		}
-	});
+				}
+				else {
+					this.hide = true;
+					this.hideupdate = false
+				}
+			}, (err: HttpErrorResponse) => {
+				alert(err.error)
+			});
 	}
 
 	onSubmit() {
-		const formData = new FormData();
-		formData.append("settingString", JSON.stringify(this.Websettingform.value));
-		formData.append("file", this.file);
-		console.log(formData)
-		debugger
-		this._WebsettingService.PostWebsetting(formData, this._common.getHeaerOptions()).subscribe(res => {
-			console.log("RESPONSE :", res);
-			alert("Save");
-		}, (err: HttpErrorResponse) => {
-			alert(err.message);
-		});
+		if (this.file) {
+			const formData = new FormData();
+			formData.append("settingString", JSON.stringify(this.Websettingform.value));
+			formData.append("file", this.file);
+			formData.append("favIcon", this.faviconfile);
+			console.log(formData)
+			this._WebsettingService.PostWebsetting(formData, this._common.getHeaerOptions()).subscribe((res: any) => {
+				console.log("RESPONSE :", res);
+				localStorage.setItem("Logo", res.logo)
+				this._WebsettingService.websettingObject.next(res)
+				alert("Save");
+			}, (err: HttpErrorResponse) => {
+				alert(err.error);
+			});
+		}
+		else {
+			alert("file cannot be empty");
+		}
+
 	}
 
 	UPdate() {
-		// this.Websettingform.controls['id'].setValue(this.data.id)
-		this._WebsettingService.PutWebsetting(this.Websettingform.value, this._common.getHeaerOptions()).subscribe(res => {
+		const formData = new FormData();
+		formData.append("settingString", JSON.stringify(this.Websettingform.value));
+		formData.append("file", this.file);
+		formData.append("favIcon", this.faviconfile);
+		console.log(formData)
+		this._WebsettingService.PutWebsetting(formData, this._common.getHeaerOptions()).subscribe((res: any) => {
 			console.log(res);
+			localStorage.setItem("Logo", res.logo)
+			this._WebsettingService.websettingObject.next(res)
 			alert("Update")
 			this.EditMOdal();
-			this.close()
 		}, (error: HttpErrorResponse) => {
 			console.log(error);
-			alert(error.message)
-			this.close()
+			alert(error.error)
 		});
 	}
 
@@ -95,5 +112,9 @@ export class WebsettingComponent implements OnInit {
 
 	onFileChanged(event) {
 		this.file = event.target.files[0];
+	}
+
+	onFileChangedFav(event) {
+		this.faviconfile = event.target.files[0];
 	}
 }

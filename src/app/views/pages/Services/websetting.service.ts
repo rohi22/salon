@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ApiLinks } from './APILinks';
 import { CommonService } from './common.service';
 
@@ -8,6 +9,7 @@ import { CommonService } from './common.service';
 })
 export class WebsettingService {
 
+	public websettingObject = new Subject<any>();
 	constructor(private _http: HttpClient, private _links: ApiLinks, private _commonServices: CommonService) { }
 
 
@@ -24,8 +26,7 @@ export class WebsettingService {
 	}
 
 	PutWebsetting(body, header) {
-		debugger;
-		return this._http.put(this._links.PutWebsetting, body, header);
+		return this._http.post(this._links.PutWebsetting, body, header);
 	}
 
 }
