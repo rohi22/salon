@@ -119,10 +119,10 @@
                             <div class="row ">
                                 <div class="col-md-4" *ngFor="let item of serviceList ">
                                     <div class="card mt-2 " style="max-width:100%" (click)="pushService(item)">
-                                        <!-- <img [src]="imageUrl +'/'+ item.image " class="card-img-top " [alt]="item.productName "> -->
-                                        <div class="card-body text-center" style="background-color: rgba(50, 218, 162, 0.959);">
-                                            <h5 class="card-title " style="color: white;font-weight: 600;">{{item.name}}</h5>
-                                            <p class="card-text " style="color: white;font-weight: 600;">{{item.charges}}</p>
+                                        <img [src]="imageUrl +'/'+ item.image " class="card-img-top " [alt]="item.name ">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title ">{{item.name}}</h5>
+                                            <p class="card-text ">{{item.charges}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -372,14 +372,14 @@
             <div class="col-md-9 ">
                 <div class="row ">
                     <div class="col-md-4">
-                        <button type="button " class="btn btn-primary " (click)="Save(true)">Pay</button>
+                        <button type="button" class="btn btn-primary" (click)="Save(true)">Pay</button>
                     </div>
                     <!-- <div class="col-md-4 ">
                         <button type="button " class="btn btn-success " (click)="Save(false)">Save</button>
                     </div> -->
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                        <button type="button " class="btn btn-danger " (click)="modal.close( 'Save click') ">Close</button>
+                        <button type="button" class="btn btn-danger" (click)="modal.close( 'Save click') ">Close</button>
                     </div>
                 </div>
             </div>
