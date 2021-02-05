@@ -76,7 +76,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 	}
 
 	async EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -142,7 +142,7 @@ export class EmployeeComponent implements OnInit, AfterViewInit {
 	onSubmit() {
 		this.Employeeform.controls['listallowance'].setValue(this.AllowncesArray);
 		this.Employeeform.controls['listEmployeeService'].setValue(this.ServiceArray);
-		debugger
+
 		console.log(this.Employeeform.value)
 		this._EmployeeService.SaveEmployee(this.Employeeform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);

@@ -120,7 +120,7 @@ export class CompanypaidpaymentsComponent implements OnInit {
 
 	}
 	async EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -138,7 +138,7 @@ export class CompanypaidpaymentsComponent implements OnInit {
 		this.CompanyPaidform.controls['cashTransactionList'].setValue(this.CashArray);
 		this.CompanyPaidform.controls['chequeTransactionList'].setValue(this.ChequeArray);
 		console.log(this.CompanyPaidform.value)
-		debugger
+
 		this._CompanypaidpaymentService.PostPayment(this.CompanyPaidform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Save")

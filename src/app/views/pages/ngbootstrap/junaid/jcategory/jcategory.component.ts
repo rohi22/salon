@@ -36,15 +36,15 @@ export class JcategoryComponent implements OnInit {
 	}
 
 	getAttribute() {
-		debugger
+
 		this.http.get(this.geturl).subscribe((res: any[]) => {
-			debugger
+
 			this.Brand = res['data'];
 		})
 	}
 
 	post() {
-		debugger
+
 		this.http.post(this.add, this.form.value).subscribe(res => {
 			alert("Save")
 			this.getAttribute();

@@ -52,7 +52,7 @@ export class CustomerloyalitycardComponent implements OnInit,AfterViewInit {
 	}
 
 	async EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -81,7 +81,7 @@ export class CustomerloyalitycardComponent implements OnInit,AfterViewInit {
 
 	onSubmit() {
 		this.LoyaltiCardform.controls['percentageList'].setValue(this.PercentageArray);
-		debugger
+
 		console.log(this.LoyaltiCardform.value)
 		this._LoyalitycardService.PostCustomerLoyalityCard(this.LoyaltiCardform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
@@ -98,7 +98,7 @@ export class CustomerloyalitycardComponent implements OnInit,AfterViewInit {
 	}
 
 	async AddPercentageLists() {
-		debugger
+
 		this.PercentageArray.push({
 			circleNo: Number(this.circleno.nativeElement.value),
 			percentage:  Number(this.percenatage.nativeElement.value)

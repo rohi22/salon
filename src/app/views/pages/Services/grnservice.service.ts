@@ -39,7 +39,6 @@ export class GrnserviceService {
 
 	EditGrn(body, header) {
 		body.userId = localStorage.getItem('userId');
-		debugger
 		return this._http.put(this._links.editGrn + body.id, body, header);
 	}
 

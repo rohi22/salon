@@ -35,7 +35,7 @@ export class ProfitComponent implements OnInit {
 
 	EditMOdal() {
 
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -49,7 +49,7 @@ export class ProfitComponent implements OnInit {
 	}
 
 	onSubmit() {
-		debugger
+
 		this._ProfitService.PostProfit(this.Profitform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			alert("Save")

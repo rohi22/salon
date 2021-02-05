@@ -23,9 +23,7 @@ export class UserlistComponent {
 	}
 
 	async getAll() {
-		debugger
 		this._userservice.getAllUsers().subscribe(res => {
-			debugger
 			this.dataSource.data = res as User[];
 			this.dataSource.sort = this.sort;
 			this.dataSource.paginator = this.paginator;

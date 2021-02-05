@@ -1,3 +1,4 @@
+import { WebsettingService } from './../../Services/websetting.service';
 // Angular
 import { ChangeDetectorRef, Component, Injector, NgZone, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 	private returnUrl: any;
 	baseUrl: any;
+	Logo: string;
 
 	// Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
 
@@ -71,11 +73,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 		private _http: HttpClient,
 		private injector: Injector,
 		// private apiLinks: api
-		private _apilinks : ApiLinks
+		private _apilinks: ApiLinks,
+		private webSetting: WebsettingService
 	) {
 		localStorage.clear();
 		this.unsubscribe = new Subject();
-		this.baseUrl =  _apilinks.BaseUrl;
+		this.baseUrl = _apilinks.BaseUrl;
 
 	}
 
@@ -87,6 +90,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 	 * On init
 	 */
 	ngOnInit(): void {
+
 		this.initLoginForm();
 		this.logout();
 
@@ -161,13 +165,13 @@ export class LoginComponent implements OnInit, OnDestroy {
 				this.authNoticeService.setNotice(this.translate.instant('User Login Successfully..'), 'success');
 				var token = user[2].data[0].Authorization;
 				localStorage.setItem('Authorization', token);
-				debugger
+
 				var user = user[2].data[1].user;
-				localStorage.setItem('user',JSON.stringify(user));
+				localStorage.setItem('user', JSON.stringify(user));
 				localStorage.setItem('userId', user.id);
-				debugger
+
 				console.log(this.returnUrl)
-				this.router.navigate(["/dashboard"]);
+				this.router.navigate(["/ngbootstrap/menus/salonPos"]);
 
 			}, (error: HttpErrorResponse) => {
 				this.authNoticeService.setNotice(this.translate.instant('Invalid Username Or Password..'), 'danger');

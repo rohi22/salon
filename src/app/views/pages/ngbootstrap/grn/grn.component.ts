@@ -116,7 +116,7 @@ export class GrnComponent implements OnInit {
 		}
 	}
 	getBalance(i, value) {
-		debugger
+
 		console.log(value);
 		this.poDetails[i].received = value;
 		(+this.poDetails[i].qtyRequired - +this.poDetails[i].received) >= 0 ? this.poDetails[i].difference = (+this.poDetails[i].qtyRequired - +this.poDetails[i].received) :
@@ -206,7 +206,7 @@ export class GrnComponent implements OnInit {
 		});
 	}
 	onProdSelect(i, id) {
-		debugger
+
 		let item: any = this.products.filter(x => x.id == id)
 		this.poDetails[i].productId = item[0].id
 		this.poDetails[i].productName = item[0].productName
@@ -214,7 +214,7 @@ export class GrnComponent implements OnInit {
 		this.poDetails[i].productBrandId = item[0].brandId
 	}
 	onSubmit(title, date) {
-		debugger
+
 		this.PurchaseOrder.grnTitle = title;
 		this.PurchaseOrder.receiveDate = date;
 		this.poDetails.forEach((element: any) => {

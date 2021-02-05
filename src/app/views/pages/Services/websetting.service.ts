@@ -1,5 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ApiLinks } from './APILinks';
 import { CommonService } from './common.service';
@@ -10,11 +11,18 @@ import { CommonService } from './common.service';
 export class WebsettingService {
 
 	public websettingObject = new Subject<any>();
-	constructor(private _http: HttpClient, private _links: ApiLinks, private _commonServices: CommonService) { }
+	constructor(@Inject(DOCUMENT) private _document: HTMLDocument, private _http: HttpClient, private _links: ApiLinks, private _commonServices: CommonService) { }
 
+	setAppFavicon(basepath: string, icon: string) {
+		this._document.getElementById('appFavicon').setAttribute('href', basepath + icon);
+	}
 
 	getallWebsetting() {
 		return this._http.get(this._links.allWebsetting, { headers: this._commonServices.getHeaders() });
+	}
+
+	getallWebsettingWithOutAuth() {
+		return this._http.get(this._links.allWebsetting);
 	}
 
 	getWebsettingByID(id) {

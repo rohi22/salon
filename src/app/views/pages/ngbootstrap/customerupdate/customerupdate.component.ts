@@ -37,7 +37,7 @@ export class CustomerupdateComponent implements OnInit {
 
 	EditMOdal() {
 
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = false
 			this.hideupdate = false;
@@ -56,7 +56,7 @@ export class CustomerupdateComponent implements OnInit {
 	}
 
 	onSubmit() {
-		debugger
+
 		let formData = new FormData();
 		formData.append('customer', JSON.stringify(this.Customerform.value));
 		formData.append('file', this.file);

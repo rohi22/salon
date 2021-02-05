@@ -4,6 +4,9 @@ import { Component, ElementRef, OnInit, Renderer2, ViewEncapsulation } from '@an
 import { LayoutConfigService, SplashScreenService, TranslationService } from '../../../core/_base/layout';
 // Auth
 import { AuthNoticeService } from '../../../core/auth';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ApiLinks } from '../Services/APILinks';
+import { WebsettingService } from '../Services/websetting.service';
 
 @Component({
 	selector: 'kt-auth',
@@ -15,6 +18,7 @@ export class AuthComponent implements OnInit {
 	// Public properties
 	today: number = Date.now();
 	headerLogo: string;
+	Logo: string;
 
 	/**
 	 * Component constructor
@@ -31,6 +35,8 @@ export class AuthComponent implements OnInit {
 		private render: Renderer2,
 		private layoutConfigService: LayoutConfigService,
 		public authNoticeService: AuthNoticeService,
+		private _apilinks: ApiLinks,
+		private webSetting: WebsettingService,
 		private translationService: TranslationService,
 		private splashScreenService: SplashScreenService) {
 	}
@@ -43,6 +49,7 @@ export class AuthComponent implements OnInit {
 	 * On init
 	 */
 	ngOnInit(): void {
+		this.GetWebsetting()
 		this.translationService.setLanguage(this.translationService.getSelectedLanguage());
 		this.headerLogo = this.layoutConfigService.getLogo();
 
@@ -62,5 +69,16 @@ export class AuthComponent implements OnInit {
 			styleElement.onload = resolve;
 			this.render.appendChild(this.el.nativeElement, styleElement);
 		});
+	}
+
+
+	GetWebsetting() {
+		this.webSetting.getallWebsettingWithOutAuth().subscribe((res: any) => {
+			if (res[0].logo) {
+				this.Logo = this._apilinks.imagePath + res[0].logo
+			}
+		}, (err: HttpErrorResponse) => {
+			alert(err.message)
+		})
 	}
 }

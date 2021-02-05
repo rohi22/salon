@@ -51,7 +51,6 @@ export class BranchComponent implements OnInit {
 
 	EditMOdal() {
 
-		debugger
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -116,7 +115,6 @@ export class BranchComponent implements OnInit {
 		});
 	}
 	onSubmit() {
-		debugger
 		this._branchService.AddRecord(this.Branchform.value, this.getheader()).subscribe(res => {
 			console.log(res);
 			this.close();

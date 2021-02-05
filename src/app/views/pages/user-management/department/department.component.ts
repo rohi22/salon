@@ -49,7 +49,6 @@ export class DepartmentComponent implements OnInit {
 	}
 
 	UPdate() {
-		debugger
 		this.departmentform.controls['id'].setValue(this.data.id)
 		this._departmentservice.EditRecord(this.departmentform.value, this._commonservice.getHeaerOptions()).subscribe(res => {
 			console.log(res);
@@ -63,7 +62,6 @@ export class DepartmentComponent implements OnInit {
 	}
 
 	onSubmit() {
-debugger
 		this._departmentservice.AddRecord(this.departmentform.value,  this._commonservice.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Save")

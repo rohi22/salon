@@ -76,7 +76,7 @@ export class CountryComponent implements OnInit {
 		this._country.SaveCountry(this.Countryform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Saved")
-			debugger
+
 
 		});
 		this.close();

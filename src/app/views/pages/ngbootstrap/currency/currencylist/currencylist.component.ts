@@ -47,7 +47,7 @@ export class CurrencylistComponent implements OnInit {
 	}
 
 	async Delete(id) {
-		debugger
+
 		let headers = localStorage.getItem("Authorization")
 		this._CurrencyService.DeletCurrency(id.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete");

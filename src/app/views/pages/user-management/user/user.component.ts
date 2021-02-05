@@ -38,7 +38,6 @@ export class UserComponent implements OnInit {
 		public dialogref: MatDialogRef<UserComponent>, private _userType: UsertypeService,
 		private _depart: DepartmentService, private _designation: DesignationService, private _userservice: UserService,
 		@Inject(MAT_DIALOG_DATA) public data: User, private _login: LoginService,private apiLinks: ApiLinks) {
-			debugger;
 			this.imageViewLink = this.apiLinks.imageView;
 		 }
 
@@ -83,8 +82,6 @@ export class UserComponent implements OnInit {
 	}
 
 	async EditMOdal() {
-
-		debugger
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -155,7 +152,6 @@ export class UserComponent implements OnInit {
 	}
 
 	async getDepartment() {
-		debugger
 		this._depart.getDepartment().subscribe(data => {
 			this.DepartmentList = data as [];
 

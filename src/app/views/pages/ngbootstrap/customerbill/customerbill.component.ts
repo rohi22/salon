@@ -102,7 +102,7 @@ export class CustomerbillComponent implements OnInit {
 	}
 
 	async EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;

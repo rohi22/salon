@@ -16,7 +16,7 @@ export class InterceptService implements HttpInterceptor {
 		request: HttpRequest<any>,
 		next: HttpHandler
 	): Observable<HttpEvent<any>> {
-		// tslint:disable-next-line:no-debugger
+		// tslint:disable-next-line:no-
 		// modify request
 		// request = request.clone({
 		// 	setHeaders: {
@@ -40,7 +40,7 @@ export class InterceptService implements HttpInterceptor {
 					// http response status code
 					// console.log('----response----');
 					// console.error('status code:');
-					// tslint:disable-next-line:no-debugger
+					// tslint:disable-next-line:no-
 					console.error(error.status);
 					console.error('interceptError',error);
 					console.error(error.message);
@@ -50,11 +50,11 @@ export class InterceptService implements HttpInterceptor {
 		);
 	}
 // 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-	
+
 // 		return next.handle(authReq).catch((error, caught) => {
 // 		  if(error.error.status === 403) {
-// 			  this.router.navigate(['/login']); 
-// 		  } else if(error.error.status === 400) { 
+// 			  this.router.navigate(['/login']);
+// 		  } else if(error.error.status === 400) {
 // 			  console.log('Error status 400');
 // 		  }
 // 		  return Observable.throw(error);

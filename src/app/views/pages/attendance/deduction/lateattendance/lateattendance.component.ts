@@ -35,7 +35,7 @@ export class LateattendanceComponent implements OnInit {
 	}
 
 	EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -58,12 +58,12 @@ export class LateattendanceComponent implements OnInit {
 	}
 
 	UPdate() {
-		debugger
+
 		this.LateAttendanceDeductionform.controls['id'].setValue(this.data.id)
 		this._AbsentdeductionService.EditLateAttendanceDeduction(this.LateAttendanceDeductionform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			alert("Update")
-			debugger
+
 			this.close()
 		}, (error: HttpErrorResponse) => {
 			console.log(error);
@@ -72,7 +72,7 @@ export class LateattendanceComponent implements OnInit {
 		});
 	}
 	onSubmit() {
-		debugger
+
 		this._AbsentdeductionService.SaveLateAttendanceDeduction(this.LateAttendanceDeductionform.value, this._common.getHeaerOptions()).subscribe(res => {
 			console.log(res);
 			this.close();

@@ -130,7 +130,7 @@ export class PurchaseorderComponent implements OnInit {
 	}
 
 	async EditMOdal() {
-		debugger
+
 		if (this.data && this.data.id && this.data !== undefined) {
 			this.hide = true
 			this.hideupdate = false;
@@ -194,7 +194,7 @@ export class PurchaseorderComponent implements OnInit {
 		this.POform.controls['poDetail'].setValue(this.POArray);
 		this.POform.controls['vendorName'].setValue(this.VendorList.filter(o => o.id == +this.POform.controls['vendorId'].value)[0].vendorName);
 		this.POform.controls['branchName'].setValue(this.BranchList.filter(o => o.id == +this.POform.controls['branchId'].value)[0].name);
-		debugger
+
 		let subTotal = null;
 		let subDiscount = null;
 		let subTaxAmount = null;
@@ -230,7 +230,7 @@ export class PurchaseorderComponent implements OnInit {
 		this.POform.controls['poDetail'].setValue(this.POArray);
 		this.POform.controls['vendorName'].setValue(this.VendorList.filter(o => o.id == +this.POform.controls['vendorId'].value)[0].vendorName);
 		this.POform.controls['branchName'].setValue(this.BranchList.filter(o => o.id == +this.POform.controls['branchId'].value)[0].name);
-		debugger
+
 		let subTotal = null;
 		let subDiscount = null;
 		let subTaxAmount = null;
@@ -266,7 +266,7 @@ export class PurchaseorderComponent implements OnInit {
 	}
 
 	async AddPOArray() {
-		debugger;
+		 ;
 		const product = this.ProductList.filter(o => o.id == Number(this.productId.nativeElement.value))[0].productName;
 		const brand = this.ProductList.filter(o => o.id == Number(this.productId.nativeElement.value))[0].brandName;
 		const brandId = this.ProductList.filter(o => o.id == Number(this.productId.nativeElement.value))[0].brandId;

@@ -49,7 +49,7 @@ export class BankbrancheslistComponent implements OnInit {
 	}
 
 	async Delete(id) {
-		debugger
+
 		let headers = localStorage.getItem("Authorization")
 		this._BankbranchesService.DeleteBankBranch(id.id, this._commonservice.getHeaerOptions()).subscribe(res => {
 			alert("Delete");
