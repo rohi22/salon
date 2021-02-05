@@ -1,15 +1,15 @@
 import { ProductService, CategoryService } from './../../../Services/product.service';
 import { ApiLinks } from './../../../Services/APILinks';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin } from 'rxjs';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'kt-salon-pos',
 	templateUrl: './salon-pos.component.html',
 	styleUrls: ['./salon-pos.component.scss']
 })
-export class SalonPosComponent implements OnInit {
+export class SalonPosComponent implements OnInit, AfterViewInit {
 	imageUrl: string;
 	productList: any[] = [];
 	productCategoryList: any[] = [];
@@ -34,42 +34,55 @@ export class SalonPosComponent implements OnInit {
 	}
 	serviceList: any[] = [];
 	customerList: any[] = [];
-
-	constructor(private modalService: NgbModal, private _apiLink: ApiLinks, private _prodService: ProductService, private _catService: CategoryService) {
+	data: any[] = [];
+	@ViewChild("new12", { static: true }) new121: ElementRef;
+	constructor(private router: ActivatedRoute, private modalService: NgbModal, private _apiLink: ApiLinks, private _prodService: ProductService, private _catService: CategoryService) {
 		this.imageUrl = this._apiLink.productImage;
 
 	}
 	ngOnInit() {
 		this.getAllCustomers()
-		this.getAllCategoryByType();
+		this.data = this.router.snapshot.data.supplier;
+		this.productCategoryList = this.data[0];
+		this.serviceCategoryList = this.data[1];
 	}
-	getAllCustomers(){
+	getAllCustomers() {
 		this._prodService.getAllCustomer().subscribe(res => {
 			this.customerList = res as [];
 		});
 	}
 	getProductByCategoryId(id: number) {
+		// this.productList = [];
 		this._prodService.getProductByCategoryId(id).subscribe(res => {
 			this.productList = res as [];
+			this.catTypeCheck = true;
+			this.new121.nativeElement.click();
 		});
-
 	}
 	getServiceByCategoryId(id: number) {
+		// this.serviceList= [];
 		this._prodService.getServiceByCategoryId(id).subscribe(res => {
 			this.serviceList = res as [];
+			this.catTypeCheck = false;
+			this.new121.nativeElement.click();
 		});
-
 	}
 	getAllCategoryByType() {
-		forkJoin({
-			requestOne: this._catService.getCategoryByType(1),
-			requestTwo: this._catService.getCategoryByType(2),
+		forkJoin([
+			this._catService.getCategoryByType(1),
+			this._catService.getCategoryByType(2),
 
-		})
-			.subscribe(({ requestOne, requestTwo }) => {
-				this.productCategoryList = requestOne as [];
-				this.serviceCategoryList = requestTwo as [];
+		])
+			.subscribe((x: any) => {
+				if (x) {
+					this.productCategoryList = x[0];
+					this.serviceCategoryList = x[1];
+				}
+
 			});
+	}
+	ngAfterViewInit() {
+		// this.getAllCategoryByType()
 	}
 	openModal(event) {
 		this.modalService.open(event, { ariaLabelledBy: 'modal-basic-title' })
@@ -189,13 +202,13 @@ export class SalonPosComponent implements OnInit {
 		if (this.sales.customerId == null) {
 			alert("Please select customer")
 			return null;
-		}else{
+		} else {
 			this.customerList.filter(x => x.id == this.sales.customerId).map(x => {
 				this.sales.customerName = x.name
 			});
 		}
-		this._prodService.SaveSales(this.sales).subscribe(res =>{
-			if(res){
+		this._prodService.SaveSales(this.sales).subscribe(res => {
+			if (res) {
 				this.modalService.dismissAll();
 				alert("Sale successful!")
 			}

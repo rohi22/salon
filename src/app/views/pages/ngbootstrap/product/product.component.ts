@@ -44,6 +44,7 @@ export class ProductComponent implements OnInit {
 			'categoryId': [''],
 			'unitId': ['', Validators.required],
 			'id': ['', Validators.required],
+			'price': ['', Validators.required],
 			'files': ['', Validators.required],
 		});
 		this.Productform.controls['saleAble'].setValue(false);
