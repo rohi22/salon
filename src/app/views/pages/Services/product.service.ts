@@ -92,7 +92,7 @@ export class CategoryService {
 
 	updateCategory(id,body) {
 
-		return this._http.post(this._links.putCategory + id,body, { headers: this._commonServices.getHeaders() });
+		return this._http.put(this._links.putCategory + id,body, { headers: this._commonServices.getHeaders() });
 	}
 
 	DeleteCategory(id) {

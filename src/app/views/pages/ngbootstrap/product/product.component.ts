@@ -64,8 +64,10 @@ export class ProductComponent implements OnInit {
 			this.Productform.controls['saleAble'].setValue(this.data.salable);
 			this.Productform.controls['brandId'].setValue(this.data.brandId);
 			this.Productform.controls['categoryId'].setValue(this.data.categoryId);
+			this.Productform.controls['price'].setValue(this.data.price);
 			this.Productform.controls['unitId'].setValue(this.data.unitId);
 			this.Productform.controls['files'].setValue(this.data.image);
+		    this.getAllCategory();
 		}
 		else {
 			this.hide = false;
