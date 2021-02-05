@@ -5,6 +5,7 @@ export class ApiLinks {
 	/// Login ///
 	readonly LoginUrl = this.BaseUrl + "login";
 	readonly imageUploader = this.BaseUrl + "image";
+	readonly productImage = this.BaseUrl + "product/downloadfile";
 	///Category////
 	readonly postCategory = this.BaseUrl + "category";
 	readonly putCategory = this.BaseUrl + "category/";
@@ -185,6 +186,10 @@ export class ApiLinks {
 	readonly ProductByID = this.BaseUrl + "product/";
 	readonly ProductBYImageFile = this.BaseUrl + "product/downloadfile/{fileName:.+}";
 	readonly PostProduct = this.BaseUrl + "product";
+	readonly getProductByCategoryId = this.BaseUrl + "product/category/";
+	readonly PostSale = this.BaseUrl + "sales/add/sale";
+	readonly getAllCustomer = this.BaseUrl + "customer";
+	readonly getServiceByCategoryId = this.BaseUrl + "service/category/";
 	readonly PutProduct = this.BaseUrl + "product/update";
 	readonly DeleteProduct = this.BaseUrl + "product/";
 

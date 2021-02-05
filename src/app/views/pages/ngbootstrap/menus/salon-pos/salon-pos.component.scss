@@ -1,7 +1,7 @@
-.circle-round{
-	background-color: #fff;
+.circle-round {
+    background-color: #fff;
     border-radius: 100%;
-    border: 2px solid rgb(73,144, 226);
+    border: 2px solid rgb(73, 144, 226);
     margin: 4px 2px;
     font-size: 12px;
     padding-top: 4px;
@@ -9,12 +9,13 @@
     padding-left: 8px;
     padding-bottom: 4px;
     cursor: pointer;
-    color: rgb(73,144, 226);
+    color: rgb(73, 144, 226);
 }
-.circle-round-like{
-	background-color: rgb(253,216, 128);
+
+.circle-round-like {
+    background-color: rgb(253, 216, 128);
     border-radius: 100%;
-    border: 2px solid rgb(253,216, 128);
+    border: 2px solid rgb(253, 216, 128);
     margin: 4px 2px;
     font-size: 12px;
     padding-top: 4px;
@@ -22,221 +23,280 @@
     padding-left: 8px;
     padding-bottom: 4px;
     cursor: pointer;
-	color: rgb(255,255, 255);
-	font-weight: 900;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
 }
-.color-blue{
-	color: rgb(73,144, 226);
+
+.color-blue {
+    color: rgb(73, 144, 226);
 }
-.font-8{
-	font-size: 8px;
+
+.font-8 {
+    font-size: 8px;
 }
-.font-9{
-	font-size: 9px;
+
+.font-9 {
+    font-size: 9px;
 }
-.font-10{
-	font-size: 10px;
+
+.font-10 {
+    font-size: 10px;
 }
-.font-11{
-	font-size: 11px;
+
+.font-11 {
+    font-size: 11px;
 }
-.font-12{
-	font-size: 12px;
+
+.font-12 {
+    font-size: 12px;
 }
-.font-13{
-	font-size: 13px;
+
+.font-13 {
+    font-size: 13px;
 }
-.font-14{
-	font-size: 14px;
+
+.font-14 {
+    font-size: 14px;
 }
-.font-15{
-	font-size: 15px;
+
+.font-15 {
+    font-size: 15px;
 }
-.font-16{
-	font-size: 16px;
+
+.font-16 {
+    font-size: 16px;
 }
-.font-17{
-	font-size: 17px;
+
+.font-17 {
+    font-size: 17px;
 }
-.font-18{
-	font-size: 18px;
+
+.font-18 {
+    font-size: 18px;
 }
-.font-19{
-	font-size: 19px;
+
+.font-19 {
+    font-size: 19px;
 }
-.font-20{
-	font-size: 20px;
+
+.font-20 {
+    font-size: 20px;
 }
-.font-21{
-	font-size: 21px;
+
+.font-21 {
+    font-size: 21px;
 }
-.font-22{
-	font-size: 22px;
+
+.font-22 {
+    font-size: 22px;
 }
-.font-400{
-	font-weight: 400;
+
+.font-400 {
+    font-weight: 400;
 }
-.font-500{
-	font-weight: 500;
+
+.font-500 {
+    font-weight: 500;
 }
-.font-600{
-	font-weight: 600;
+
+.font-600 {
+    font-weight: 600;
 }
-.font-700{
-	font-weight: 700;
+
+.font-700 {
+    font-weight: 700;
 }
-.font-800{
-	font-weight: 800;
+
+.font-800 {
+    font-weight: 800;
 }
-.font-900{
-	font-weight: 900;
+
+.font-900 {
+    font-weight: 900;
 }
-.background-blue{
-	background-color: rgb(73,144, 226);
+
+.background-blue {
+    background-color: rgb(73, 144, 226);
 }
-.background-white{
-	background-color: #fff;
+
+.background-white {
+    background-color: #fff;
 }
-.color-dark-gray{
-	color: rgb(146, 146, 146);
+
+.color-dark-gray {
+    color: rgb(146, 146, 146);
 }
-.background-gray{
-	background-color: rgb(241, 245, 246);
+
+.background-gray {
+    background-color: rgb(241, 245, 246);
 }
-.search-btn{
-	position: absolute;
-	top: 30%;
-	right: 4%;
+
+.search-btn {
+    position: absolute;
+    top: 30%;
+    right: 4%;
 }
-.pos-relative{
-	position: relative;
+
+.pos-relative {
+    position: relative;
 }
-.pos-absolute{
-	position: absolute;
+
+.pos-absolute {
+    position: absolute;
 }
-.right-abs{
-	right: 1%;
+
+.right-abs {
+    right: 1%;
 }
-.hover-blue:hover{
-	background-color: rgb(236,243, 253);
-	cursor: pointer;
+
+.hover-blue:hover {
+    background-color: rgb(236, 243, 253);
+    cursor: pointer;
 }
-.clicked-btn{
-	background-color: rgb(236,243, 253);
-	color: rgb(73,144, 226);
-	cursor: pointer;
+
+.clicked-btn {
+    background-color: rgb(236, 243, 253);
+    color: rgb(73, 144, 226);
+    cursor: pointer;
 }
-.hover-blue:hover .hover-color{
-	color: rgb(73,144, 226);
-	cursor: pointer;
+
+.hover-blue:hover .hover-color {
+    color: rgb(73, 144, 226);
+    cursor: pointer;
 }
-.max-height-first{
-	max-height: 633px;
-	overflow-y: scroll;
-	overflow-x: hidden;
+
+.max-height-first {
+    height: 633px;
+    max-height: 633px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
 .max-height-first::-webkit-scrollbar {
     margin-top: 20px;
     height: 5px;
     width: 3px;
 }
+
 .max-height-first::-webkit-scrollbar-thumb {
-    background:rgb(255,255, 255);
+    background: rgb(255, 255, 255);
     border-radius: 10px;
     transition: 0.5s;
 }
-.max-height{
-	max-height: 633px;
-	overflow-y: scroll;
-	overflow-x: hidden;
+
+.max-height {
+    max-height: 633px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-.max-height-second{
-	max-height: 500px;
-	overflow-y: scroll;
-	overflow-x: hidden;
+
+.max-height-second {
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
 .max-height::-webkit-scrollbar {
     margin-top: 20px;
     height: 5px;
     width: 3px;
 }
+
 .max-height-second::-webkit-scrollbar {
     margin-top: 20px;
     height: 5px;
     width: 3px;
 }
+
 .max-height::-webkit-scrollbar-thumb {
-    background:rgb(73,144, 226);
+    background: rgb(73, 144, 226);
     border-radius: 10px;
     transition: 0.5s;
 }
+
 .max-height-second::-webkit-scrollbar-thumb {
-    background:rgb(73,144, 226);
+    background: rgb(73, 144, 226);
     border-radius: 10px;
     transition: 0.5s;
 }
-.max-height-third{
-	max-height: 300px;
-	overflow-y: scroll;
-	overflow-x: hidden;
+
+.max-height-third {
+    height: 430px;
+    max-height: 430px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+
 .max-height-third::-webkit-scrollbar-thumb {
-    background:rgb(73,144, 226);
+    background: rgb(73, 144, 226);
     border-radius: 10px;
     transition: 0.5s;
 }
-.max-height-third::-webkit-scrollbar {
-    margin-top: 20px;
-    height: 5px;
-    width: 3px;
-}
+
 .max-height-third::-webkit-scrollbar {
     margin-top: 20px;
     height: 5px;
     width: 3px;
 }
 
-.have-pos-fixed{
-	position: fixed;
-	top: 7%;
-	right: 0;
-	height: 92vh;
-	width: 30.6%;
-	display: none;
-}
-.max-width-90{
-	max-width: 90% !important;
+.max-height-third::-webkit-scrollbar {
+    margin-top: 20px;
+    height: 5px;
+    width: 3px;
 }
 
-.square-btn{
-	border: 1px solid rgb(204,215,221);
-	background-color: rgb(204,215,221);
-	color: rgb(73,144, 226);
-	// padding-top: 1px;
-	// padding-bottom: 2px;
-	padding-right: 5px;
-	padding-left: 5px;
-	margin-right: 10px;
+.have-pos-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 30.6%;
+    z-index: 999999;
 }
-.square-text{
-	border: 1px solid rgb(73,144,226);
-	background-color: rgb(255,255,255);
-	color: rgb(73,144, 226);
-	// padding-top: 2px;
-	// padding-bottom: 2px;
-	padding-right: 10px;
-	padding-left: 10px;
-	margin-right: 10x;
+
+.max-width-90 {
+    max-width: 90% !important;
 }
-.color-white{
-	color: white;
+
+.square-btn {
+    border: 1px solid rgb(204, 215, 221);
+    background-color: rgb(204, 215, 221);
+    color: rgb(73, 144, 226);
+    // padding-top: 1px;
+    // padding-bottom: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: 10px;
 }
-.border-black{
-	border: 1px solid gray;
+
+.square-text {
+    border: 1px solid rgb(73, 144, 226);
+    background-color: rgb(255, 255, 255);
+    color: rgb(73, 144, 226);
+    // padding-top: 2px;
+    // padding-bottom: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: 10x;
 }
-.cursor{
-	cursor: pointer;
+
+.color-white {
+    color: white;
 }
-.hover-red:hover{
-	color: rgb(255, 0, 0);
+
+.border-black {
+    border: 1px solid gray;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.hover-red:hover {
+    color: rgb(255, 0, 0);
+}
+
+.have-pos-fixed-total {
+    position: fixed;
+    bottom: 0;
 }
