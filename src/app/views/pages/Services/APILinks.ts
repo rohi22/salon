@@ -361,6 +361,7 @@ export class ApiLinks {
 	readonly GetAllTax = this.BaseUrl + "new/tax";
 
 	readonly SaveCustomer = this.BaseUrl + "user/new/user";
+	readonly SalesReport = this.BaseUrl + "sales";
 
 
 }
