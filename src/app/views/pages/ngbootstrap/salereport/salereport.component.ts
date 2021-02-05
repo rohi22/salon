@@ -10,7 +10,7 @@ import { Printd } from 'printd'
 })
 export class SalereportComponent implements OnInit {
 	public dataSource = new MatTableDataSource<any>();
-	displayedColumns: string[] = ['S.no', 'title', 'poNumber', 'vendorName', 'branchName', 'subGrossAmount', 'subTaxAmount', 'subDiscount', 'subTotal', 'deliveryDate', 'createdBy', 'actions'];
+	displayedColumns: string[] = ['S.no', 'invoiceNumber', 'customerName', 'branchName', 'createdBy', 'discountAmount', 'receiveAmount', 'taxAmount', 'subTotal', 'totalBill', 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 
