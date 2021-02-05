@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
 import { CustomerUpdate } from '../../../models/customerupdate';
@@ -6,9 +7,9 @@ import { CustomerService } from '../../../Services/customer.service';
 import { CustomerupdateComponent } from '../customerupdate.component';
 
 @Component({
-  selector: 'kt-customerupdatelist',
-  templateUrl: './customerupdatelist.component.html',
-  styleUrls: ['./customerupdatelist.component.scss']
+	selector: 'kt-customerupdatelist',
+	templateUrl: './customerupdatelist.component.html',
+	styleUrls: ['./customerupdatelist.component.scss']
 })
 export class CustomerupdatelistComponent implements OnInit {
 	public dataSource = new MatTableDataSource<CustomerUpdate>();
@@ -28,6 +29,8 @@ export class CustomerupdatelistComponent implements OnInit {
 				this.dataSource.data = res as CustomerUpdate[];
 				this.dataSource.paginator = this.paginator;
 				this.dataSource.sort = this.sort;
+			}, (err: HttpErrorResponse) => {
+				alert(err.message)
 			});
 	}
 
@@ -44,7 +47,7 @@ export class CustomerupdatelistComponent implements OnInit {
 		let dialog = this.dialog.open(CustomerupdateComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllCustomer();
-		  });
+		});
 	}
 
 	async Edit(edit) {
@@ -56,6 +59,6 @@ export class CustomerupdatelistComponent implements OnInit {
 		let dialog = this.dialog.open(CustomerupdateComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllCustomer();
-		  });
+		});
 	}
 }

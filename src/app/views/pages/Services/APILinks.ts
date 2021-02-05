@@ -360,6 +360,8 @@ export class ApiLinks {
 	readonly DeleteTax = this.BaseUrl + "new/tax/";
 	readonly GetAllTax = this.BaseUrl + "new/tax";
 
+	readonly SaveCustomer = this.BaseUrl + "user/new/user";
+
 
 }
 

@@ -40,24 +40,25 @@ export class BrandComponent implements OnInit, AfterViewInit {
 	 * On init
 	 */
 	ngOnInit(): void {
-		// this.webService.getallWebsetting()
-		// 	.subscribe((res: any) => {
-		// 		if (res[0] && res[0].id && res[0] !== undefined) {
-		// 			this.headerLogo = this.apiLinks.imagePath + res[0].logo
-		// 		}
-		// 		else {
-		// 			this.webService.websettingObject.subscribe((res: any) => {
-		// 				if (res) {
-		// 					this.headerLogo = this.apiLinks.imagePath + res.logo
-		// 				}
-		// 			})
-		// 		}
-		// 	}, (err: HttpErrorResponse) => {
-		// 		alert(err.error)
-		// 	});
+
+		this.webService.getallWebsetting()
+			.subscribe((res: any) => {
+				debugger
+				if (res[0] && res[0].id && res[0] !== undefined) {
+					this.headerLogo = this.apiLinks.imagePath + res[0].logo
+				}
+				else {
+					this.headerLogo = this.apiLinks.imagePath + localStorage.getItem("Logo")
+				}
+			}, (err: HttpErrorResponse) => {
+				alert(err.error)
+			});
 		this.webService.websettingObject.subscribe((res: any) => {
 			if (res) {
 				this.headerLogo = this.apiLinks.imagePath + res.logo
+			}
+			else {
+				this.headerLogo = this.apiLinks.imagePath + localStorage.getItem("Logo")
 			}
 		})
 		// this.headerLogo = this.layoutConfigService.getLogo();

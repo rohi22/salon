@@ -73,8 +73,9 @@ export class WebsettingComponent implements OnInit {
 			formData.append("file", this.file);
 			formData.append("favIcon", this.faviconfile);
 			console.log(formData)
-			this._WebsettingService.PostWebsetting(formData, this._common.getHeaerOptions()).subscribe(res => {
+			this._WebsettingService.PostWebsetting(formData, this._common.getHeaerOptions()).subscribe((res: any) => {
 				console.log("RESPONSE :", res);
+				localStorage.setItem("Logo", res.logo)
 				this._WebsettingService.websettingObject.next(res)
 				alert("Save");
 			}, (err: HttpErrorResponse) => {
@@ -93,8 +94,9 @@ export class WebsettingComponent implements OnInit {
 		formData.append("file", this.file);
 		formData.append("favIcon", this.faviconfile);
 		console.log(formData)
-		this._WebsettingService.PutWebsetting(formData, this._common.getHeaerOptions()).subscribe(res => {
+		this._WebsettingService.PutWebsetting(formData, this._common.getHeaerOptions()).subscribe((res: any) => {
 			console.log(res);
+			localStorage.setItem("Logo", res.logo)
 			this._WebsettingService.websettingObject.next(res)
 			alert("Update")
 			this.EditMOdal();
