@@ -1,3 +1,4 @@
+import { ApiLinks } from './../../../Services/APILinks';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
@@ -12,10 +13,12 @@ import { ProductComponent } from '../product.component';
 })
 export class ProduclistComponent implements OnInit {
 	public dataSource = new MatTableDataSource<Product>();
-	displayedColumns: string[] = ['id', 'productName', 'unitName', 'brandName','status', 'actions'];
+	displayedColumns: string[] = ['id', 'productName', 'unitName', 'brandName', 'status', 'image', 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
-	constructor(private _ProductService: ProductService, public dialog: MatDialog, public snackBar: MatSnackBar,private _commonservice: CommonService,) { }
+	imagePath = this.apiLinks.imagePath
+	constructor(private _ProductService: ProductService, public dialog: MatDialog, private apiLinks: ApiLinks,
+		public snackBar: MatSnackBar, private _commonservice: CommonService,) { }
 	async ngOnInit() {
 		await this.getAllBrands();
 	}
@@ -42,7 +45,7 @@ export class ProduclistComponent implements OnInit {
 		let dialog = this.dialog.open(ProductComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllBrands();
-		  });
+		});
 	}
 
 	async Delete(id) {
@@ -66,6 +69,6 @@ export class ProduclistComponent implements OnInit {
 		let dialog = this.dialog.open(ProductComponent, dialogconfig);
 		dialog.afterClosed().subscribe(result => {
 			this.getAllBrands();
-		  });
+		});
 	}
 }
