@@ -1,3 +1,4 @@
+import { ApiLinks } from './../../../views/pages/Services/APILinks';
 // Angular
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +15,7 @@ const API_PRODUCTS_URL = 'api/products';
 export class ProductsService {
 	lastFilter$: BehaviorSubject<QueryParamsModel> = new BehaviorSubject(new QueryParamsModel({}, 'asc', '', 0, 10));
 
-	constructor(private http: HttpClient,
+	constructor(private http: HttpClient,private _apiLink: ApiLinks,
 		           private httpUtils: HttpUtilsService) { }
 
 	// CREATE =>  POST: add a new product to the server
@@ -31,6 +32,7 @@ export class ProductsService {
 	getProductById(productId: number): Observable<ProductModel> {
 		return this.http.get<ProductModel>(API_PRODUCTS_URL + `/${productId}`);
 	}
+
 
 	// Server should return filtered/sorted result
 	findProducts(queryParams: QueryParamsModel): Observable<QueryResultsModel> {

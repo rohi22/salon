@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { ApiLinks } from './APILinks';
 import { CommonService } from './common.service';
 
@@ -14,6 +15,9 @@ export class ProductService {
 	getAllProduct() {
 		return this._http.get(this._links.AllProduct, { headers: this._commonServices.getHeaders() });
 	}
+	getAllCustomer() {
+		return this._http.get(this._links.getAllCustomer, { headers: this._commonServices.getHeaders() });
+	}
 
 	getProductByBranch(branchid) {
 		return this._http.get(this._links.ProductByBranch + branchid, { headers: this._commonServices.getHeaders() });
@@ -26,6 +30,12 @@ export class ProductService {
 	getProductBYImageFile(file) {
 		return this._http.get(this._links.ProductBYImageFile + file, { headers: this._commonServices.getHeaders() });
 	}
+	getProductByCategoryId(categoryId: number){
+		return this._http.get(this._links.getProductByCategoryId + categoryId, { headers: this._commonServices.getHeaders() });
+	}
+	getServiceByCategoryId(categoryId: number){
+		return this._http.get(this._links.getServiceByCategoryId + categoryId, { headers: this._commonServices.getHeaders() });
+	}
 
 	SaveProduct(files, body, headers) {
 		let form = new FormData
@@ -34,6 +44,10 @@ export class ProductService {
 		form.append("productString", JSON.stringify(body));
 		form.append("files", file);
 		return this._http.post(this._links.PostProduct, form, headers);
+	}
+	SaveSales(body) {
+		body.userId = localStorage.getItem('userId')
+		return this._http.post(this._links.PostSale, body, { headers: this._commonServices.getHeaders() });
 	}
 
 	EditProduct(files, body, header) {

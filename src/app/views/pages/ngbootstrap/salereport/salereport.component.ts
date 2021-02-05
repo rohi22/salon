@@ -13,7 +13,7 @@ import { WebsettingService } from '../../Services/websetting.service';
 })
 export class SalereportComponent implements OnInit {
 	public dataSource = new MatTableDataSource<any>();
-	displayedColumns: string[] = ['S.no', 'invoiceNumber', 'customerName', 'branchName', 'createdBy', 'discountAmount', 'receiveAmount', 'taxAmount', 'subTotal', 'totalBill', 'actions'];
+	displayedColumns: string[] = ['S.no', 'invoiceNumber', 'customerName', 'createdBy', 'receiveAmount', 'subTotal', 'totalBill', 'actions'];
 	@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 	@ViewChild(MatSort, { static: true }) sort: MatSort;
 	@ViewChild("printBtn", { static: true }) print: ElementRef;
@@ -35,7 +35,7 @@ export class SalereportComponent implements OnInit {
 		this.GetWebsetting()
 	}
 
-	Khaali(){}
+	Khaali() { }
 
 	GetWebsetting() {
 		this._WebsettingService.getallWebsetting()

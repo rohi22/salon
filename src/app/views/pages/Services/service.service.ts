@@ -19,6 +19,7 @@ export class ServiceService {
 	}
 
 	SaveService(body, headers) {
+		delete body.category;
 		return this._http.post(this._links.postServices, body, headers);
 	}
 
