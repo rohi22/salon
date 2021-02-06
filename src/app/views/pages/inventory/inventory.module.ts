@@ -91,14 +91,14 @@ const routes: Routes = [
 	],
     declarations: [
         InventoryComponent,
-        BrandComponent,
+
         UnitComponent,
         ProductComponent,
         UnitlistComponent,
         ProductlistComponent,
         BrandlistComponent,
-        AddTaxComponent,
-        TaxListComponent,
+
+
     ],
     exports: [
         InventoryComponent,
@@ -107,7 +107,7 @@ const routes: Routes = [
 		BrandComponent,
 		UnitComponent,
 		ProductComponent,
-		AddTaxComponent,
+
 	],
 	providers: [
 		MatIconRegistry,

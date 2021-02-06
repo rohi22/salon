@@ -4,11 +4,12 @@
     "description": "Packages used by Angular",
     "scripts": {
         "ng": "ng",
-        "start": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng serve",
-        "build": "ng build --prod",
+        "start": "node server.js",
+        "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
+        "heroku-postbuild": "ng build --prod",
         "bundle-report": "webpack-bundle-analyzer dist/stats.json",
         "rtl": "webpack"
     },

@@ -1,9 +1,14 @@
+import { CustomersService } from './../../../../../core/e-commerce/_services/customers.service.fake';
 import { ProductService, CategoryService } from './../../../Services/product.service';
 import { ApiLinks } from './../../../Services/APILinks';
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomerService } from '../../../Services/customer.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
 @Component({
 	selector: 'kt-salon-pos',
 	templateUrl: './salon-pos.component.html',
@@ -35,16 +40,27 @@ export class SalonPosComponent implements OnInit, AfterViewInit {
 	serviceList: any[] = [];
 	customerList: any[] = [];
 	data: any[] = [];
+	CustomerForm: FormGroup;
 	@ViewChild("new12", { static: true }) new121: ElementRef;
-	constructor(private router: ActivatedRoute, private modalService: NgbModal, private _apiLink: ApiLinks, private _prodService: ProductService, private _catService: CategoryService) {
+	modalrefrence: any;
+	constructor(private fb: FormBuilder,private CustomerService: CustomerService,private router: ActivatedRoute, private modalService: NgbModal, private _apiLink: ApiLinks, private _prodService: ProductService, private _catService: CategoryService) {
 		this.imageUrl = this._apiLink.productImage;
 
 	}
 	ngOnInit() {
+		this.initForm()
 		this.getAllCustomers()
 		this.data = this.router.snapshot.data.supplier;
 		this.productCategoryList = this.data[0];
 		this.serviceCategoryList = this.data[1];
+	}
+	initForm() {
+
+		this.CustomerForm = this.fb.group({
+			name: ['', Validators.required],
+			contact: ['', Validators.required],
+			address: ['', Validators.required],
+		})
 	}
 	getAllCustomers() {
 		this._prodService.getAllCustomer().subscribe(res => {
@@ -72,20 +88,39 @@ export class SalonPosComponent implements OnInit, AfterViewInit {
 			this._catService.getCategoryByType(1),
 			this._catService.getCategoryByType(2),
 
-		])
-			.subscribe((x: any) => {
-				if (x) {
-					this.productCategoryList = x[0];
-					this.serviceCategoryList = x[1];
-				}
+		]).subscribe((x: any) => {
+			if (x) {
+				this.productCategoryList = x[0];
+				this.serviceCategoryList = x[1];
+			}
 
-			});
+		});
+	}
+
+
+	creatCustomer(){
+		this.CustomerService.PostCustomer(this.CustomerForm.value).subscribe(res => {
+			alert("customer Added Successfully..")
+			this.getAllCustomers();
+			this.modalrefrence.close('Close click');
+			this.CustomerForm.reset()
+		}, (err: HttpErrorResponse) => {
+			if (err.status == 200) {
+				alert("customer Added Successfully..");
+				this.CustomerForm.reset()
+
+			}
+			else{
+				alert(err.error)
+			}
+		})
+
 	}
 	ngAfterViewInit() {
 		// this.getAllCategoryByType()
 	}
 	openModal(event) {
-		this.modalService.open(event, { ariaLabelledBy: 'modal-basic-title' })
+	this.modalrefrence=	this.modalService.open(event, { ariaLabelledBy: 'modal-basic-title' })
 	}
 	ServiceQnty(i, type) {
 		if (type == 1) {
